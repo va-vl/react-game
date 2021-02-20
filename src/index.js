@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { StylesProvider } from '@material-ui/core/styles';
 import App from './App';
-import './index.scss';
+// import store from './store/store';
+// import { Provider } from 'react-redux';
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <StylesProvider injectFirst>
+        <App />
+      </StylesProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
 );
