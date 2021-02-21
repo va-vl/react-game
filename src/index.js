@@ -2,16 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { StylesProvider } from '@material-ui/core/styles';
-import App from './App';
-// import store from './store/store';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
+import AppContainer from './AppContainer';
+import store from './store/store';
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <StylesProvider injectFirst>
-        <App />
+        <Provider store={store}>
+          <AppContainer />
+        </Provider>
       </StylesProvider>
     </BrowserRouter>
   </React.StrictMode>,

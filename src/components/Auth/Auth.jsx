@@ -1,38 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {
-  Typography,
-  TextField,
-  Button,
-} from '@material-ui/core';
+/* eslint-disable react/prop-types */
+import React, { Component } from 'react';
+import { Typography, TextField, Button } from '@material-ui/core';
 
-const Auth = ({
-  userName,
-  setUserName,
-}) => (
-  <>
-    <Typography variant="h3">Hi, what is your name?</Typography>
-    <form>
-      <TextField
-        value={userName}
-        onChange={setUserName}
-        label="Name"
-      />
-      <div>
-        <Button>Submit</Button>
-        <Button>Continue without name</Button>
-      </div>
-    </form>
-  </>
-);
+class Auth extends Component {
+  constructor(props) {
+    super(props);
 
-Auth.defaultProps = {
-  userName: '',
-};
+    const { defaultName } = this.props;
 
-Auth.propTypes = {
-  userName: PropTypes.string,
-  setUserName: PropTypes.func.isRequired,
-};
+    this.state = {
+      userName: defaultName,
+    };
+
+    this.handleTextChange = this._handleTextChange.bind(this);
+    this.submitInputValue = this._submitInputValue.bind(this);
+  }
+
+  _submitInputValue() {
+    const { nameSubmit } = this.props;
+    const { userName } = this.state;
+
+    nameSubmit(userName);
+  }
+
+  _handleTextChange(event) {
+    const {
+      target: { value },
+    } = event;
+
+    this.setState({ userName: value });
+  }
+
+  render() {
+    const { userName } = this.state;
+
+    return (
+      <>
+        <Typography variant="h3">Hi, what is your name?</Typography>
+        <form>
+          <TextField
+            value={userName}
+            onChange={this.handleTextChange}
+            label="Name"
+          />
+          <div>
+            <Button onClick={this.submitInputValue}>Submit</Button>
+          </div>
+        </form>
+      </>
+    );
+  }
+}
 
 export default Auth;
