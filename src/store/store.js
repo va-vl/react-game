@@ -1,18 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import authReducer from './authReducer/authReducer';
+import loginReducer from './loginReducer/loginReducer';
 
 const store = createStore(
-  combineReducers({ authReducer }),
+  combineReducers({ loginReducer }),
   composeWithDevTools(applyMiddleware(thunk)),
 );
-
-setTimeout(() => {
-  store.dispatch({
-    type: 'SET_USER_NAME',
-    payload: '12000',
-  });
-}, 2000);
 
 export default store;

@@ -1,10 +1,13 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
 
-const Settings = () => {
-  const a = 'This is a settings menu';
-
-  return <Typography>{a}</Typography>;
-};
+const Settings = () => (
+  <div>
+    <button type="button">Music off</button>
+    <button type="button">Sound off</button>
+    <button type="button">Cards amount</button>
+    <button type="button">Cards back</button>
+    <button type="button">Theme</button>
+  </div>
+);
 
 export default Settings;

@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -12,35 +15,12 @@ class Card extends Component {
 
     return (
       <div
-        style={{
-          position: 'relaitve',
-          width: '100px',
-          height: '120px',
+        onClick={() => {
+          console.log('hello');
         }}
       >
-        <img
-          style={{
-            position: 'absolute',
-            WebkitBackfaceVisibility: 'hidden',
-            backfaceVisibility: 'hidden',
-          }}
-          src={backSrc}
-          alt="card back"
-          width="100"
-          height="120"
-        />
-        <img
-          style={{
-            position: 'absolute',
-            WebkitBackfaceVisibility: 'hidden',
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
-          }}
-          src={frontSrc}
-          alt="card front"
-          width="100"
-          height="120"
-        />
+        <img src={backSrc} alt="card back" draggable="false" />
+        <img src={frontSrc} alt="card front" draggable="false" />
       </div>
     );
   }

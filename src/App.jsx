@@ -1,69 +1,29 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router-dom';
-import Auth from './components/Auth/Auth';
-import Menu from './components/Menu/Menu';
-import Settings from './components/Settings/Settings';
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
+import React from 'react';
+// import PropTypes from 'prop-types';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import PrivateRoute from './components/_common/PrivateRoute';
+import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
+import Main from './components/Main/Main';
 import Game from './components/Game/Game';
+import Settings from './components/Settings/Settings';
+import './App.scss';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    const { userName } = props;
-
-    this.state = {
-      userName,
-      previousUserName: userName,
-    };
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    const { userName } = props;
-    const { previousUserName } = state;
-
-    if (userName !== previousUserName) {
-      return {
-        userName,
-        previousUserName: userName,
-      };
-    }
-
-    return null;
-  }
-
-  render() {
-    const { userName } = this.state;
-    const { setUserName } = this.props;
-
-    return (
-      <div>
-        <Switch>
-          <Route exact path="/">
-            {userName ? (
-              <Menu />
-            ) : (
-              <Auth defaultName={userName} nameSubmit={setUserName} />
-            )}
-          </Route>
-          <Route exact path="/menu">
-            <Menu />
-          </Route>
-          <Route exact path="/settings">
-            <Settings />
-          </Route>
-          <Route exact path="/game">
-            <Game userName={userName} />
-          </Route>
-        </Switch>
-      </div>
-    );
-  }
-}
-
-App.propTypes = {
-  userName: PropTypes.string.isRequired,
-  setUserName: PropTypes.func.isRequired,
-};
+const App = () => (
+  <div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/signin" component={SignIn} />
+        <Route exact path="/signup" component={SignUp} />
+        <PrivateRoute exact path="/" component={Main} />
+        <PrivateRoute exact path="/game" component={Game} />
+        <PrivateRoute exact path="/settings" component={Settings} />
+        <Redirect from="*" to="/" />
+      </Switch>
+    </BrowserRouter>
+  </div>
+);
 
 export default App;

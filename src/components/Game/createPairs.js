@@ -1,7 +1,6 @@
 /**
  * @param {Array} arr
  */
-
 const randomFisherYates = (arr) => {
   const result = [...arr];
   const l = result.length - 1;
@@ -15,7 +14,6 @@ const randomFisherYates = (arr) => {
 };
 
 /**
- *
  * @param {Array} sourceArr
  * @param {Number} pairsNum
  */

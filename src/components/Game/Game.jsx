@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Typography } from '@material-ui/core';
 import createPairs from './createPairs';
 import importAll from '../../utils/importAll';
 import Card from './Card/Card';
@@ -27,7 +26,7 @@ class Game extends PureComponent {
 
     return (
       <>
-        <Typography>{`Hello, ${userName}!`}</Typography>
+        <h3>{`Hello, ${userName}!`}</h3>
         <ul
           style={{
             display: 'grid',
