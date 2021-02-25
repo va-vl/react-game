@@ -1,11 +1,11 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import * as userService from '../../services/userService';
+import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
+import { handleSignUp } from '../../utils/handleAuth';
+import LabeledField from '../_common/LabeledField/LabeledField';
+import './SignUp.scss';
 
-// import userRegisterAC from '../../store/registrationReducer/registrationActionCreators';
-
-const SignUp = (props) => {
+const SignUp = ({ history }) => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -32,62 +32,61 @@ const SignUp = (props) => {
     event.preventDefault();
 
     if (userName && userEmail && userPassword) {
-      userService.register({ userName, userEmail, userPassword });
-      props.history.push('/signin');
+      handleSignUp({ userName, userEmail, userPassword }, history);
     }
   };
 
   return (
-    <div>
-      <h3>Sign Up</h3>
-      <form name="form" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="userNameSignUpInput">
-            Username:
-            <input
-              required
+    <main className="signup">
+      <div className="signup__content">
+        <h3 className="signup__heading">Sign Up</h3>
+        <form className="signup__form" onSubmit={handleSubmit}>
+          <div className="signup__input">
+            <LabeledField
+              id="userNameSignUpInput"
+              label="User name"
               type="text"
               name="userName"
               value={userName}
               onChange={handleChange}
-              id="userNameSignUpInput"
             />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="userEmailSignUpInput">
-            E-mail:
-            <input
-              required
+          </div>
+          <div className="signup__input">
+            <LabeledField
+              id="userEmailSignUpInput"
+              label="E-mail"
               type="email"
               name="userEmail"
               value={userEmail}
               onChange={handleChange}
-              id="userEmailSignUpInput"
             />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="userPasswordSignUpInput">
-            Password:
-            <input
-              required
+          </div>
+          <div className="signup__input">
+            <LabeledField
+              id="userPasswordSignUpInput"
+              label="Password"
               type="password"
               name="userPassword"
-              id="userPasswordSignUpInput"
               value={userPassword}
               onChange={handleChange}
             />
-          </label>
-          {userName && !userPassword && <div>Password is required</div>}
-        </div>
-        <div>
-          <button type="submit">Register</button>
-          <Link to="/signin">Cancel</Link>
-        </div>
-      </form>
-    </div>
+          </div>
+          <div>
+            <button className="signin__button" type="submit">
+              Register
+            </button>
+            <Link className="signin__button" to="/signin">
+              Sign in
+            </Link>
+          </div>
+        </form>
+      </div>
+    </main>
   );
 };
 
-export default SignUp;
+SignUp.propTypes = {
+  history: PropTypes.instanceOf(Object).isRequired,
+};
+
+export default withRouter(SignUp);

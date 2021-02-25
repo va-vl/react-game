@@ -2,8 +2,6 @@ import authHeader from '../utils/getAuthHeader';
 
 const apiURL = process.env.REACT_APP_API_URL;
 
-console.log(apiURL);
-
 function logout() {
   localStorage.removeItem('user');
 }
@@ -26,32 +24,6 @@ function handleResponse(response) {
   });
 }
 
-function login(username, password) {
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userName: username, userPassword: password }),
-  };
-
-  return fetch(`${apiURL}/users/authenticate`, requestOptions)
-    .then(handleResponse)
-    .then((user) => {
-      localStorage.setItem('user', JSON.stringify(user));
-
-      return user;
-    });
-}
-
-function register(user) {
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(user),
-  };
-
-  return fetch(`${apiURL}/users/register`, requestOptions).then(handleResponse);
-}
-
 function update(user) {
   const requestOptions = {
     method: 'PUT',
@@ -64,4 +36,4 @@ function update(user) {
   );
 }
 
-export { login, logout, register, update };
+export default update;

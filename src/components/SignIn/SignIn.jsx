@@ -1,14 +1,21 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import * as userService from '../../services/userService';
+import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
+import LabeledField from '../_common/LabeledField/LabeledField';
+import { handleSignIn } from '../../utils/handleAuth';
+import './SignIn.scss';
 
-const SignIn = (props) => {
+const SignIn = ({ history }) => {
   const [userName, setUserName] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
+    if (errorMessage) {
+      setErrorMessage(null);
+    }
 
     switch (name) {
       case 'userName':
@@ -26,48 +33,58 @@ const SignIn = (props) => {
     event.preventDefault();
 
     if (userName && userPassword) {
-      userService.login(userName, userPassword);
-      props.history.push('/');
+      handleSignIn(userName, userPassword, history).then(
+        ({ isLoginSuccessful, message }) => {
+          if (!isLoginSuccessful) {
+            setErrorMessage(message);
+          }
+        },
+      );
     }
   };
 
   return (
-    <div>
-      <h3>Sign In</h3>
-      <form name="form" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="userNameSignInInput">
-            Username:
-            <input
-              required
+    <main className="signin">
+      <div className="signin__content">
+        <h3 className="signin__heading">Sign In</h3>
+        <form className="signin__form" onSubmit={handleSubmit}>
+          <div className="signin__input">
+            <LabeledField
               type="text"
-              name="userName"
+              label="Username"
               value={userName}
-              onChange={handleChange}
+              name="userName"
               id="userNameSignInInput"
+              onChange={handleChange}
             />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="userPasswordSignInInput">
-            Password:
-            <input
-              required
+          </div>
+          <div className="signin__input">
+            <LabeledField
               type="password"
+              label="Password"
+              value={userPassword}
               name="userPassword"
               id="userPasswordSignInInput"
-              value={userPassword}
               onChange={handleChange}
             />
-          </label>
-        </div>
-        <div>
-          <button type="submit">Login</button>
-          <Link to="/signup">Register</Link>
-        </div>
-      </form>
-    </div>
+          </div>
+          <p className="signin__error">{errorMessage}</p>
+          <div>
+            <button className="signin__button" type="submit">
+              Login
+            </button>
+            <Link className="signin__button" to="/signup">
+              Sign up
+            </Link>
+          </div>
+        </form>
+      </div>
+    </main>
   );
 };
 
-export default SignIn;
+SignIn.propTypes = {
+  history: PropTypes.instanceOf(Object).isRequired,
+};
+
+export default withRouter(SignIn);

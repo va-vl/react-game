@@ -25,7 +25,7 @@ class Game extends PureComponent {
     const { userName } = this.props;
 
     return (
-      <>
+      <div className="app__game game">
         <h3>{`Hello, ${userName}!`}</h3>
         <ul
           style={{
@@ -41,7 +41,7 @@ class Game extends PureComponent {
             return <Card key={keyProp} frontSrc={item} backSrc={back} />;
           })}
         </ul>
-      </>
+      </div>
     );
   }
 }

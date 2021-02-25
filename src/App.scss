@@ -2,6 +2,17 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: space-between;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  font-family: 'Roboto';
+  background-color: var(--color-main);
+
+  --color-white: #ffffff;
+  --color-black: #252525;
+  --color-main: #96bb7c;
+  --color-light: #d6efc7;
+  --color-dark: #184d47;
+  --color-contrast: #fad586;
 }

@@ -1,8 +1,8 @@
+@import "~@fontsource/roboto/scss/mixins";
+
+@include fontFace();
+
 body {
   margin: 0;
   padding: 0;
-}
-
-#root {
-  --color-red: green;
 }

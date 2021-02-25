@@ -21,5 +21,6 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-underscore-dangle': ['error', { allowAfterThis: true }],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/jsx-curly-newline': 'off',
   },
 };
