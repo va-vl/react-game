@@ -2,16 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './LabeledField.scss';
 
-const LabeledField = ({ type, label, value, name, id, onChange }) => (
+const LabeledField = ({ type, label, name, id }) => (
   <label className="labeled-field" htmlFor={id}>
     <span>{`${label}: `}</span>
     <input
       className="labeled-field__input"
+      defaultValue=""
       required
       type={type}
       name={name}
-      value={value}
-      onChange={onChange}
       id={id}
     />
   </label>
@@ -20,10 +19,8 @@ const LabeledField = ({ type, label, value, name, id, onChange }) => (
 LabeledField.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default LabeledField;

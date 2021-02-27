@@ -8,32 +8,22 @@ import { userSignInAC } from '../../store/userReducer/userReducerACs';
 import './SignIn.scss';
 
 const SignIn = ({ history }) => {
-  const [userName, setUserName] = useState('');
-  const [userPassword, setUserPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const dispatch = useDispatch();
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
+  const handleChange = () => {
     if (errorMessage) {
       setErrorMessage(null);
-    }
-
-    switch (name) {
-      case 'userName':
-        setUserName(value);
-        break;
-      case 'userPassword':
-        setUserPassword(value);
-        break;
-      default:
-        break;
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const {
+      userNameSignInInput: { value: userName },
+      userPasswordSignInInput: { value: userPassword },
+    } = document.forms.signInForm.elements;
 
     if (userName && userPassword) {
       handleSignIn(userName, userPassword, history).then(
@@ -52,27 +42,29 @@ const SignIn = ({ history }) => {
     <main className="signin">
       <div className="signin__content">
         <h3 className="signin__heading">Sign In</h3>
-        <form className="signin__form" onSubmit={handleSubmit}>
-          <div className="signin__input">
+        <form
+          className="signin__form"
+          name="signInForm"
+          id="signInForm"
+          onSubmit={handleSubmit}
+          onChange={handleChange}
+        >
+          <p className="signin__input">
             <LabeledField
               type="text"
               label="Username"
-              value={userName}
               name="userName"
               id="userNameSignInInput"
-              onChange={handleChange}
             />
-          </div>
-          <div className="signin__input">
+          </p>
+          <p className="signin__input">
             <LabeledField
               type="password"
               label="Password"
-              value={userPassword}
               name="userPassword"
               id="userPasswordSignInInput"
-              onChange={handleChange}
             />
-          </div>
+          </p>
           <p className="signin__error">{errorMessage}</p>
           <div>
             <button className="signin__button" type="submit">

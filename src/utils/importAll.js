@@ -1,8 +1,12 @@
 function importAll(requireContext) {
   return requireContext.keys().reduce((acc, key) => {
-    acc.push(requireContext(key).default);
+    const index = key.match(/(?!\.\/)\d+/)[0];
+    const path = requireContext(key).default;
+
+    acc[index] = path;
+
     return acc;
-  }, []);
+  }, {});
 }
 
 export default importAll;

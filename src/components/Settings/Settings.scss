@@ -2,6 +2,14 @@
   @include mainContainer;
 
   &__content {
+    @include contentContainer($width: 20rem);
+  }
 
+  &__heading {
+    @include contentHeading;
+  }
+
+  &__image-radio {
+    display: none;
   }
 }

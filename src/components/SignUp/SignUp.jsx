@@ -6,33 +6,35 @@ import LabeledField from '../_common/LabeledField/LabeledField';
 import './SignUp.scss';
 
 const SignUp = ({ history }) => {
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    switch (name) {
-      case 'userName':
-        setUserName(value);
-        break;
-      case 'userEmail':
-        setUserEmail(value);
-        break;
-      case 'userPassword':
-        setUserPassword(value);
-        break;
-      default:
-        break;
+  const handleChange = () => {
+    if (errorMessage) {
+      setErrorMessage(null);
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (userName && userEmail && userPassword) {
-      handleSignUp({ userName, userEmail, userPassword }, history);
+    const {
+      userNameSignUpInput,
+      userPasswordSignUpInput,
+    } = document.forms.signUpForm.elements;
+
+    const userName = userNameSignUpInput.value.trim();
+    const userPassword = userPasswordSignUpInput.value.trim();
+
+    if (userName && userPassword) {
+      handleSignUp({ userName, userPassword }, history).then(
+        ({ isSignUpSuccessful, payload }) => {
+          if (!isSignUpSuccessful) {
+            setErrorMessage(payload);
+          }
+        },
+      );
+    } else {
+      setErrorMessage('Fields must contain more than just empty spaces!');
     }
   };
 
@@ -40,25 +42,18 @@ const SignUp = ({ history }) => {
     <main className="signup">
       <div className="signup__content">
         <h3 className="signup__heading">Sign Up</h3>
-        <form className="signup__form" onSubmit={handleSubmit}>
+        <form
+          className="signup__form"
+          name="signUpForm"
+          onSubmit={handleSubmit}
+          onChange={handleChange}
+        >
           <div className="signup__input">
             <LabeledField
               id="userNameSignUpInput"
-              label="User name"
+              label="Your name"
               type="text"
               name="userName"
-              value={userName}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="signup__input">
-            <LabeledField
-              id="userEmailSignUpInput"
-              label="E-mail"
-              type="email"
-              name="userEmail"
-              value={userEmail}
-              onChange={handleChange}
             />
           </div>
           <div className="signup__input">
@@ -67,10 +62,9 @@ const SignUp = ({ history }) => {
               label="Password"
               type="password"
               name="userPassword"
-              value={userPassword}
-              onChange={handleChange}
             />
           </div>
+          <p className="signup__error">{errorMessage}</p>
           <div>
             <button className="signin__button" type="submit">
               Register
