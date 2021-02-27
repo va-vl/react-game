@@ -25,69 +25,73 @@ const Settings = () => {
     <main className="settings">
       <div className="settings__content">
         <h3 className="settings__heading">Settings</h3>
-        <ul className="settings__list">
-          <li className="settings__item">
+        <form className="settings__form">
+          <p className="settings__input">
             <RangeSlider
-              name="Music volume"
+              label="Music volume"
+              name="settingMusicVolume"
+              id="settingMusicVolume"
               value={musicVolume}
               changeHandler={setMusicVolume}
             />
-          </li>
-          <li className="settings__item">
+          </p>
+          <p className="settings__input">
             <RangeSlider
-              name="Sound volume"
+              label="Sound volume"
+              name="settingSoundVolume"
+              id="settingSoundVolume"
               value={soundVolume}
               changeHandler={setSoundVolume}
             />
-          </li>
-          <li className="settings__item">
-            <form
-              className="settings__amount"
-              onChange={handleCardsAmountChange}
-            >
-              <legend>asdf</legend>
-              {[12, 16, 20, 24].map((item) => {
-                const id = `cardsAmount${item}`;
-                const inputProps = {
-                  defaultChecked: item === cardsAmount,
-                  id,
-                  name: 'cardsAmount',
-                  value: `${item}`,
-                  type: 'radio',
-                };
+          </p>
+          <fieldset
+            className="settings__fieldset"
+            onChange={handleCardsAmountChange}
+          >
+            <legend>Select card settings</legend>
+            {[12, 16, 20, 24].map((item) => {
+              const id = `cardsAmount${item}`;
+              const inputProps = {
+                defaultChecked: item === cardsAmount,
+                id,
+                name: 'cardsAmount',
+                value: `${item}`,
+                type: 'radio',
+              };
 
-                return (
-                  <label key={id} htmlFor={id}>
-                    {React.createElement('input', inputProps)}
-                    {item}
-                  </label>
-                );
-              })}
-            </form>
-          </li>
-          <li className="settings__item">
-            <form className="settings__back" onChange={handleCardsBackChange}>
-              {Object.entries(cardBacks).map(([keyProperty, path]) => {
-                const id = `cardsBack${keyProperty}`;
-                const inputProps = {
-                  className: `settings__image-radio`,
-                  defaultChecked: keyProperty === cardsBackIndex,
-                  id,
-                  name: 'cardsBack',
-                  value: `${keyProperty}`,
-                  type: 'radio',
-                };
+              return (
+                <label key={id} htmlFor={id}>
+                  {React.createElement('input', inputProps)}
+                  {item}
+                </label>
+              );
+            })}
+          </fieldset>
+          <fieldset
+            className="settings__fieldset"
+            onChange={handleCardsBackChange}
+          >
+            <legend>Select card back</legend>
+            {Object.entries(cardBacks).map(([keyProperty, path]) => {
+              const id = `cardsBack${keyProperty}`;
+              const inputProps = {
+                className: `settings__image-radio`,
+                defaultChecked: keyProperty === cardsBackIndex,
+                id,
+                name: 'cardsBack',
+                value: `${keyProperty}`,
+                type: 'radio',
+              };
 
-                return (
-                  <label key={id} htmlFor={id}>
-                    {React.createElement('input', inputProps)}
-                    <img className="settings__image" src={path} alt="back" />
-                  </label>
-                );
-              })}
-            </form>
-          </li>
-        </ul>
+              return (
+                <label key={id} htmlFor={id}>
+                  {React.createElement('input', inputProps)}
+                  <img className="settings__image" src={path} alt="back" />
+                </label>
+              );
+            })}
+          </fieldset>
+        </form>
         <button type="button">Theme</button>
         <button type="button">Back</button>
       </div>

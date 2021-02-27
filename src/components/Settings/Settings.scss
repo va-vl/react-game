@@ -2,7 +2,10 @@
   @include mainContainer;
 
   &__content {
-    @include contentContainer($width: 20rem);
+    @include contentContainer($width: 60%);
+
+    min-width: 20rem;
+    max-width: 40rem;
   }
 
   &__heading {
@@ -11,5 +14,14 @@
 
   &__image-radio {
     display: none;
+
+    &:checked+.settings__image {
+      border: 10px solid white;
+    }
+  }
+
+  &__image {
+    width: 30%;
+    box-sizing: border-box;
   }
 }
