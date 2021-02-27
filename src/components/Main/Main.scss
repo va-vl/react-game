@@ -1,0 +1,27 @@
+.main {
+  @include mainContainer;
+
+  &__content {
+    @include contentContainer($width: 20rem);
+  }
+
+  &__heading {
+    margin-top: 0;
+    text-align: center;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__link {
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+
+  &__button {
+    @include contentButton;
+  }
+}

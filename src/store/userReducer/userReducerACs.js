@@ -1,8 +1,8 @@
 import { USER_SIGN_IN, USER_SIGN_OUT } from './userReducerActionTypes';
 
-const userSignInAC = (userData) => ({
+const userSignInAC = (userName) => ({
   type: USER_SIGN_IN,
-  payload: userData,
+  payload: userName,
 });
 
 const userSignOutAC = () => ({ type: USER_SIGN_OUT });

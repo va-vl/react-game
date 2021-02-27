@@ -9,7 +9,7 @@ const userReducer = (state = initialState, { type, payload }) => {
     case USER_SIGN_IN:
       return {
         ...state,
-        userData: payload,
+        userName: payload,
       };
     case USER_SIGN_OUT: {
       return {
@@ -19,3 +19,5 @@ const userReducer = (state = initialState, { type, payload }) => {
     }
   }
 };
+
+export default userReducer;

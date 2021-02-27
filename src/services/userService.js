@@ -1,5 +1,3 @@
-import authHeader from '../utils/getAuthHeader';
-
 const apiURL = process.env.REACT_APP_API_URL;
 
 function logout() {
@@ -22,6 +20,16 @@ function handleResponse(response) {
 
     return data;
   });
+}
+
+function authHeader() {
+  // return authorization header with jwt token
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  if (user && user.token) {
+    return { Authorization: `Bearer ${user.token}` };
+  }
+  return {};
 }
 
 function update(user) {

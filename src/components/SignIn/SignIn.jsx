@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import LabeledField from '../_common/LabeledField/LabeledField';
 import { handleSignIn } from '../../utils/handleAuth';
+import { userSignInAC } from '../../store/userReducer/userReducerACs';
 import './SignIn.scss';
 
 const SignIn = ({ history }) => {
   const [userName, setUserName] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -34,9 +37,11 @@ const SignIn = ({ history }) => {
 
     if (userName && userPassword) {
       handleSignIn(userName, userPassword, history).then(
-        ({ isLoginSuccessful, message }) => {
-          if (!isLoginSuccessful) {
-            setErrorMessage(message);
+        ({ isSignInSuccessful, payload }) => {
+          if (!isSignInSuccessful) {
+            setErrorMessage(payload);
+          } else {
+            dispatch(userSignInAC(payload));
           }
         },
       );

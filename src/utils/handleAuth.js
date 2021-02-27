@@ -28,11 +28,14 @@ function handleSignIn(userName, userPassword, routerHistory) {
     .then((user) => {
       localStorage.setItem('user', JSON.stringify(user));
       routerHistory.push('/');
-      return { isLoginSuccessful: true };
+      return {
+        isSignInSuccessful: true,
+        payload: user.userName,
+      };
     })
     .catch((err) => ({
-      isLoginSuccessful: false,
-      message: err.message,
+      isSignInSuccessful: false,
+      payload: err.message,
     }));
 }
 
@@ -55,7 +58,7 @@ function handleSignUp(user, routerHistory) {
     })
     .catch((err) => ({
       isSignUpSuccessful: false,
-      message: err.message,
+      payload: err.message,
     }));
 }
 

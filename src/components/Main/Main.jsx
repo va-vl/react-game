@@ -1,26 +1,51 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { handleSignOut } from '../../utils/handleAuth';
+import importAll from '../../utils/importAll';
+import userNameSelector from '../../store/selectors';
 import './Main.scss';
 
-const Main = (props) => {
-  console.log(props);
+const bgmArray = importAll(
+  require.context('../../assets/music', false, /.mp3$/),
+);
+
+console.log(bgmArray);
+
+const Main = () => {
+  const userName = useSelector(userNameSelector);
 
   return (
     <main className="main">
-      <ul>
-        <li>
-          <Link to="/game">Game</Link>
-        </li>
-        <li>
-          <Link to="/settings">Settings</Link>
-        </li>
-        <li>
-          <button type="button" onClick={handleSignOut}>
-            Logout
-          </button>
-        </li>
-      </ul>
+      <div className="main__content">
+        <h3 className="main__heading">{`Hello, ${userName}!`}</h3>
+        <ul className="main__list">
+          <li className="main__link">
+            <Link className="main__button" to="/game">
+              Game
+            </Link>
+          </li>
+          <li className="main__link">
+            <Link className="main__button" to="/settings">
+              Settings
+            </Link>
+          </li>
+          <li className="main__link">
+            <Link className="main__button" to="/stats">
+              Stats
+            </Link>
+          </li>
+          <li className="main__link">
+            <button
+              className="main__button"
+              type="button"
+              onClick={handleSignOut}
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
     </main>
   );
 };

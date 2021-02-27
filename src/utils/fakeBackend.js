@@ -3,6 +3,7 @@ const users = JSON.parse(localStorage.getItem('users')) || [];
 
 export default function fakeBackend() {
   const realFetch = window.fetch;
+
   window.fetch = function (url, opts) {
     return new Promise((resolve, reject) => {
       // wrap in timeout to simulate server api call
@@ -35,25 +36,6 @@ export default function fakeBackend() {
           } else {
             // else return error
             reject(new Error('Username or password is incorrect'));
-          }
-
-          return;
-        }
-
-        // get users
-        if (url.endsWith('/users') && opts.method === 'GET') {
-          // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
-          if (
-            opts.headers &&
-            opts.headers.Authorization === 'Bearer fake-jwt-token'
-          ) {
-            resolve({
-              ok: true,
-              text: () => Promise.resolve(JSON.stringify(users)),
-            });
-          } else {
-            // return 401 not authorised if token is null or invalid
-            reject(new Error('Unauthorised'));
           }
 
           return;
