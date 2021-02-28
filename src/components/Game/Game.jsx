@@ -1,53 +1,49 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import createPairs from './createPairs';
-import importAll from '../../utils/importAll';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import generateLevel from './generateLevel';
 import Card from './Card/Card';
 
-const fronts = importAll(
-  require.context('../../assets/cards/front', false, /.svg$/),
-);
+const fronts = {};
 
-const backs = importAll(
-  require.context('../../assets/cards/back', false, /.svg$/),
-);
+const backs = {};
 
-const back = backs[0];
+const Game = () => {
+  const history = useHistory();
+  const cardsAmount = useSelector((state) => state.settingsReducer.cardsAmount);
+  const levelLayout = generateLevel(Object.keys(fronts), cardsAmount);
+  const backIndex = useSelector(
+    (state) => state.settingsReducer.cardsBackIndex,
+  );
 
-class Game extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.randomPairs = createPairs(fronts);
-  }
+  return (
+    <div className="game">
+      <div className="game__content">
+        <ul className={`game__board game__board--${cardsAmount}`}>
+          {levelLayout.map(({ cardIndex }, index) => {
+            const keyProp = `card-${cardIndex}-${index}`;
 
-  render() {
-    const { randomPairs } = this;
-    const { userName } = this.props;
-
-    return (
-      <div className="app__game game">
-        <h3>{`Hello, ${userName}!`}</h3>
-        <ul
-          style={{
-            display: 'grid',
-            grid: 'repeat(4, auto) / repeat(4, auto)',
-            width: '60%',
-            margin: '0 auto',
-          }}
-        >
-          {randomPairs.map((item, index) => {
-            const keyProp = `card-${index}`;
-
-            return <Card key={keyProp} frontSrc={item} backSrc={back} />;
+            return (
+              <Card
+                key={keyProp}
+                frontSrc={fronts[cardIndex]}
+                backSrc={backs[backIndex]}
+              />
+            );
           })}
         </ul>
       </div>
-    );
-  }
-}
-
-Game.propTypes = {
-  userName: PropTypes.string.isRequired,
+      <button
+        className="game__button"
+        type="button"
+        onClick={() => {
+          history.push('/');
+        }}
+      >
+        To main menu
+      </button>
+    </div>
+  );
 };
 
-export default Game;
+export default React.memo(Game);

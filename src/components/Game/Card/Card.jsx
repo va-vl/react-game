@@ -1,31 +1,13 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-console */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Card.scss';
 
-class Card extends Component {
-  constructor(props) {
-    super(props);
-    console.log(props);
-  }
-
-  render() {
-    const { frontSrc, backSrc } = this.props;
-
-    return (
-      <div
-        onClick={() => {
-          console.log('hello');
-        }}
-      >
-        <img src={backSrc} alt="card back" draggable="false" />
-        <img src={frontSrc} alt="card front" draggable="false" />
-      </div>
-    );
-  }
-}
+const Card = ({ frontSrc, backSrc }) => (
+  <div>
+    <img src={backSrc} alt="card back" draggable="false" />
+    <img src={frontSrc} alt="card front" draggable="false" />
+  </div>
+);
 
 Card.propTypes = {
   frontSrc: PropTypes.string.isRequired,

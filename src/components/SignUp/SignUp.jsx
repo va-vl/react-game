@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { handleSignUp } from '../../utils/handleAuth';
 import LabeledField from '../_common/LabeledField/LabeledField';
 import './SignUp.scss';
 
-const SignUp = ({ history }) => {
+const SignUp = () => {
+  const history = useHistory();
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleChange = () => {
@@ -79,8 +79,4 @@ const SignUp = ({ history }) => {
   );
 };
 
-SignUp.propTypes = {
-  history: PropTypes.instanceOf(Object).isRequired,
-};
-
-export default withRouter(SignUp);
+export default SignUp;

@@ -22,5 +22,6 @@ module.exports = {
     'no-underscore-dangle': ['error', { allowAfterThis: true }],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/jsx-curly-newline': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
   },
 };

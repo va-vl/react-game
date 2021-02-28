@@ -15,14 +15,25 @@ const randomFisherYates = (arr) => {
 
 /**
  * @param {Array} sourceArr
- * @param {Number} pairsNum
+ * @param {Number} cardsNum
  */
-const createPairs = (sourceArr, pairsNum = 6) => {
+const generateLevel = (sourceArr, cardsNum) => {
   const sourcePairs = randomFisherYates(sourceArr)
-    .slice(0, pairsNum)
-    .flatMap((i) => [i, i]);
+    .slice(0, cardsNum / 2)
+    .flatMap((item) => [
+      {
+        cardIndex: item,
+        isFlipped: false,
+        isSolved: false,
+      },
+      {
+        cardIndex: item,
+        isFlipped: false,
+        isSolved: false,
+      },
+    ]);
 
   return randomFisherYates(sourcePairs);
 };
 
-export default createPairs;
+export default generateLevel;

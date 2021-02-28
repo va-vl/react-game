@@ -3,14 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { handleSignOut } from '../../utils/handleAuth';
 import { userNameSelector } from '../../store/selectors';
-import importAll from '../../utils/importAll';
 import './Main.scss';
-
-const bgmArray = importAll(
-  require.context('../../assets/music', false, /.mp3$/),
-);
-
-console.log(bgmArray);
 
 const Main = () => {
   const userName = useSelector(userNameSelector);

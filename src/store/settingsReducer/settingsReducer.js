@@ -37,7 +37,7 @@ const settingsReducer = (state = initialState, { type, payload }) => {
     case UPDATE_CARDS_BACK: {
       return {
         ...state,
-        cardsBack: payload,
+        cardsBackIndex: payload,
       };
     }
     case UPDATE_APP_THEME: {

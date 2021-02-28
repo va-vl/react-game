@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import LabeledField from '../_common/LabeledField/LabeledField';
 import { handleSignIn } from '../../utils/handleAuth';
 import { userSignInAC } from '../../store/userReducer/userReducerACs';
 import './SignIn.scss';
 
-const SignIn = ({ history }) => {
+const SignIn = () => {
+  const history = useHistory();
   const [errorMessage, setErrorMessage] = useState(null);
   const dispatch = useDispatch();
 
@@ -80,8 +80,4 @@ const SignIn = ({ history }) => {
   );
 };
 
-SignIn.propTypes = {
-  history: PropTypes.instanceOf(Object).isRequired,
-};
-
-export default withRouter(SignIn);
+export default SignIn;
