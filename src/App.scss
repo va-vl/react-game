@@ -12,8 +12,30 @@
 
   --color-white: #ffffff;
   --color-black: #252525;
+
   --color-main: #96bb7c;
   --color-light: #d6efc7;
   --color-dark: #184d47;
   --color-contrast: #fad586;
+
+  &--green {
+    --color-main: #96bb7c;
+    --color-light: #d6efc7;
+    --color-dark: #184d47;
+    --color-contrast: #fad586;
+  }
+
+  &--blue {
+    --color-main: #40a8c4;
+    --color-light: #a2d5f2;
+    --color-dark: #07689f;
+    --color-contrast: #ffc93c;
+  }
+
+  &--brown {
+    --color-main: #984a59;
+    --color-light: #ff8f56;
+    --color-dark: #60424c;
+    --color-contrast: #ff5959;
+  }
 }

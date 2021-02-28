@@ -3,13 +3,15 @@ import {
   UPDATE_SOUND_VOLUME,
   UPDATE_CARDS_AMOUNT,
   UPDATE_CARDS_BACK,
+  UPDATE_APP_THEME,
 } from './settingsReducerActionTypes';
 
 const initialState = {
   musicVolume: '100',
   soundVolume: '100',
   cardsAmount: '12',
-  cardsBack: '01',
+  cardsBackIndex: '01',
+  appTheme: 'green',
 };
 
 const settingsReducer = (state = initialState, { type, payload }) => {
@@ -36,6 +38,12 @@ const settingsReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         cardsBack: payload,
+      };
+    }
+    case UPDATE_APP_THEME: {
+      return {
+        ...state,
+        appTheme: payload,
       };
     }
     default: {

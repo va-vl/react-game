@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { handleSignOut } from '../../utils/handleAuth';
+import { userNameSelector } from '../../store/selectors';
 import importAll from '../../utils/importAll';
-import userNameSelector from '../../store/selectors';
 import './Main.scss';
 
 const bgmArray = importAll(

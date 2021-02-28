@@ -49,22 +49,22 @@ const SignIn = ({ history }) => {
           onSubmit={handleSubmit}
           onChange={handleChange}
         >
-          <p className="signin__input">
+          <div className="signin__input">
             <LabeledField
               type="text"
               label="Username"
               name="userName"
               id="userNameSignInInput"
             />
-          </p>
-          <p className="signin__input">
+          </div>
+          <div className="signin__input">
             <LabeledField
               type="password"
               label="Password"
               name="userPassword"
               id="userPasswordSignInInput"
             />
-          </p>
+          </div>
           <p className="signin__error">{errorMessage}</p>
           <div>
             <button className="signin__button" type="submit">

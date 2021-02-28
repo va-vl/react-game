@@ -4,18 +4,16 @@ import './RangeSlider.scss';
 
 const RangeSlider = ({ label, id, name, value, changeHandler }) => (
   <label htmlFor={id} className="range-slider">
-    <span>{`${label}: `}</span>
+    <span className="range-slider__label">{`${label}: `}</span>
     <input
       id={id}
       name={name}
-      onChange={(event) => {
-        changeHandler(event.target.value);
-      }}
+      onChange={changeHandler}
       className="range-slider__slider"
       type="range"
       min="0"
       max="100"
-      value={value}
+      defaultValue={value}
     />
     <output htmlFor={name} className="range-slider__value">
       {value}

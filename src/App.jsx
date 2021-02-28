@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/_common/PrivateRoute';
+import { appThemeSelector } from './store/selectors';
 import FullscreenButton from './components/FullscreenButton/FullscreenButton';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
@@ -12,13 +14,14 @@ import useFullscreenStatus from './hooks/useFullscreenStatus';
 import './App.scss';
 
 const App = () => {
+  const theme = useSelector(appThemeSelector);
   const maximizableElement = useRef(null);
   const [fullscreenStatus, setFullscreenStatus] = useFullscreenStatus(
     maximizableElement,
   );
 
   return (
-    <main ref={maximizableElement} className="app">
+    <main ref={maximizableElement} className={`app app--${theme}`}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/signin">

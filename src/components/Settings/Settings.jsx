@@ -1,5 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import {
+  updateCardsAmountAC,
+  updateMusicVolumeAC,
+  updateSoundVolumeAC,
+  updateCardsBackAC,
+  updateAppThemeAC,
+} from '../../store/settingsReducer/settingsReducerACs';
+import {
+  musicVolumeSelector,
+  soundVolumeSelector,
+  cardsAmountSelector,
+  cardsBackIndexSelector,
+  appThemeSelector,
+} from '../../store/selectors';
+import { GAME_SIZES, APP_THEMES } from '../../constants/constants';
 import RangeSlider from './RangeSlider/RangeSlider';
+import RadiosSet from './RadiosSet/RadiosSet';
 import importAll from '../../utils/importAll';
 import './Settings.scss';
 
@@ -8,17 +26,31 @@ const cardBacks = importAll(
 );
 
 const Settings = () => {
-  const [musicVolume, setMusicVolume] = useState('100');
-  const [soundVolume, setSoundVolume] = useState('100');
-  const [cardsAmount, setCardsAmount] = useState(12);
-  const [cardsBackIndex, setCardsBackIndex] = useState('02');
+  const dispatch = useDispatch();
+  const musicVolume = useSelector(musicVolumeSelector);
+  const soundVolume = useSelector(soundVolumeSelector);
+  const cardsAmount = useSelector(cardsAmountSelector);
+  const cardsBackIndex = useSelector(cardsBackIndexSelector);
+  const appTheme = useSelector(appThemeSelector);
 
-  const handleCardsAmountChange = (event) => {
-    setCardsAmount(event.target.value);
+  const changeMusicHandler = (event) => {
+    dispatch(updateMusicVolumeAC(event.target.value));
   };
 
-  const handleCardsBackChange = (event) => {
-    setCardsBackIndex(event.target.value);
+  const changeSoundHandler = (event) => {
+    dispatch(updateSoundVolumeAC(event.target.value));
+  };
+
+  const changeAmountHandler = (event) => {
+    dispatch(updateCardsAmountAC(event.target.value));
+  };
+
+  const changeBackHandler = (event) => {
+    dispatch(updateCardsBackAC(event.target.value));
+  };
+
+  const changeThemeHandler = (event) => {
+    dispatch(updateAppThemeAC(event.target.value));
   };
 
   return (
@@ -26,74 +58,55 @@ const Settings = () => {
       <div className="settings__content">
         <h3 className="settings__heading">Settings</h3>
         <form className="settings__form">
-          <p className="settings__input">
+          <div className="settings__input">
             <RangeSlider
               label="Music volume"
               name="settingMusicVolume"
               id="settingMusicVolume"
               value={musicVolume}
-              changeHandler={setMusicVolume}
+              changeHandler={changeMusicHandler}
             />
-          </p>
-          <p className="settings__input">
+          </div>
+          <div className="settings__input">
             <RangeSlider
               label="Sound volume"
               name="settingSoundVolume"
               id="settingSoundVolume"
               value={soundVolume}
-              changeHandler={setSoundVolume}
+              changeHandler={changeSoundHandler}
             />
-          </p>
-          <fieldset
-            className="settings__fieldset"
-            onChange={handleCardsAmountChange}
-          >
-            <legend>Select card settings</legend>
-            {[12, 16, 20, 24].map((item) => {
-              const id = `cardsAmount${item}`;
-              const inputProps = {
-                defaultChecked: item === cardsAmount,
-                id,
-                name: 'cardsAmount',
-                value: `${item}`,
-                type: 'radio',
-              };
-
-              return (
-                <label key={id} htmlFor={id}>
-                  {React.createElement('input', inputProps)}
-                  {item}
-                </label>
-              );
-            })}
-          </fieldset>
-          <fieldset
-            className="settings__fieldset"
-            onChange={handleCardsBackChange}
-          >
-            <legend>Select card back</legend>
-            {Object.entries(cardBacks).map(([keyProperty, path]) => {
-              const id = `cardsBack${keyProperty}`;
-              const inputProps = {
-                className: `settings__image-radio`,
-                defaultChecked: keyProperty === cardsBackIndex,
-                id,
-                name: 'cardsBack',
-                value: `${keyProperty}`,
-                type: 'radio',
-              };
-
-              return (
-                <label key={id} htmlFor={id}>
-                  {React.createElement('input', inputProps)}
-                  <img className="settings__image" src={path} alt="back" />
-                </label>
-              );
-            })}
-          </fieldset>
+          </div>
+          <div className="settings__input">
+            <RadiosSet
+              name="cardsAmount"
+              legend="Cards amount:"
+              sourceArr={GAME_SIZES}
+              defaultValue={cardsAmount}
+              changeHandler={changeAmountHandler}
+            />
+          </div>
+          <div>
+            <RadiosSet
+              name="cardsBack"
+              legend="Cards back:"
+              sourceArr={Object.entries(cardBacks)}
+              defaultValue={cardsBackIndex}
+              changeHandler={changeBackHandler}
+            />
+          </div>
+          <div>
+            <RadiosSet
+              name="appTheme"
+              legend="Select app theme:"
+              sourceArr={APP_THEMES}
+              defaultValue={appTheme}
+              changeHandler={changeThemeHandler}
+            />
+          </div>
         </form>
-        <button type="button">Theme</button>
-        <button type="button">Back</button>
+        <Link className="settings__button" to="/">
+          Go back
+        </Link>
       </div>
     </main>
   );

@@ -1,4 +1,4 @@
-import API_URL from '../constants/api';
+import { API_URL } from '../constants/constants';
 
 const handleSignOut = () => {
   localStorage.removeItem('user');
