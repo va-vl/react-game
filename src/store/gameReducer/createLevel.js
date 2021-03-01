@@ -1,3 +1,5 @@
+import { getResources } from '../../utils/resources';
+
 /**
  * @param {Array} arr
  */
@@ -17,17 +19,22 @@ const randomFisherYates = (arr) => {
  * @param {Array} sourceArr
  * @param {Number} cardsNum
  */
-const generateLevel = (sourceArr, cardsNum) => {
-  const sourcePairs = randomFisherYates(sourceArr)
-    .slice(0, cardsNum / 2)
-    .flatMap((item) => [
+const createLevel = (cardsNum) => {
+  const { cardFronts } = getResources();
+  const sourcePairs = randomFisherYates(cardFronts)
+    .slice(0, +cardsNum / 2)
+    .flatMap((item, index) => [
       {
-        cardIndex: item,
+        cardPath: item,
+        cardIndex: index,
+        isError: false,
         isFlipped: false,
         isSolved: false,
       },
       {
-        cardIndex: item,
+        cardPath: item,
+        cardIndex: index,
+        isError: false,
         isFlipped: false,
         isSolved: false,
       },
@@ -36,4 +43,4 @@ const generateLevel = (sourceArr, cardsNum) => {
   return randomFisherYates(sourcePairs);
 };
 
-export default generateLevel;
+export default createLevel;

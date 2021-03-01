@@ -6,7 +6,6 @@ import { DEBOUNCE_DELAY } from '../../constants/constants';
 import {
   UPDATE_MUSIC_VOLUME,
   UPDATE_SOUND_VOLUME,
-  UPDATE_CARDS_AMOUNT,
   UPDATE_CARDS_BACK,
   UPDATE_APP_THEME,
 } from './settingsReducerActionTypes';
@@ -39,11 +38,6 @@ const updateSoundVolumeAC = (...args) => (dispatch) =>
   updateSoundVolumeDebouncedAC(dispatch, ...args);
 // End of sound volume async action
 
-const updateCardsAmountAC = (payload) => ({
-  type: UPDATE_CARDS_AMOUNT,
-  payload,
-});
-
 const updateCardsBackAC = (payload) => ({
   type: UPDATE_CARDS_BACK,
   payload,
@@ -57,7 +51,6 @@ const updateAppThemeAC = (payload) => ({
 export {
   updateMusicVolumeAC,
   updateSoundVolumeAC,
-  updateCardsAmountAC,
   updateCardsBackAC,
   updateAppThemeAC,
 };

@@ -1,12 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { handleSignOut } from '../../utils/handleAuth';
-import { userNameSelector } from '../../store/selectors';
 import './Main.scss';
 
 const Main = () => {
-  const userName = useSelector(userNameSelector);
+  const { userName } = JSON.parse(localStorage.getItem('user'));
 
   return (
     <main className="main">
@@ -15,7 +13,7 @@ const Main = () => {
         <ul className="main__list">
           <li className="main__link">
             <Link className="main__button" to="/game">
-              Game
+              New Game
             </Link>
           </li>
           <li className="main__link">

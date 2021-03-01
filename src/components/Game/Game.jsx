@@ -1,49 +1,47 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import generateLevel from './generateLevel';
-import Card from './Card/Card';
-
-const fronts = {};
-
-const backs = {};
+import { gameInitAC } from '../../store/gameReducer/gameReducerACs';
+import { cardsBackIndexSelector, gameOnSelector } from '../../store/selectors';
+import GameBoard from './GameBoard/GameBoard';
+import { getResources } from '../../utils/resources';
+import './Game.scss';
 
 const Game = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
-  const cardsAmount = useSelector((state) => state.settingsReducer.cardsAmount);
-  const levelLayout = generateLevel(Object.keys(fronts), cardsAmount);
-  const backIndex = useSelector(
-    (state) => state.settingsReducer.cardsBackIndex,
-  );
+  const cardsBackIndex = useSelector(cardsBackIndexSelector);
+  const isGameOn = useSelector(gameOnSelector);
+  const { cardBacks } = getResources();
+  const backSrc = cardBacks[cardsBackIndex];
+
+  if (!isGameOn) {
+    dispatch(gameInitAC());
+  }
+
+  const handleBackClick = () => {
+    history.push('/');
+  };
 
   return (
     <div className="game">
       <div className="game__content">
-        <ul className={`game__board game__board--${cardsAmount}`}>
-          {levelLayout.map(({ cardIndex }, index) => {
-            const keyProp = `card-${cardIndex}-${index}`;
-
-            return (
-              <Card
-                key={keyProp}
-                frontSrc={fronts[cardIndex]}
-                backSrc={backs[backIndex]}
-              />
-            );
-          })}
-        </ul>
+        <GameBoard backSrc={backSrc} />
       </div>
-      <button
-        className="game__button"
-        type="button"
-        onClick={() => {
-          history.push('/');
-        }}
-      >
-        To main menu
-      </button>
+      <div className="game__button-wrapper">
+        <button
+          className="game__button"
+          type="button"
+          onClick={handleBackClick}
+        >
+          To main menu
+        </button>
+        <button className="game__button" type="button">
+          Start new game
+        </button>
+      </div>
     </div>
   );
 };
 
-export default React.memo(Game);
+export default Game;

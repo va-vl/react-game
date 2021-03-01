@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import RadiosSet from '../../_common/RadiosSet/RadiosSet';
 import { updateCardsBackAC } from '../../../store/settingsReducer/settingsReducerACs';
 import { cardsBackIndexSelector } from '../../../store/selectors';
-
-const { cardBacks } = JSON.parse(localStorage.getItem('resources'));
+import { getResources } from '../../../utils/resources';
 
 const CardsBackSet = () => {
   const dispatch = useDispatch();
   const cardsBackIndex = useSelector(cardsBackIndexSelector);
+  const { cardBacks } = getResources();
 
   const changeBackHandler = (event) => {
     dispatch(updateCardsBackAC(event.target.value));
@@ -18,7 +18,7 @@ const CardsBackSet = () => {
     <RadiosSet
       name="cardsBack"
       legend="Cards back:"
-      sourceArr={Object.entries(cardBacks)}
+      sourceArr={cardBacks}
       defaultValue={cardsBackIndex}
       changeHandler={changeBackHandler}
     />

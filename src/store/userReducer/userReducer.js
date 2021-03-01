@@ -14,7 +14,7 @@ const userReducer = (state = initialState, { type, payload }) => {
     case USER_SIGN_OUT: {
       return {
         ...state,
-        userData: undefined,
+        userName: undefined,
       };
     }
   }
