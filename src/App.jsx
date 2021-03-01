@@ -10,7 +10,10 @@ import Main from './components/Main/Main';
 import Game from './components/Game/Game';
 import Settings from './components/Settings/Settings';
 import Footer from './components/Footer/Footer';
+import Stats from './components/Stats/Stats';
+import About from './components/About/About';
 import MusicPlayer from './components/MusicPlayer/MusicPlayer';
+import HotKeysHandler from './components/HotKeysHandler/HotKeysHandler';
 import useFullscreenStatus from './hooks/useFullscreenStatus';
 import './App.scss';
 
@@ -33,12 +36,23 @@ const App = () => {
           </Route>
           <PrivateRoute exact path="/">
             <Main />
+            <HotKeysHandler />
           </PrivateRoute>
           <PrivateRoute exact path="/game">
             <Game />
+            <HotKeysHandler />
           </PrivateRoute>
           <PrivateRoute exact path="/settings">
             <Settings />
+            <HotKeysHandler />
+          </PrivateRoute>
+          <PrivateRoute exact path="/stats">
+            <Stats />
+            <HotKeysHandler />
+          </PrivateRoute>
+          <PrivateRoute exact path="/info">
+            <About />
+            <HotKeysHandler />
           </PrivateRoute>
           <Redirect from="*" to="/" />
         </Switch>

@@ -49,7 +49,9 @@ const updateAppThemeAC = (payload) => ({
 });
 
 export {
+  updateMusicVolumeSyncAC,
   updateMusicVolumeAC,
+  updateSoundVolumeSyncAC,
   updateSoundVolumeAC,
   updateCardsBackAC,
   updateAppThemeAC,

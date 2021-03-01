@@ -27,6 +27,11 @@ const Main = () => {
             </Link>
           </li>
           <li className="main__link">
+            <Link className="main__button" to="/info">
+              Info
+            </Link>
+          </li>
+          <li className="main__link">
             <button
               className="main__button"
               type="button"

@@ -4,7 +4,7 @@ import './Footer.scss';
 
 const Footer = () => (
   <footer className="footer">
-    <p>
+    <p className="footer__text">
       <span>Made by </span>
       <a
         className="footer__link"

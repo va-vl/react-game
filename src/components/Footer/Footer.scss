@@ -8,18 +8,16 @@
   color: var(--color-white);
   background-color: var(--color-dark);
 
+  &__text {
+    margin: 1rem 0;
+
+    @media (max-width: 800px) {
+      margin: 0.5rem 0;
+    }
+  }
+
   &__link {
-    text-decoration: none;
-    color: var(--color-white);
-
-    &:hover,
-    &:focus {
-      font-weight: 600;
-    }
-
-    &:active {
-      text-decoration: underline;
-    }
+    @include link;
   }
 
   &__logo {
@@ -32,6 +30,10 @@
 
     &:active {
       opacity: 0.5;
+    }
+
+    @media (max-width: 800px) {
+      width: 5rem;
     }
   }
 }

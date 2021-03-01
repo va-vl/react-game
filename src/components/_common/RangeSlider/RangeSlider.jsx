@@ -13,7 +13,7 @@ const RangeSlider = ({ label, id, name, value, changeHandler }) => (
       type="range"
       min="0"
       max="100"
-      defaultValue={value}
+      value={value}
     />
     <output htmlFor={name} className="range-slider__value">
       {value}

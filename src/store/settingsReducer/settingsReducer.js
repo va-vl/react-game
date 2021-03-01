@@ -6,8 +6,8 @@ import {
 } from './settingsReducerActionTypes';
 
 const initialState = {
-  musicVolume: '100',
-  soundVolume: '100',
+  musicVolume: '50',
+  soundVolume: '50',
   cardsBackIndex: 0,
   appTheme: 'green',
 };
