@@ -4,12 +4,13 @@ import {
   GAME_CARD_FLIP_START,
   GAME_CARD_FLIP_END,
   GAME_CARD_PROCESS,
+  GAME_UPDATE_TIME,
 } from './gameReducerActionTypes';
 import createLevel from './createLevel';
 
 const initialState = {
+  timeCount: 0,
   isGameOn: false,
-  isGamePaused: false,
   isMoving: false,
   moves: 0,
   matches: 0,
@@ -118,6 +119,13 @@ const gameReducer = (state = initialState, { type, payload }) => {
 
           return obj;
         }),
+      };
+    }
+    case GAME_UPDATE_TIME: {
+      const { timeCount } = state;
+      return {
+        ...state,
+        timeCount: timeCount + 1000,
       };
     }
   }

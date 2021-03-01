@@ -4,6 +4,7 @@ import {
   GAME_CARD_FLIP_START,
   GAME_CARD_FLIP_END,
   GAME_CARD_PROCESS,
+  GAME_UPDATE_TIME,
 } from './gameReducerActionTypes';
 import {
   FLIP_ANIMATION_DELAY,
@@ -45,4 +46,6 @@ const gameFlipCardAC = ({ levelIndex, cardIndex }) => (dispatch) => {
   }, FLIP_ANIMATION_DELAY);
 };
 
-export { gameInitAC, gameSetCardsAmountAC, gameFlipCardAC };
+const gameUpdateTimeAC = () => ({ type: GAME_UPDATE_TIME });
+
+export { gameInitAC, gameSetCardsAmountAC, gameFlipCardAC, gameUpdateTimeAC };

@@ -6,23 +6,4 @@
     background-color: transparent;
     box-sizing: border-box;
   }
-
-  &__button-wrapper {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-
-    @media (max-width: 700px) {
-      top: 0.5rem;
-      left: 0.5rem;
-    }
-  }
-
-  &__button {
-    @include contentButton;
-
-    &:not(:first-child) {
-      margin-left: 0.25rem;
-    }
-  }
 }

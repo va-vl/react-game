@@ -37,4 +37,4 @@ GameBoard.propTypes = {
   backSrc: PropTypes.string.isRequired,
 };
 
-export default GameBoard;
+export default React.memo(GameBoard);

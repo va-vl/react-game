@@ -10,6 +10,7 @@ import Main from './components/Main/Main';
 import Game from './components/Game/Game';
 import Settings from './components/Settings/Settings';
 import Footer from './components/Footer/Footer';
+import MusicPlayer from './components/MusicPlayer/MusicPlayer';
 import useFullscreenStatus from './hooks/useFullscreenStatus';
 import './App.scss';
 
@@ -47,6 +48,7 @@ const App = () => {
         handleFullscreenOn={setFullscreenStatus}
       />
       <Footer />
+      <MusicPlayer />
     </main>
   );
 };

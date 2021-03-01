@@ -10,7 +10,6 @@ const resources = {
     require.context('../assets/cards/front', false, /.svg$/),
   ),
   cardBacks: importAll(require.context('../assets/cards/back', false, /.svg$/)),
-  bgm: importAll(require.context('../assets/music/', false, /.mp3$/)),
 };
 
 const resolveResources = () => {

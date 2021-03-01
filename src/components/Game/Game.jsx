@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { gameInitAC } from '../../store/gameReducer/gameReducerACs';
+import {
+  gameInitAC,
+  gameUpdateTimeAC,
+} from '../../store/gameReducer/gameReducerACs';
 import { cardsBackIndexSelector, gameOnSelector } from '../../store/selectors';
 import GameBoard from './GameBoard/GameBoard';
+import Controls from './Controls/Controls';
 import { getResources } from '../../utils/resources';
 import './Game.scss';
 
 const Game = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const cardsBackIndex = useSelector(cardsBackIndexSelector);
   const isGameOn = useSelector(gameOnSelector);
   const { cardBacks } = getResources();
@@ -19,26 +21,21 @@ const Game = () => {
     dispatch(gameInitAC());
   }
 
-  const handleBackClick = () => {
-    history.push('/');
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch(gameUpdateTimeAC());
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  });
 
   return (
     <div className="game">
       <div className="game__content">
+        <Controls />
         <GameBoard backSrc={backSrc} />
-      </div>
-      <div className="game__button-wrapper">
-        <button
-          className="game__button"
-          type="button"
-          onClick={handleBackClick}
-        >
-          To main menu
-        </button>
-        <button className="game__button" type="button">
-          Start new game
-        </button>
       </div>
     </div>
   );
