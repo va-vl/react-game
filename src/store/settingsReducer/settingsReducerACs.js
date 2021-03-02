@@ -1,3 +1,4 @@
+// leaving this for future reference
 // async debounce logic borrowed from here
 // https://gist.github.com/krstffr/245fe83885b597aabaf06348220c2fe9
 
@@ -11,7 +12,7 @@ import {
   UPDATE_APP_THEME,
 } from './settingsReducerActionTypes';
 
-// Music volume async action - leaving this for future reference
+// Music volume async action
 // Sound can be done the same way
 // const updateMusicVolumeSyncAC = (payload) => ({
 //   type: UPDATE_MUSIC_VOLUME,

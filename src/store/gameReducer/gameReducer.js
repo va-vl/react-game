@@ -22,6 +22,7 @@ const gameReducer = (state = initialState, { type, payload }) => {
     default: {
       return state;
     }
+
     case GAME_INIT: {
       return {
         ...initialState,
@@ -29,6 +30,15 @@ const gameReducer = (state = initialState, { type, payload }) => {
         level: createLevel(payload),
       };
     }
+
+    case GAME_UPDATE_TIME: {
+      const { timeCount } = state;
+      return {
+        ...state,
+        timeCount: timeCount + 1000,
+      };
+    }
+
     case GAME_CARD_FLIP_START: {
       const { level } = state;
       const { levelIndex } = payload;
@@ -47,6 +57,7 @@ const gameReducer = (state = initialState, { type, payload }) => {
         }),
       };
     }
+
     case GAME_CARD_FLIP_END: {
       const { level } = state;
       return {
@@ -55,6 +66,7 @@ const gameReducer = (state = initialState, { type, payload }) => {
         level: level.map((obj) => ({ ...obj, isError: false })),
       };
     }
+
     case GAME_CARD_PROCESS: {
       const { currentlyFlipped, matches, moves, level } = state;
       const { levelIndex, cardIndex } = payload;
@@ -108,13 +120,6 @@ const gameReducer = (state = initialState, { type, payload }) => {
 
           return obj;
         }),
-      };
-    }
-    case GAME_UPDATE_TIME: {
-      const { timeCount } = state;
-      return {
-        ...state,
-        timeCount: timeCount + 1000,
       };
     }
   }

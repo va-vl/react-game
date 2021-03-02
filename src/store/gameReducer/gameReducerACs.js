@@ -15,6 +15,8 @@ const gameInitAC = (payload) => ({
   payload,
 });
 
+const gameUpdateTimeAC = () => ({ type: GAME_UPDATE_TIME });
+
 const gameCardFlipStartAC = ({ levelIndex, cardIndex }) => ({
   type: GAME_CARD_FLIP_START,
   payload: { levelIndex, cardIndex },
@@ -40,7 +42,5 @@ const gameFlipCardAC = ({ levelIndex, cardIndex }) => (dispatch) => {
     }, CLEANUP_ANIMATION_DELAY);
   }, FLIP_ANIMATION_DELAY);
 };
-
-const gameUpdateTimeAC = () => ({ type: GAME_UPDATE_TIME });
 
 export { gameInitAC, gameFlipCardAC, gameUpdateTimeAC };

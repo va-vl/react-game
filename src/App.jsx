@@ -13,8 +13,9 @@ import Footer from './components/Footer/Footer';
 import Stats from './components/Stats/Stats';
 import About from './components/About/About';
 import MusicPlayer from './components/MusicPlayer/MusicPlayer';
-import HotKeysHandler from './components/HotKeysHandler/HotKeysHandler';
+import HotKeysHandler from './components/_common/HotKeysHandler';
 import useFullscreenStatus from './hooks/useFullscreenStatus';
+import IsAuthReady from './components/_common/IsAuthReady';
 import './App.scss';
 
 const App = () => {
@@ -26,41 +27,43 @@ const App = () => {
 
   return (
     <main ref={maximizableElement} className={`app app--${theme}`}>
-      <Switch>
-        <Route exact path="/signin">
-          <SignIn />
-        </Route>
-        <Route exact path="/signup">
-          <SignUp />
-        </Route>
-        <PrivateRoute exact path="/">
-          <Main />
-          <HotKeysHandler />
-        </PrivateRoute>
-        <PrivateRoute exact path="/game">
-          <Game />
-          <HotKeysHandler />
-        </PrivateRoute>
-        <PrivateRoute exact path="/settings">
-          <Settings />
-          <HotKeysHandler />
-        </PrivateRoute>
-        <PrivateRoute exact path="/stats">
-          <Stats />
-          <HotKeysHandler />
-        </PrivateRoute>
-        <PrivateRoute exact path="/info">
-          <About />
-          <HotKeysHandler />
-        </PrivateRoute>
-        <Redirect from="*" to="/" />
-      </Switch>
-      <FullscreenButton
-        status={fullscreenStatus}
-        handleFullscreenOn={setFullscreenStatus}
-      />
-      <Footer />
-      <MusicPlayer />
+      <IsAuthReady>
+        <Switch>
+          <Route exact path="/signin">
+            <SignIn />
+          </Route>
+          <Route exact path="/signup">
+            <SignUp />
+          </Route>
+          <PrivateRoute exact path="/">
+            <Main />
+            <HotKeysHandler />
+          </PrivateRoute>
+          <PrivateRoute exact path="/game">
+            <Game />
+            <HotKeysHandler />
+          </PrivateRoute>
+          <PrivateRoute exact path="/settings">
+            <Settings />
+            <HotKeysHandler />
+          </PrivateRoute>
+          <PrivateRoute exact path="/stats">
+            <Stats />
+            <HotKeysHandler />
+          </PrivateRoute>
+          <PrivateRoute exact path="/info">
+            <About />
+            <HotKeysHandler />
+          </PrivateRoute>
+          <Redirect from="*" to="/" />
+        </Switch>
+        <FullscreenButton
+          status={fullscreenStatus}
+          handleFullscreenOn={setFullscreenStatus}
+        />
+        <Footer />
+        <MusicPlayer />
+      </IsAuthReady>
     </main>
   );
 };

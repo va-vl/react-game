@@ -13,8 +13,6 @@ const rrfConfig = {
     return {
       displayName,
       stats: {
-        gamesStarted: null,
-        gamesCompleted: null,
         records: [],
       },
     };
