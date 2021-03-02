@@ -1,12 +1,14 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { configureStore } from '@reduxjs/toolkit';
+import throttle from 'lodash.throttle';
 import settingsReducer from './settingsReducer/settingsReducer';
 import gameReducer from './gameReducer/gameReducer';
+import { saveSettingsState, loadSettingsState } from './localStorage';
 
-const store = createStore(
-  combineReducers({ settingsReducer, gameReducer }),
-  composeWithDevTools(applyMiddleware(thunk)),
-);
+const store = configureStore({
+  reducer: { gameReducer, settingsReducer },
+  preloadedState: loadSettingsState(),
+});
+
+store.subscribe(throttle(() => saveSettingsState(store.getState()), 1000));
 
 export default store;
