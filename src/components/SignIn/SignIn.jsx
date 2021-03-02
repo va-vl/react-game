@@ -21,12 +21,12 @@ const SignIn = () => {
     event.preventDefault();
 
     const {
-      userNameSignInInput: { value: userName },
+      userEmailSignInInput: { value: userEmail },
       userPasswordSignInInput: { value: userPassword },
     } = document.forms.signInForm.elements;
 
-    if (userName && userPassword) {
-      handleSignIn(userName, userPassword, history).then(
+    if (userEmail && userPassword) {
+      handleSignIn(userEmail, userPassword, history).then(
         ({ isSignInSuccessful, payload }) => {
           if (!isSignInSuccessful) {
             setErrorMessage(payload);
@@ -52,9 +52,9 @@ const SignIn = () => {
           <div className="signin__input">
             <LabeledField
               type="text"
-              label="Username"
-              name="userName"
-              id="userNameSignInInput"
+              label="Email"
+              name="userEmail"
+              id="userEmailSignInInput"
             />
           </div>
           <div className="signin__input">

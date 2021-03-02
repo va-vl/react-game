@@ -19,14 +19,16 @@ const SignUp = () => {
 
     const {
       userNameSignUpInput,
+      userEmailSignUpInput,
       userPasswordSignUpInput,
     } = document.forms.signUpForm.elements;
 
     const userName = userNameSignUpInput.value.trim();
+    const userEmail = userEmailSignUpInput.value.trim();
     const userPassword = userPasswordSignUpInput.value.trim();
 
-    if (userName && userPassword) {
-      handleSignUp({ userName, userPassword }, history).then(
+    if (userName && userEmail && userPassword) {
+      handleSignUp({ userName, userPassword, userEmail }, history).then(
         ({ isSignUpSuccessful, payload }) => {
           if (!isSignUpSuccessful) {
             setErrorMessage(payload);
@@ -54,6 +56,14 @@ const SignUp = () => {
               label="Your name"
               type="text"
               name="userName"
+            />
+          </div>
+          <div className="signup__input">
+            <LabeledField
+              id="userEmailSignUpInput"
+              label="Your email"
+              type="email"
+              name="userEmail"
             />
           </div>
           <div className="signup__input">

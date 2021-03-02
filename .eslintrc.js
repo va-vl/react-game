@@ -23,5 +23,6 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/jsx-curly-newline': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 };

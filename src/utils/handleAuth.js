@@ -5,11 +5,11 @@ const handleSignOut = () => {
   document.location.reload(true);
 };
 
-function handleSignIn(userName, userPassword, routerHistory) {
+function handleSignIn(userEmail, userPassword, routerHistory) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userName, userPassword }),
+    body: JSON.stringify({ userEmail, userPassword }),
   };
 
   return fetch(`${API_URL}/users/authenticate`, requestOptions)

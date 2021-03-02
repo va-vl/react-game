@@ -4,8 +4,8 @@ const users = JSON.parse(localStorage.getItem('users')) || [];
 export default function fakeBackend() {
   const realFetch = window.fetch;
 
-  window.fetch = function (url, opts) {
-    return new Promise((resolve, reject) => {
+  window.fetch = (url, opts) =>
+    new Promise((resolve, reject) => {
       // wrap in timeout to simulate server api call
       setTimeout(() => {
         // authenticate
@@ -16,9 +16,12 @@ export default function fakeBackend() {
           // find if any user matches login credentials
           const filteredUsers = users.filter(
             (user) =>
-              user.userName === params.userName &&
+              user.userEmail === params.userEmail &&
               user.userPassword === params.userPassword,
           );
+
+          console.log(params);
+          console.log(filteredUsers);
 
           if (filteredUsers.length) {
             // if login details are valid return user details and fake jwt token
@@ -26,7 +29,6 @@ export default function fakeBackend() {
             const responseJson = {
               id: user.id,
               userName: user.userName,
-              userEmail: user.userEmail,
               token: 'fake-jwt-token',
             };
             resolve({
@@ -42,7 +44,7 @@ export default function fakeBackend() {
         }
 
         // get user by id
-        if (url.match(/\/users\/\d+$/) && opts.method === 'GET') {
+        if (url.match(/\/users\/\d+$/) && opts.method === 'PUT') {
           // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
           if (
             opts.headers &&
@@ -53,6 +55,12 @@ export default function fakeBackend() {
             const id = parseInt(urlParts[urlParts.length - 1], 10);
             const matchedUsers = users.filter((user) => user.id === id);
             const user = matchedUsers.length ? matchedUsers[0] : null;
+
+            const newUser = { ...user, ...opts.body };
+            const newUsers = { ...users, id: newUser };
+
+            localStorage.setItem('user', newUser);
+            localStorage.setItem('users', newUsers);
 
             // respond 200 OK with user
             resolve({ ok: true, text: () => JSON.stringify(user) });
@@ -97,5 +105,4 @@ export default function fakeBackend() {
         realFetch(url, opts).then((response) => resolve(response));
       }, 500);
     });
-  };
 }
