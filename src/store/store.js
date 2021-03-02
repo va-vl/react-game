@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import throttle from 'lodash.throttle';
+import { firebaseReducer } from 'react-redux-firebase';
+import { firestoreReducer } from 'redux-firestore';
 import settingsReducer from './settingsReducer/settingsReducer';
 import gameReducer from './gameReducer/gameReducer';
 import { saveSettingsState, loadSettingsState } from './localStorage';
 
 const store = configureStore({
-  reducer: { gameReducer, settingsReducer },
+  reducer: { firebaseReducer, firestoreReducer, gameReducer, settingsReducer },
   preloadedState: loadSettingsState(),
 });
 

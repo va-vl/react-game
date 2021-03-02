@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useFirebase } from 'react-redux-firebase';
 import LabeledField from '../_common/LabeledField/LabeledField';
-import { handleSignIn } from '../../utils/handleAuth';
 import './SignIn.scss';
 
 const SignIn = () => {
   const history = useHistory();
+  const firebase = useFirebase();
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleChange = () => {
@@ -18,19 +19,20 @@ const SignIn = () => {
     event.preventDefault();
 
     const {
-      userEmailSignInInput: { value: userEmail },
-      userPasswordSignInInput: { value: userPassword },
+      userEmailSignInInput: { value: email },
+      userPasswordSignInInput: { value: password },
     } = document.forms.signInForm.elements;
 
-    if (userEmail && userPassword) {
-      handleSignIn({ userEmail, userPassword }).then(({ ok, payload }) => {
-        if (!ok) {
-          setErrorMessage(payload);
-        } else {
+    firebase
+      .login({ email, password })
+      .then(() => {
+        firebase.reloadAuth().then(() => {
           history.push('/');
-        }
+        });
+      })
+      .catch((err) => {
+        setErrorMessage(err.message);
       });
-    }
   };
 
   return (

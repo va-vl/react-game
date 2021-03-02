@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { handleSignUp } from '../../utils/handleAuth';
+import { useFirebase } from 'react-redux-firebase';
 import LabeledField from '../_common/LabeledField/LabeledField';
 import './SignUp.scss';
 
 const SignUp = () => {
   const history = useHistory();
+  const firebase = useFirebase();
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleChange = () => {
@@ -24,22 +25,17 @@ const SignUp = () => {
     } = document.forms.signUpForm.elements;
 
     const userName = userNameSignUpInput.value.trim();
-    const userEmail = userEmailSignUpInput.value.trim();
-    const userPassword = userPasswordSignUpInput.value.trim();
+    const email = userEmailSignUpInput.value.trim();
+    const password = userPasswordSignUpInput.value.trim();
 
-    if (userName && userEmail && userPassword) {
-      handleSignUp({ userName, userPassword, userEmail }).then(
-        ({ ok, payload }) => {
-          if (!ok) {
-            setErrorMessage(payload);
-          } else {
-            history.push('/signin');
-          }
-        },
-      );
-    } else {
-      setErrorMessage('Fields must contain more than just empty spaces!');
-    }
+    firebase
+      .createUser({ email, password }, { userName })
+      .then(() => {
+        history.push('/');
+      })
+      .catch((err) => {
+        setErrorMessage(err.message);
+      });
   };
 
   return (

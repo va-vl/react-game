@@ -1,12 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { handleSignOut } from '../../utils/handleAuth';
-import { getUser } from '../../utils/storage';
-
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useFirebase } from 'react-redux-firebase';
+import { userNameSelector } from '../../store/selectors';
 import './Main.scss';
 
 const Main = () => {
-  const { userName } = getUser();
+  const userName = useSelector(userNameSelector);
+  const firebase = useFirebase();
+  const history = useHistory();
+
+  const handleSignOut = () => {
+    firebase.logout().then(() => {
+      history.push('/signin');
+    });
+  };
 
   return (
     <main className="main">
