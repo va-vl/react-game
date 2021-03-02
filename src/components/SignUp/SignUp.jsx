@@ -24,12 +24,12 @@ const SignUp = () => {
       userPasswordSignUpInput,
     } = document.forms.signUpForm.elements;
 
-    const userName = userNameSignUpInput.value.trim();
+    const displayName = userNameSignUpInput.value.trim();
     const email = userEmailSignUpInput.value.trim();
     const password = userPasswordSignUpInput.value.trim();
 
     firebase
-      .createUser({ email, password }, { userName })
+      .createUser({ email, password }, { displayName })
       .then(() => {
         history.push('/');
       })

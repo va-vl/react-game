@@ -1,27 +1,45 @@
 // source https://stackoverflow.com/a/61943772
 
-const saveSettingsState = (state) => {
+const saveState = (reducerName) => (state) => {
   try {
-    const serializedState = JSON.stringify(state.settingsReducer);
-    localStorage.setItem('settingsReducer', serializedState);
+    const serializedState = JSON.stringify(state[reducerName]);
+    localStorage.setItem(reducerName, serializedState);
   } catch (err) {
     console.log(err);
   }
 };
 
+const saveSettingsState = (state) => {
+  saveState('settingsReducer')(state);
+};
+
+const saveGameState = (state) => {
+  saveState('gameReducer')(state);
+};
+
 const loadSettingsState = () => {
   try {
-    const serializedState = localStorage.getItem('settingsReducer');
+    const serializedSettings = localStorage.getItem('settingsReducer');
+    const serializedGame = localStorage.getItem('gameReducer');
+    const result = {};
 
-    if (serializedState === null) {
-      return undefined;
+    if (serializedSettings !== null) {
+      result.settingsReducer = JSON.parse(serializedSettings);
     }
 
-    return { settingsReducer: JSON.parse(serializedState) };
+    if (serializedGame !== null) {
+      result.gameReducer = JSON.parse(serializedGame);
+    }
+
+    if (serializedSettings || serializedGame) {
+      return result;
+    }
+
+    return undefined;
   } catch (err) {
     console.log(err);
     return undefined;
   }
 };
 
-export { saveSettingsState, loadSettingsState };
+export { saveSettingsState, saveGameState, loadSettingsState };

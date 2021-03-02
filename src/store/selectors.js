@@ -10,7 +10,7 @@ const gameMovementSelector = (state) => state.gameReducer.isMoving;
 
 const authSelector = (state) => state.firebaseReducer.auth;
 const fireStoreLevelSelector = (state) => state.firestoreReducer.level;
-const userNameSelector = (state) => state.firebaseReducer.profile.userName;
+const userNameSelector = (state) => state.firebaseReducer.profile.displayName;
 
 export {
   authSelector,

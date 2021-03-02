@@ -19,9 +19,4 @@ const resolveResources = () => {
 
 const getResources = () => JSON.parse(localStorage.getItem('resources'));
 
-const getUser = () => JSON.parse(localStorage.getItem('user'));
-
-const getUserSettings = () =>
-  JSON.parse(localStorage.getItem('user')).getSettings;
-
-export { resolveResources, getResources, getUser, getUserSettings };
+export { resolveResources, getResources };

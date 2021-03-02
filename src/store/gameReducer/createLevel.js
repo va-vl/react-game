@@ -1,4 +1,4 @@
-import { getResources } from '../../utils/storage';
+import { getResources } from '../../utils/resources';
 
 /**
  * @param {Array} arr

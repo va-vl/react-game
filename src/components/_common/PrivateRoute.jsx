@@ -35,7 +35,7 @@ PrivateRoute.defaultProps = {
 };
 
 PrivateRoute.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.arrayOf(PropTypes.node),
 };
 
 export default PrivateRoute;

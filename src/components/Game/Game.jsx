@@ -11,8 +11,7 @@ import {
 } from '../../store/selectors';
 import GameBoard from './GameBoard/GameBoard';
 import Controls from './Controls/Controls';
-import { getResources, getUser } from '../../utils/storage';
-import handleUpdate from '../../utils/handleUpdate';
+import { getResources } from '../../utils/resources';
 import './Game.scss';
 
 const Game = () => {
@@ -24,11 +23,6 @@ const Game = () => {
   const backSrc = cardBacks[cardsBackIndex];
 
   const gameStarter = () => {
-    const user = getUser();
-    const { gamesStarted } = user;
-
-    handleUpdate({ gamesStarted: gamesStarted + 1 });
-
     dispatch(gameInitAC(cardsAmount));
   };
 

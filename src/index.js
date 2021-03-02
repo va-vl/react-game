@@ -7,12 +7,8 @@ import { rrfProps } from './firebase/firebase';
 
 import App from './App';
 import store from './store/store';
-import { resolveResources } from './utils/storage';
+import { resolveResources } from './utils/resources';
 import './style.scss';
-
-import fakeBackend from './utils/fakeBackend';
-
-fakeBackend();
 
 resolveResources();
 

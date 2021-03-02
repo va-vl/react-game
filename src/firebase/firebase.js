@@ -9,10 +9,14 @@ const rrfConfig = {
   userProfile: 'users',
   useFirestoreForProfile: true,
   profileFactory: (_, profileData) => {
-    // how profiles are stored in database
-    const { userName } = profileData;
+    const { displayName } = profileData;
     return {
-      userName,
+      displayName,
+      stats: {
+        gamesStarted: null,
+        gamesCompleted: null,
+        records: [],
+      },
     };
   },
   createFirestoreInstance,
