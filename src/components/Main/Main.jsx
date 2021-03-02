@@ -15,7 +15,7 @@ const Main = () => {
         <ul className="main__list">
           <li className="main__link">
             <Link className="main__button" to="/game">
-              New Game
+              Game
             </Link>
           </li>
           <li className="main__link">

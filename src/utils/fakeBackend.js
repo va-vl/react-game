@@ -26,6 +26,7 @@ export default function fakeBackend() {
             const responseJson = {
               id: user.id,
               userName: user.userName,
+              gamesStarted: user.gamesStarted,
               token: 'fake-jwt-token',
             };
             resolve({
@@ -40,7 +41,7 @@ export default function fakeBackend() {
           return;
         }
 
-        // get user by id
+        // update user data
         if (url.match(/\/users\/\d+$/) && opts.method === 'PUT') {
           // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
           if (
@@ -52,15 +53,15 @@ export default function fakeBackend() {
             const id = parseInt(urlParts[urlParts.length - 1], 10);
             const matchedUsers = users.filter((user) => user.id === id);
             const user = matchedUsers.length ? matchedUsers[0] : null;
+            const data = JSON.parse(opts.body);
 
-            const newUser = { ...user, ...opts.body };
-            const newUsers = { ...users, id: newUser };
+            const newUser = { ...user, ...data };
+            users[id] = newUser;
 
-            localStorage.setItem('user', newUser);
-            localStorage.setItem('users', newUsers);
+            localStorage.setItem('user', JSON.stringify(newUser));
+            localStorage.setItem('users', JSON.stringify(users));
 
-            // respond 200 OK with user
-            resolve({ ok: true, text: () => JSON.stringify(user) });
+            resolve({ ok: true });
           } else {
             // return 401 not authorised if token is null or invalid
             reject(new Error('Unauthorised'));
@@ -88,6 +89,7 @@ export default function fakeBackend() {
 
           const newUser = {
             ...newUserAuth,
+            gamesStarted: 0,
           };
 
           // save new user

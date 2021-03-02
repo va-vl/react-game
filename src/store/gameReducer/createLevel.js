@@ -40,8 +40,6 @@ const createLevel = (cardsNum) => {
       },
     ]);
 
-  console.log(cardsNum);
-
   return randomFisherYates(sourcePairs);
 };
 

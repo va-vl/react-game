@@ -61,9 +61,7 @@ RadiosSet.propTypes = {
   changeHandler: PropTypes.func.isRequired,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     .isRequired,
-  sourceArr: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  ).isRequired,
+  sourceArr: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default React.memo(RadiosSet);

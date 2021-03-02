@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+// import { useLocation } from 'react-router-dom';
 import {
   gameInitAC,
   gameUpdateTimeAC,
@@ -11,7 +12,8 @@ import {
 } from '../../store/selectors';
 import GameBoard from './GameBoard/GameBoard';
 import Controls from './Controls/Controls';
-import { getResources } from '../../utils/storage';
+import { getResources, getUser } from '../../utils/storage';
+import handleUpdate from '../../utils/handleUpdate';
 import './Game.scss';
 
 const Game = () => {
@@ -22,8 +24,17 @@ const Game = () => {
   const { cardBacks } = getResources();
   const backSrc = cardBacks[cardsBackIndex];
 
-  if (!isGameOn) {
+  const gameStarter = () => {
+    const user = getUser();
+    const { gamesStarted } = user;
+
+    handleUpdate({ gamesStarted: gamesStarted + 1 });
+
     dispatch(gameInitAC(cardsAmount));
+  };
+
+  if (!isGameOn) {
+    gameStarter();
   }
 
   useEffect(() => {
@@ -39,7 +50,7 @@ const Game = () => {
   return (
     <div className="game">
       <div className="game__content">
-        <Controls />
+        <Controls gameStarter={gameStarter} />
         <GameBoard backSrc={backSrc} />
       </div>
     </div>

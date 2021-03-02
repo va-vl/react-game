@@ -1,16 +1,14 @@
 const apiURL = process.env.REACT_APP_API_URL;
 
-const getAuthHeader = () => {
+function handleUpdate(data) {
   const user = JSON.parse(localStorage.getItem('user'));
+  const authHeader =
+    user && user.token ? { Authorization: `Bearer ${user.token}` } : {};
 
-  return user && user.token ? { Authorization: `Bearer ${user.token}` } : {};
-};
-
-function handleUpdate(user) {
   const requestOptions = {
     method: 'PUT',
-    headers: { ...getAuthHeader(), 'Content-Type': 'application/json' },
-    body: JSON.stringify(user),
+    headers: { ...authHeader, 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
   };
 
   return fetch(`${apiURL}/users/${user.id}`, requestOptions).catch((err) => {
