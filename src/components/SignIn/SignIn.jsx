@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import LabeledField from '../_common/LabeledField/LabeledField';
 import { handleSignIn } from '../../utils/handleAuth';
-import { userSignInAC } from '../../store/userReducer/userReducerACs';
 import './SignIn.scss';
 
 const SignIn = () => {
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState(null);
-  const dispatch = useDispatch();
 
   const handleChange = () => {
     if (errorMessage) {
@@ -26,15 +23,13 @@ const SignIn = () => {
     } = document.forms.signInForm.elements;
 
     if (userEmail && userPassword) {
-      handleSignIn(userEmail, userPassword, history).then(
-        ({ isSignInSuccessful, payload }) => {
-          if (!isSignInSuccessful) {
-            setErrorMessage(payload);
-          } else {
-            dispatch(userSignInAC(payload));
-          }
-        },
-      );
+      handleSignIn({ userEmail, userPassword }).then(({ ok, payload }) => {
+        if (!ok) {
+          setErrorMessage(payload);
+        } else {
+          history.push('/');
+        }
+      });
     }
   };
 

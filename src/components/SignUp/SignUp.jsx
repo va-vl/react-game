@@ -28,10 +28,12 @@ const SignUp = () => {
     const userPassword = userPasswordSignUpInput.value.trim();
 
     if (userName && userEmail && userPassword) {
-      handleSignUp({ userName, userPassword, userEmail }, history).then(
-        ({ isSignUpSuccessful, payload }) => {
-          if (!isSignUpSuccessful) {
+      handleSignUp({ userName, userPassword, userEmail }).then(
+        ({ ok, payload }) => {
+          if (!ok) {
             setErrorMessage(payload);
+          } else {
+            history.push('/signin');
           }
         },
       );

@@ -2,7 +2,7 @@ const DEBOUNCE_DELAY = 200;
 const CLEANUP_ANIMATION_DELAY = 200;
 const FLIP_ANIMATION_DELAY = 500;
 const API_URL = process.env.REACT_APP_API_URL;
-const GAME_SIZES = ['12', '16', '20', '24'];
+const GAME_SIZES = [12, 16, 20, 24];
 const APP_THEMES = ['green', 'blue', 'brown'];
 const HOT_KEYS = {
   r: 'start new game',

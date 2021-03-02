@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import RadiosSet from '../../_common/RadiosSet/RadiosSet';
 import { updateCardsBackAC } from '../../../store/settingsReducer/settingsReducerACs';
 import { cardsBackIndexSelector } from '../../../store/selectors';
-import { getResources } from '../../../utils/resources';
+import { getResources } from '../../../utils/storage';
 
 const CardsBackSet = () => {
   const dispatch = useDispatch();

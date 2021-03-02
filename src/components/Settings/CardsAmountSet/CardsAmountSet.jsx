@@ -1,15 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import RadiosSet from '../../_common/RadiosSet/RadiosSet';
-import { gameSetCardsAmountAC } from '../../../store/gameReducer/gameReducerACs';
+import { updateCardsAmountAC } from '../../../store/settingsReducer/settingsReducerACs';
 import { cardsAmountSelector } from '../../../store/selectors';
 import { GAME_SIZES } from '../../../constants/constants';
 
 const CardsAmountSet = () => {
   const dispatch = useDispatch();
   const cardsAmount = useSelector(cardsAmountSelector);
+
   const changeAmountHandler = (event) => {
-    dispatch(gameSetCardsAmountAC(event.target.value));
+    dispatch(updateCardsAmountAC(event.target.value));
   };
 
   return (

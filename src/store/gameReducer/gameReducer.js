@@ -1,6 +1,5 @@
 import {
   GAME_INIT,
-  GAME_SET_CARDS_AMOUNT,
   GAME_CARD_FLIP_START,
   GAME_CARD_FLIP_END,
   GAME_CARD_PROCESS,
@@ -15,7 +14,6 @@ const initialState = {
   moves: 0,
   matches: 0,
   currentlyFlipped: null,
-  cardsAmount: '12',
   level: [],
 };
 
@@ -24,20 +22,11 @@ const gameReducer = (state = initialState, { type, payload }) => {
     default: {
       return state;
     }
-    case GAME_SET_CARDS_AMOUNT: {
-      return {
-        ...initialState,
-        cardsAmount: payload,
-      };
-    }
     case GAME_INIT: {
-      const { cardsAmount } = state;
-
       return {
         ...initialState,
         isGameOn: true,
-        cardsAmount,
-        level: createLevel(cardsAmount),
+        level: createLevel(payload),
       };
     }
     case GAME_CARD_FLIP_START: {

@@ -5,11 +5,11 @@ const handleSignOut = () => {
   document.location.reload(true);
 };
 
-function handleSignIn(userEmail, userPassword, routerHistory) {
+function handleSignIn(authData) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userEmail, userPassword }),
+    body: JSON.stringify(authData),
   };
 
   return fetch(`${API_URL}/users/authenticate`, requestOptions)
@@ -24,26 +24,22 @@ function handleSignIn(userEmail, userPassword, routerHistory) {
 
       return res.text();
     })
-    .then((text) => JSON.parse(text))
     .then((user) => {
-      localStorage.setItem('user', JSON.stringify(user));
-      routerHistory.push('/');
-      return {
-        isSignInSuccessful: true,
-        payload: user.userName,
-      };
+      localStorage.setItem('user', user);
+
+      return { ok: true };
     })
-    .catch((err) => ({
-      isSignInSuccessful: false,
-      payload: err.message,
+    .catch(({ message }) => ({
+      ok: false,
+      payload: message,
     }));
 }
 
-function handleSignUp(user, routerHistory) {
+function handleSignUp(authData) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(user),
+    body: JSON.stringify(authData),
   };
 
   return fetch(`${API_URL}/users/register`, requestOptions)
@@ -52,12 +48,10 @@ function handleSignUp(user, routerHistory) {
         throw new Error(res.statusText);
       }
 
-      routerHistory.push('/signin');
-
-      return { isSignUpSuccessful: true };
+      return { ok: true };
     })
     .catch((err) => ({
-      isSignUpSuccessful: false,
+      ok: false,
       payload: err.message,
     }));
 }

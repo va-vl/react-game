@@ -7,6 +7,7 @@ import RangeSlider from '../../_common/RangeSlider/RangeSlider';
 const MusicVolumeSlider = () => {
   const dispatch = useDispatch();
   const musicVolume = useSelector(musicVolumeSelector);
+
   const changeMusicHandler = (event) => {
     dispatch(updateMusicVolumeAC(event.target.value));
   };

@@ -20,7 +20,7 @@ const HotKeysHandler = () => {
   useEffect(() => {
     const handleMute = ({ key, altKey, metaKey }) => {
       if (key.toLowerCase() === 'm' && (altKey || metaKey)) {
-        const val = musicVolume === '0' ? '50' : '0';
+        const val = !musicVolume ? 50 : 0;
         dispatch(updateMusicVolumeAC(val));
       }
     };
@@ -33,7 +33,7 @@ const HotKeysHandler = () => {
   useEffect(() => {
     const handleMute = ({ key, altKey, metaKey }) => {
       if (key.toLowerCase() === 'v' && (altKey || metaKey)) {
-        const val = soundVolume === '0' ? '50' : '0';
+        const val = !soundVolume ? 50 : 0;
         dispatch(updateSoundVolumeAC(val));
       }
     };

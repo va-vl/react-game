@@ -1,6 +1,5 @@
 import {
   GAME_INIT,
-  GAME_SET_CARDS_AMOUNT,
   GAME_CARD_FLIP_START,
   GAME_CARD_FLIP_END,
   GAME_CARD_PROCESS,
@@ -11,12 +10,8 @@ import {
   CLEANUP_ANIMATION_DELAY,
 } from '../../constants/constants';
 
-const gameInitAC = () => ({
+const gameInitAC = (payload) => ({
   type: GAME_INIT,
-});
-
-const gameSetCardsAmountAC = (payload) => ({
-  type: GAME_SET_CARDS_AMOUNT,
   payload,
 });
 
@@ -48,4 +43,4 @@ const gameFlipCardAC = ({ levelIndex, cardIndex }) => (dispatch) => {
 
 const gameUpdateTimeAC = () => ({ type: GAME_UPDATE_TIME });
 
-export { gameInitAC, gameSetCardsAmountAC, gameFlipCardAC, gameUpdateTimeAC };
+export { gameInitAC, gameFlipCardAC, gameUpdateTimeAC };

@@ -25,7 +25,7 @@ RangeSlider.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   changeHandler: PropTypes.func.isRequired,
 };
 

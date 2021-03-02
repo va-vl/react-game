@@ -1,4 +1,4 @@
-import { getResources } from '../../utils/resources';
+import { getResources } from '../../utils/storage';
 
 /**
  * @param {Array} arr
@@ -39,6 +39,8 @@ const createLevel = (cardsNum) => {
         isSolved: false,
       },
     ]);
+
+  console.log(cardsNum);
 
   return randomFisherYates(sourcePairs);
 };

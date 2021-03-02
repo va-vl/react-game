@@ -20,9 +20,6 @@ export default function fakeBackend() {
               user.userPassword === params.userPassword,
           );
 
-          console.log(params);
-          console.log(filteredUsers);
-
           if (filteredUsers.length) {
             // if login details are valid return user details and fake jwt token
             const user = filteredUsers[0];
@@ -75,18 +72,23 @@ export default function fakeBackend() {
         // register user
         if (url.endsWith('/users/register') && opts.method === 'POST') {
           // get new user object from post body
-          const newUser = JSON.parse(opts.body);
+          const newUserAuth = JSON.parse(opts.body);
 
           // validation
           const duplicateUser = users.filter(
-            (user) => user.userName === newUser.userName,
+            (user) => user.userEmail === newUserAuth.userEmail,
           ).length;
+
           if (duplicateUser) {
             reject(
-              new Error(`Username "${newUser.userName}" is already taken`),
+              new Error(`Email "${newUserAuth.userName}" is already taken`),
             );
             return;
           }
+
+          const newUser = {
+            ...newUserAuth,
+          };
 
           // save new user
           newUser.id = users.length

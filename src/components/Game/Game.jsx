@@ -4,21 +4,26 @@ import {
   gameInitAC,
   gameUpdateTimeAC,
 } from '../../store/gameReducer/gameReducerACs';
-import { cardsBackIndexSelector, gameOnSelector } from '../../store/selectors';
+import {
+  cardsBackIndexSelector,
+  gameOnSelector,
+  cardsAmountSelector,
+} from '../../store/selectors';
 import GameBoard from './GameBoard/GameBoard';
 import Controls from './Controls/Controls';
-import { getResources } from '../../utils/resources';
+import { getResources } from '../../utils/storage';
 import './Game.scss';
 
 const Game = () => {
   const dispatch = useDispatch();
-  const cardsBackIndex = useSelector(cardsBackIndexSelector);
   const isGameOn = useSelector(gameOnSelector);
+  const cardsAmount = useSelector(cardsAmountSelector);
+  const cardsBackIndex = useSelector(cardsBackIndexSelector);
   const { cardBacks } = getResources();
   const backSrc = cardBacks[cardsBackIndex];
 
   if (!isGameOn) {
-    dispatch(gameInitAC());
+    dispatch(gameInitAC(cardsAmount));
   }
 
   useEffect(() => {

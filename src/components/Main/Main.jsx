@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { handleSignOut } from '../../utils/handleAuth';
+import { getUser } from '../../utils/storage';
+
 import './Main.scss';
 
 const Main = () => {
-  const { userName } = JSON.parse(localStorage.getItem('user'));
+  const { userName } = getUser();
 
   return (
     <main className="main">
