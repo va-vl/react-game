@@ -1,11 +1,12 @@
 import {
   GAME_INIT,
   GAME_UPDATE_TIME,
-  GAME_CLEAR_PROGRESS,
-  GAME_CLEAR_SOUND,
+  GAME_RESET,
+  GAME_TOGGLE_AUTOPLAY,
   GAME_CARD_FLIP_START,
   GAME_CARD_MATCH_START,
   GAME_CARD_MATCH_END,
+  GAME_CLEAR_SOUND,
 } from './gameReducerActionTypes';
 import {
   SOUND_DELAY,
@@ -20,9 +21,11 @@ const gameInitAC = (payload) => ({
 
 const gameUpdateTimeAC = () => ({ type: GAME_UPDATE_TIME });
 
-const gameClearProgressAC = () => ({ type: GAME_CLEAR_PROGRESS });
+const gameResetAC = () => ({ type: GAME_RESET });
 
 const gameClearSoundAC = () => ({ type: GAME_CLEAR_SOUND });
+
+const gameToggleAutoplayAC = () => ({ type: GAME_TOGGLE_AUTOPLAY });
 
 const gameCardFlipStartAC = (obj) => ({
   type: GAME_CARD_FLIP_START,
@@ -72,4 +75,10 @@ const gameMakeMoveAC = ({ levelIndex, cardIndex }) => (dispatch, getState) => {
     return null;
   });
 };
-export { gameInitAC, gameUpdateTimeAC, gameClearProgressAC, gameMakeMoveAC };
+export {
+  gameInitAC,
+  gameUpdateTimeAC,
+  gameResetAC,
+  gameToggleAutoplayAC,
+  gameMakeMoveAC,
+};

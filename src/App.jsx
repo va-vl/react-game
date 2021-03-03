@@ -16,7 +16,7 @@ import MusicPlayer from './components/MusicPlayer';
 import SoundPlayer from './components/SoundPlayer';
 import HotKeysHandler from './components/_common/HotKeysHandler';
 import useFullscreenStatus from './hooks/useFullscreenStatus';
-import IsAuthReady from './components/_common/IsAuthReady';
+import AuthReady from './components/_common/AuthReady/AuthReady';
 import './App.scss';
 
 const App = () => {
@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <main ref={maximizableElement} className={`app app--${theme}`}>
-      <IsAuthReady>
+      <AuthReady>
         <Switch>
           <Route exact path="/signin">
             <SignIn />
@@ -65,7 +65,7 @@ const App = () => {
         <Footer />
         <SoundPlayer />
         <MusicPlayer />
-      </IsAuthReady>
+      </AuthReady>
     </main>
   );
 };

@@ -14,7 +14,7 @@ import {
   userRecordsSelector,
   gameTimeCountSelector,
 } from '../../store/selectors';
-import IsAuthReady from '../_common/IsAuthReady';
+import IsAuthReady from '../_common/AuthReady/AuthReady';
 import GameBoard from './GameBoard/GameBoard';
 import Controls from './Controls/Controls';
 import VictoryModal from './VictoryModal/VictoryModal';

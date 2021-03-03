@@ -1,7 +1,8 @@
 import {
   GAME_INIT,
   GAME_UPDATE_TIME,
-  GAME_CLEAR_PROGRESS,
+  GAME_RESET,
+  GAME_TOGGLE_AUTOPLAY,
   GAME_CLEAR_SOUND,
   GAME_CARD_FLIP_START,
   GAME_CARD_MATCH_START,
@@ -12,6 +13,7 @@ import createLevel from './createLevel';
 const initialState = {
   isGameOn: false,
   isGameComplete: false,
+  isAutoplayOn: false,
   isMatching: false,
   timeCount: 0,
   moves: 0,
@@ -43,9 +45,21 @@ const gameReducer = (state = initialState, { type, payload }) => {
       };
     }
 
-    case GAME_CLEAR_PROGRESS: {
+    case GAME_RESET: {
+      const { isAutoplayOn } = state;
+
       return {
         ...initialState,
+        isAutoplayOn,
+      };
+    }
+
+    case GAME_TOGGLE_AUTOPLAY: {
+      const { isAutoplayOn } = state;
+
+      return {
+        ...state,
+        isAutoplayOn: !isAutoplayOn,
       };
     }
 
