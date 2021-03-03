@@ -6,13 +6,14 @@ import {
   gameUpdateTimeAC,
 } from '../../store/gameReducer/gameReducerACs';
 import {
+  gameOnSelector,
+  gameMovesSelector,
+  gameTimeCountSelector,
+  gameCompleteSelector,
+  gameLevelSelector,
+  userRecordsSelector,
   cardsBackIndexSelector,
   cardsAmountSelector,
-  gameOnSelector,
-  gameMatchesSelector,
-  gameMovesSelector,
-  userRecordsSelector,
-  gameTimeCountSelector,
 } from '../../store/selectors';
 import IsAuthReady from '../_common/AuthReady/AuthReady';
 import GameBoard from './GameBoard/GameBoard';
@@ -24,35 +25,44 @@ import './Game.scss';
 const Game = () => {
   const dispatch = useDispatch();
   const firebase = useFirebase();
-  const gameTimeCount = useSelector(gameTimeCountSelector);
   const isGameOn = useSelector(gameOnSelector);
+  const isGameComplete = useSelector(gameCompleteSelector);
+  const gameTimeCount = useSelector(gameTimeCountSelector);
+  const level = useSelector(gameLevelSelector);
   const moves = useSelector(gameMovesSelector);
-  const matches = useSelector(gameMatchesSelector);
   const cardsAmount = useSelector(cardsAmountSelector);
   const cardsBackIndex = useSelector(cardsBackIndexSelector);
+  const records = useSelector(userRecordsSelector);
   const { cardBacks } = getResources();
   const backSrc = cardBacks[cardsBackIndex];
-  const records = useSelector(userRecordsSelector);
-  const [isComplete, setIsComplete] = useState(false);
   const [modal, setModal] = useState(null);
 
   const gameStarter = () => {
     dispatch(gameInitAC(cardsAmount));
-    setIsComplete(false);
   };
 
-  if (!isGameOn) {
-    gameStarter();
-  }
-
   useEffect(() => {
-    if (matches === cardsAmount / 2) {
-      setIsComplete(true);
+    if (!isGameOn && !isGameComplete) {
+      gameStarter();
     }
-  }, [matches]);
+  }, [isGameOn, isGameComplete]);
 
   useEffect(() => {
-    if (isComplete && records) {
+    let interval;
+
+    if (isGameOn && !isGameComplete) {
+      interval = setInterval(() => {
+        dispatch(gameUpdateTimeAC());
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isGameComplete, isGameOn]);
+
+  useEffect(() => {
+    if (isGameComplete && !isGameOn && records) {
       setModal(<VictoryModal onClick={gameStarter} />);
 
       firebase.updateProfile({
@@ -68,29 +78,27 @@ const Game = () => {
         ],
       });
     }
-  }, [isComplete]);
 
-  useEffect(() => {
-    let interval;
-
-    if (!isComplete) {
-      interval = setInterval(() => {
-        dispatch(gameUpdateTimeAC());
-      }, 1000);
+    if (!isGameComplete && isGameOn) {
+      setModal(null);
     }
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [isComplete]);
+  }, [isGameComplete, isGameOn]);
 
   return (
     <IsAuthReady>
       <div className="game">
         {modal}
         <div className="game__content">
-          <Controls gameStarter={gameStarter} />
-          <GameBoard backSrc={backSrc} />
+          <Controls
+            gameStarter={gameStarter}
+            moves={moves}
+            timeCount={gameTimeCount}
+          />
+          <GameBoard
+            backSrc={backSrc}
+            cardsAmount={cardsAmount}
+            level={level}
+          />
         </div>
       </div>
       {}

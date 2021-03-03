@@ -24,7 +24,7 @@ store.subscribe(
   throttle(() => {
     saveGameState(store.getState());
     saveSettingsState(store.getState());
-  }, 1000),
+  }, 500),
 );
 
 export default store;

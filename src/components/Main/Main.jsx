@@ -20,7 +20,9 @@ const Main = () => {
   return (
     <main className="main">
       <div className="main__content">
-        <h3 className="main__heading">{`Hello, ${userName}!`}</h3>
+        <h3 className="main__heading">
+          {!userName ? 'Profile loading...' : `Hello, ${userName}!`}
+        </h3>
         <ul className="main__list">
           <li className="main__link">
             <Link className="main__button" to="/game">

@@ -12,8 +12,8 @@ import createLevel from './createLevel';
 
 const initialState = {
   isGameOn: false,
-  isGameComplete: false,
   isAutoplayOn: false,
+  isGameComplete: false,
   isMatching: false,
   timeCount: 0,
   moves: 0,
@@ -30,9 +30,12 @@ const gameReducer = (state = initialState, { type, payload }) => {
     }
 
     case GAME_INIT: {
+      const isAutoplayOn = { state };
+
       return {
         ...initialState,
         isGameOn: true,
+        isAutoplayOn,
         level: createLevel(payload),
       };
     }
@@ -46,11 +49,8 @@ const gameReducer = (state = initialState, { type, payload }) => {
     }
 
     case GAME_RESET: {
-      const { isAutoplayOn } = state;
-
       return {
         ...initialState,
-        isAutoplayOn,
       };
     }
 
@@ -58,7 +58,7 @@ const gameReducer = (state = initialState, { type, payload }) => {
       const { isAutoplayOn } = state;
 
       return {
-        ...state,
+        ...initialState,
         isAutoplayOn: !isAutoplayOn,
       };
     }
@@ -101,12 +101,16 @@ const gameReducer = (state = initialState, { type, payload }) => {
         level,
       } = state;
 
+      const isGameComplete = matches + 1 === level.length / 2;
+
       if (cardIndex1 === cardIndex2) {
         return {
           ...state,
           isMatching: true,
+          isGameComplete,
+          isGameOn: !isGameComplete,
+          sound: isGameComplete ? 'win' : 'match',
           matches: matches + 1,
-          sound: 'match',
           level: level.map((obj, index) => {
             if (index === levelIndex1 || index === levelIndex2) {
               return {

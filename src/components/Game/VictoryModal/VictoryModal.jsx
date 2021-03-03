@@ -16,10 +16,10 @@ const VictoryModal = ({ onClick }) => (
         >
           Start new game
         </button>
-        <Link className="victory-modal__button" to="/stats">
+        <Link className="victory-modal__button" to="/stats" onClick={onClick}>
           To stats
         </Link>
-        <Link className="victory-modal__button" to="/">
+        <Link className="victory-modal__button" to="/" onClick={onClick}>
           To menu
         </Link>
       </div>

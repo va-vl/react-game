@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import formatTime from '../../../utils/formatTime';
 
 import './Controls.scss';
 
-const Controls = ({ gameStarter }) => {
+const Controls = ({ gameStarter, moves, timeCount }) => {
   const history = useHistory();
-  const moves = useSelector((state) => state.gameReducer.moves);
-  const timeCount = useSelector((state) => state.gameReducer.timeCount);
 
   const handleBackClick = () => {
     history.push('/');
@@ -35,6 +32,8 @@ const Controls = ({ gameStarter }) => {
 
 Controls.propTypes = {
   gameStarter: PropTypes.func.isRequired,
+  moves: PropTypes.number.isRequired,
+  timeCount: PropTypes.number.isRequired,
 };
 
 export default React.memo(Controls);
