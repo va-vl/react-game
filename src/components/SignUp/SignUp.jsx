@@ -42,6 +42,10 @@ const SignUp = () => {
     <main className="signup">
       <div className="signup__content">
         <h3 className="signup__heading">Sign Up</h3>
+        <p className="signup__note">
+          Please use VPN or the default profile if Google services are limited
+          in your location
+        </p>
         <form
           className="signup__form"
           name="signUpForm"

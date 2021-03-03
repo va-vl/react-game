@@ -20,8 +20,11 @@ const HotKeysHandler = () => {
   const cardsAmount = useSelector(cardsAmountSelector);
 
   useEffect(() => {
-    const handleMute = ({ key, altKey, metaKey }) => {
-      if (key.toLowerCase() === 'm' && (altKey || metaKey)) {
+    const handleMute = ({ key, code, altKey, metaKey }) => {
+      const keyCondition = key.toLowerCase() === 'm' || code === 'KeyM';
+      const metaCondition = altKey || metaKey;
+
+      if (keyCondition && metaCondition) {
         const val = !musicVolume ? 50 : 0;
         dispatch(updateMusicVolumeAC(val));
       }
@@ -33,8 +36,11 @@ const HotKeysHandler = () => {
   }, [musicVolume]);
 
   useEffect(() => {
-    const handleMute = ({ key, altKey, metaKey }) => {
-      if (key.toLowerCase() === 'v' && (altKey || metaKey)) {
+    const handleMute = ({ key, code, altKey, metaKey }) => {
+      const keyCondition = key.toLowerCase() === 'v' || code === 'KeyV';
+      const metaCondition = altKey || metaKey;
+
+      if (keyCondition && metaCondition) {
         const val = !soundVolume ? 50 : 0;
         dispatch(updateSoundVolumeAC(val));
       }
@@ -46,8 +52,11 @@ const HotKeysHandler = () => {
   }, [soundVolume]);
 
   useEffect(() => {
-    const handleToStats = ({ key, altKey, metaKey }) => {
-      if (key.toLowerCase() === 't' && (altKey || metaKey)) {
+    const handleToStats = ({ key, code, altKey, metaKey }) => {
+      const keyCondition = key.toLowerCase() === 't' || code === 'KeyT';
+      const metaCondition = altKey || metaKey;
+
+      if (keyCondition && metaCondition) {
         history.push('/stats');
       }
     };
@@ -58,8 +67,11 @@ const HotKeysHandler = () => {
   }, []);
 
   useEffect(() => {
-    const handleToStats = ({ key, altKey, metaKey }) => {
-      if (key.toLowerCase() === 's' && (altKey || metaKey)) {
+    const handleToStats = ({ key, code, altKey, metaKey }) => {
+      const keyCondition = key.toLowerCase() === 's' || code === 'KeyS';
+      const metaCondition = altKey || metaKey;
+
+      if (keyCondition && metaCondition) {
         history.push('/settings');
       }
     };
@@ -70,8 +82,11 @@ const HotKeysHandler = () => {
   }, []);
 
   useEffect(() => {
-    const handleToStats = ({ key, altKey, metaKey }) => {
-      if (key.toLowerCase() === 'r' && (altKey || metaKey)) {
+    const handleToStats = ({ key, code, altKey, metaKey }) => {
+      const keyCondition = key.toLowerCase() === 'r' || code === 'KeyR';
+      const metaCondition = altKey || metaKey;
+
+      if (keyCondition && metaCondition) {
         dispatch(gameInitAC(cardsAmount));
         history.push('game');
       }
