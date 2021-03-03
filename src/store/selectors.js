@@ -1,25 +1,18 @@
-const musicVolumeSelector = (state) => state.settingsReducer.musicVolume;
-const soundVolumeSelector = (state) => state.settingsReducer.soundVolume;
-const cardsBackIndexSelector = (state) => state.settingsReducer.cardsBackIndex;
-const cardsAmountSelector = (state) => state.settingsReducer.cardsAmount;
-const appThemeSelector = (state) => state.settingsReducer.appTheme;
+export const musicVolumeSelector = (state) => state.settingsReducer.musicVolume;
+export const soundVolumeSelector = (state) => state.settingsReducer.soundVolume;
+export const cardsBackIndexSelector = (state) =>
+  state.settingsReducer.cardsBackIndex;
+export const cardsAmountSelector = (state) => state.settingsReducer.cardsAmount;
+export const appThemeSelector = (state) => state.settingsReducer.appTheme;
 
-const levelSelector = (state) => state.gameReducer.level;
-const gameOnSelector = (state) => state.gameReducer.isGameOn;
-const gameMovementSelector = (state) => state.gameReducer.isMoving;
+export const gameLevelSelector = (state) => state.gameReducer.level;
+export const gameOnSelector = (state) => state.gameReducer.isGameOn;
+export const gameSoundSelector = (state) => state.gameReducer.sound;
+export const gameMatchingSelector = (state) => state.gameReducer.isMatching;
+export const gameMatchesSelector = (state) => state.gameReducer.matches;
 
-const authSelector = (state) => state.firebaseReducer.auth;
-const userNameSelector = (state) => state.firebaseReducer.profile.displayName;
-
-export {
-  authSelector,
-  userNameSelector,
-  musicVolumeSelector,
-  soundVolumeSelector,
-  cardsAmountSelector,
-  cardsBackIndexSelector,
-  appThemeSelector,
-  levelSelector,
-  gameOnSelector,
-  gameMovementSelector,
-};
+export const authSelector = (state) => state.firebaseReducer.auth;
+export const userNameSelector = (state) =>
+  state.firebaseReducer.profile.displayName;
+export const userRecordsSelector = (state) =>
+  state.firebaseReducer.profile.records;

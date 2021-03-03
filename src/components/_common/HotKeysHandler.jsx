@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
+  cardsAmountSelector,
   musicVolumeSelector,
   soundVolumeSelector,
 } from '../../store/selectors';
@@ -16,6 +17,7 @@ const HotKeysHandler = () => {
   const history = useHistory();
   const musicVolume = useSelector(musicVolumeSelector);
   const soundVolume = useSelector(soundVolumeSelector);
+  const cardsAmount = useSelector(cardsAmountSelector);
 
   useEffect(() => {
     const handleMute = ({ key, altKey, metaKey }) => {
@@ -70,7 +72,7 @@ const HotKeysHandler = () => {
   useEffect(() => {
     const handleToStats = ({ key, altKey, metaKey }) => {
       if (key.toLowerCase() === 'r' && (altKey || metaKey)) {
-        dispatch(gameInitAC());
+        dispatch(gameInitAC(cardsAmount));
         history.push('game');
       }
     };
@@ -78,7 +80,7 @@ const HotKeysHandler = () => {
     document.addEventListener('keydown', handleToStats);
 
     return () => document.removeEventListener('keydown', handleToStats);
-  }, []);
+  }, [cardsAmount]);
 
   return null;
 };

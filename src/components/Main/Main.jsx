@@ -2,13 +2,14 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
-import { userNameSelector } from '../../store/selectors';
+import { userNameSelector, gameOnSelector } from '../../store/selectors';
 import './Main.scss';
 
 const Main = () => {
-  const userName = useSelector(userNameSelector);
   const firebase = useFirebase();
   const history = useHistory();
+  const userName = useSelector(userNameSelector);
+  const isGameOn = useSelector(gameOnSelector);
 
   const handleSignOut = () => {
     firebase.logout().then(() => {
@@ -23,7 +24,7 @@ const Main = () => {
         <ul className="main__list">
           <li className="main__link">
             <Link className="main__button" to="/game">
-              Game
+              {isGameOn ? 'Continue' : 'New game'}
             </Link>
           </li>
           <li className="main__link">

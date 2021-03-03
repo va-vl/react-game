@@ -12,7 +12,8 @@ import Settings from './components/Settings/Settings';
 import Footer from './components/Footer/Footer';
 import Stats from './components/Stats/Stats';
 import About from './components/About/About';
-import MusicPlayer from './components/MusicPlayer/MusicPlayer';
+import MusicPlayer from './components/MusicPlayer';
+import SoundPlayer from './components/SoundPlayer';
 import HotKeysHandler from './components/_common/HotKeysHandler';
 import useFullscreenStatus from './hooks/useFullscreenStatus';
 import IsAuthReady from './components/_common/IsAuthReady';
@@ -62,6 +63,7 @@ const App = () => {
           handleFullscreenOn={setFullscreenStatus}
         />
         <Footer />
+        <SoundPlayer />
         <MusicPlayer />
       </IsAuthReady>
     </main>

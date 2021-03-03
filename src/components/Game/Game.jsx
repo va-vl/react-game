@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useFirebase } from 'react-redux-firebase';
 import {
   gameInitAC,
   gameUpdateTimeAC,
 } from '../../store/gameReducer/gameReducerACs';
 import {
   cardsBackIndexSelector,
-  gameOnSelector,
   cardsAmountSelector,
+  gameOnSelector,
+  gameMatchesSelector,
 } from '../../store/selectors';
 import GameBoard from './GameBoard/GameBoard';
 import Controls from './Controls/Controls';
@@ -16,7 +18,9 @@ import './Game.scss';
 
 const Game = () => {
   const dispatch = useDispatch();
+  const firebase = useFirebase();
   const isGameOn = useSelector(gameOnSelector);
+  const matches = useSelector(gameMatchesSelector);
   const cardsAmount = useSelector(cardsAmountSelector);
   const cardsBackIndex = useSelector(cardsBackIndexSelector);
   const { cardBacks } = getResources();
@@ -29,6 +33,12 @@ const Game = () => {
   if (!isGameOn) {
     gameStarter();
   }
+
+  useEffect(() => {
+    if (matches === cardsAmount / 2) {
+      firebase.updateProfile({});
+    }
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {

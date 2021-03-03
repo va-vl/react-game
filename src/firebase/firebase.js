@@ -12,9 +12,7 @@ const rrfConfig = {
     const { displayName } = profileData;
     return {
       displayName,
-      stats: {
-        records: [],
-      },
+      records: [],
     };
   },
   createFirestoreInstance,

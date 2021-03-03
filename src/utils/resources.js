@@ -1,15 +1,26 @@
-const importAll = (requireContext) =>
+const importImages = (requireContext) =>
   requireContext.keys().reduce((acc, key) => {
     const path = requireContext(key).default;
     acc.push(path);
     return acc;
   }, []);
 
+const importSounds = (requireContext) =>
+  requireContext.keys().reduce((acc, key) => {
+    const path = requireContext(key).default;
+    const keyProp = key.match(/\w+/);
+    acc[keyProp] = path;
+    return acc;
+  }, {});
+
 const resources = {
-  cardFronts: importAll(
+  cardFronts: importImages(
     require.context('../assets/cards/front', false, /.svg$/),
   ),
-  cardBacks: importAll(require.context('../assets/cards/back', false, /.svg$/)),
+  cardBacks: importImages(
+    require.context('../assets/cards/back', false, /.svg$/),
+  ),
+  sfx: importSounds(require.context('../assets/sfx', false, /.mp3$/)),
 };
 
 const resolveResources = () => {

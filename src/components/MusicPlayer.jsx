@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import useSound from 'use-sound';
 import { useSelector } from 'react-redux';
-import bgm from '../../assets/bgm/01-kalimba-relaxation-music.mp3';
-import { musicVolumeSelector } from '../../store/selectors';
+import bgm from '../assets/bgm/01-kalimba-relaxation-music.mp3';
+import { musicVolumeSelector } from '../store/selectors';
 
 const MusicPlayer = () => {
   const musicVolume = useSelector(musicVolumeSelector);

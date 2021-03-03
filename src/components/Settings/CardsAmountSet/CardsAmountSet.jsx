@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import RadiosSet from '../../_common/RadiosSet/RadiosSet';
 import { updateCardsAmountAC } from '../../../store/settingsReducer/settingsReducerACs';
+import { gameClearProgressAC } from '../../../store/gameReducer/gameReducerACs';
 import { cardsAmountSelector } from '../../../store/selectors';
 import { GAME_SIZES } from '../../../constants/constants';
 
@@ -11,6 +12,7 @@ const CardsAmountSet = () => {
 
   const changeAmountHandler = (event) => {
     dispatch(updateCardsAmountAC(event.target.value));
+    dispatch(gameClearProgressAC());
   };
 
   return (

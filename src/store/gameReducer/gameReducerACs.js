@@ -1,13 +1,16 @@
 import {
   GAME_INIT,
-  GAME_CARD_FLIP_START,
-  GAME_CARD_FLIP_END,
-  GAME_CARD_PROCESS,
   GAME_UPDATE_TIME,
+  GAME_CLEAR_PROGRESS,
+  GAME_CLEAR_SOUND,
+  GAME_CARD_FLIP_START,
+  GAME_CARD_MATCH_START,
+  GAME_CARD_MATCH_END,
 } from './gameReducerActionTypes';
 import {
+  SOUND_DELAY,
   FLIP_ANIMATION_DELAY,
-  CLEANUP_ANIMATION_DELAY,
+  MATCH_ANIMATION_DELAY,
 } from '../../constants/constants';
 
 const gameInitAC = (payload) => ({
@@ -17,30 +20,56 @@ const gameInitAC = (payload) => ({
 
 const gameUpdateTimeAC = () => ({ type: GAME_UPDATE_TIME });
 
-const gameCardFlipStartAC = ({ levelIndex, cardIndex }) => ({
+const gameClearProgressAC = () => ({ type: GAME_CLEAR_PROGRESS });
+
+const gameClearSoundAC = () => ({ type: GAME_CLEAR_SOUND });
+
+const gameCardFlipStartAC = (obj) => ({
   type: GAME_CARD_FLIP_START,
-  payload: { levelIndex, cardIndex },
+  payload: obj,
 });
 
-const gameCardFlipEndAC = () => ({
-  type: GAME_CARD_FLIP_END,
+const gameCardMatchStartAC = () => ({
+  type: GAME_CARD_MATCH_START,
 });
 
-const gameCardProcessAC = ({ levelIndex, cardIndex }) => ({
-  type: GAME_CARD_PROCESS,
-  payload: { levelIndex, cardIndex },
+const gameCardMatchEndAC = () => ({
+  type: GAME_CARD_MATCH_END,
 });
 
-const gameFlipCardAC = ({ levelIndex, cardIndex }) => (dispatch) => {
-  dispatch(gameCardFlipStartAC({ levelIndex, cardIndex }));
-
-  setTimeout(() => {
-    dispatch(gameCardProcessAC({ levelIndex, cardIndex }));
+const gameMakeMoveAC = ({ levelIndex, cardIndex }) => (dispatch, getState) => {
+  new Promise((resolve) => {
+    dispatch(gameCardFlipStartAC({ levelIndex, cardIndex }));
 
     setTimeout(() => {
-      dispatch(gameCardFlipEndAC());
-    }, CLEANUP_ANIMATION_DELAY);
-  }, FLIP_ANIMATION_DELAY);
-};
+      dispatch(gameClearSoundAC());
+    }, SOUND_DELAY);
 
-export { gameInitAC, gameFlipCardAC, gameUpdateTimeAC };
+    resolve();
+  }).then(() => {
+    const {
+      gameReducer: { currentlyFlipped },
+    } = getState();
+
+    if (currentlyFlipped.length === 2) {
+      dispatch(gameCardMatchStartAC());
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, FLIP_ANIMATION_DELAY);
+      }).then(() => {
+        setTimeout(() => {
+          dispatch(gameClearSoundAC());
+        }, SOUND_DELAY);
+
+        setTimeout(() => {
+          dispatch(gameCardMatchEndAC());
+        }, MATCH_ANIMATION_DELAY);
+      });
+    }
+
+    return null;
+  });
+};
+export { gameInitAC, gameUpdateTimeAC, gameClearProgressAC, gameMakeMoveAC };

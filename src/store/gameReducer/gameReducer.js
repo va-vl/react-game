@@ -1,20 +1,23 @@
 import {
   GAME_INIT,
-  GAME_CARD_FLIP_START,
-  GAME_CARD_FLIP_END,
-  GAME_CARD_PROCESS,
   GAME_UPDATE_TIME,
+  GAME_CLEAR_PROGRESS,
+  GAME_CLEAR_SOUND,
+  GAME_CARD_FLIP_START,
+  GAME_CARD_MATCH_START,
+  GAME_CARD_MATCH_END,
 } from './gameReducerActionTypes';
 import createLevel from './createLevel';
 
 const initialState = {
-  timeCount: 0,
   isGameOn: false,
-  isMoving: false,
+  isMatching: false,
+  timeCount: 0,
   moves: 0,
   matches: 0,
-  currentlyFlipped: null,
+  sound: '',
   level: [],
+  currentlyFlipped: [],
 };
 
 const gameReducer = (state = initialState, { type, payload }) => {
@@ -39,13 +42,28 @@ const gameReducer = (state = initialState, { type, payload }) => {
       };
     }
 
+    case GAME_CLEAR_PROGRESS: {
+      return {
+        ...initialState,
+      };
+    }
+
+    case GAME_CLEAR_SOUND: {
+      return {
+        ...state,
+        sound: '',
+      };
+    }
+
     case GAME_CARD_FLIP_START: {
-      const { level } = state;
+      const { level, moves, currentlyFlipped } = state;
       const { levelIndex } = payload;
 
       return {
         ...state,
-        isMoving: true,
+        moves: moves + 1,
+        sound: 'move',
+        currentlyFlipped: [...currentlyFlipped, payload],
         level: level.map((card, ind) => {
           if (levelIndex === ind) {
             return {
@@ -58,40 +76,24 @@ const gameReducer = (state = initialState, { type, payload }) => {
       };
     }
 
-    case GAME_CARD_FLIP_END: {
-      const { level } = state;
-      return {
-        ...state,
-        isMoving: false,
-        level: level.map((obj) => ({ ...obj, isError: false })),
-      };
-    }
-
-    case GAME_CARD_PROCESS: {
-      const { currentlyFlipped, matches, moves, level } = state;
-      const { levelIndex, cardIndex } = payload;
-
-      if (currentlyFlipped === null) {
-        return {
-          ...state,
-          moves: moves + 1,
-          currentlyFlipped: { levelIndex, cardIndex },
-        };
-      }
-
+    case GAME_CARD_MATCH_START: {
       const {
-        levelIndex: currentLevelIndex,
-        cardIndex: currentCardIndex,
-      } = currentlyFlipped;
+        currentlyFlipped: [
+          { cardIndex: cardIndex1, levelIndex: levelIndex1 },
+          { cardIndex: cardIndex2, levelIndex: levelIndex2 },
+        ],
+        matches,
+        level,
+      } = state;
 
-      if (cardIndex === currentCardIndex) {
+      if (cardIndex1 === cardIndex2) {
         return {
           ...state,
-          currentlyFlipped: null,
-          moves: moves + 1,
+          isMatching: true,
           matches: matches + 1,
+          sound: 'match',
           level: level.map((obj, index) => {
-            if (index === levelIndex || index === currentLevelIndex) {
+            if (index === levelIndex1 || index === levelIndex2) {
               return {
                 ...obj,
                 isFlipped: true,
@@ -106,15 +108,44 @@ const gameReducer = (state = initialState, { type, payload }) => {
 
       return {
         ...state,
-        currentlyFlipped: null,
-        moves: moves + 1,
+        isMatching: true,
+        sound: 'error',
         level: level.map((obj, index) => {
-          if (index === levelIndex || index === currentLevelIndex) {
+          if (index === levelIndex1 || index === levelIndex2) {
             return {
               ...obj,
-              isFlipped: false,
+              isFlipped: true,
               isSolved: false,
               isError: true,
+            };
+          }
+
+          return obj;
+        }),
+      };
+    }
+
+    case GAME_CARD_MATCH_END: {
+      const {
+        level,
+        currentlyFlipped: [
+          { levelIndex: levelIndex1 },
+          { levelIndex: levelIndex2 },
+        ],
+      } = state;
+
+      return {
+        ...state,
+        isMatching: false,
+        currentlyFlipped: [],
+        level: level.map((obj, index) => {
+          if (index === levelIndex1 || index === levelIndex2) {
+            const { isSolved } = obj;
+
+            return {
+              ...obj,
+              isFlipped: isSolved,
+              isError: false,
             };
           }
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { levelSelector } from '../../../store/selectors';
+import { gameLevelSelector } from '../../../store/selectors';
 import Card from './Card/Card';
 import './GameBoard.scss';
 
 const GameBoard = ({ backSrc }) => {
-  const level = useSelector(levelSelector);
+  const level = useSelector(gameLevelSelector);
   const amount = level.length;
 
   return (

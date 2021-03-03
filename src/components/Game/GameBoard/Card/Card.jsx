@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { gameFlipCardAC } from '../../../../store/gameReducer/gameReducerACs';
-import { gameMovementSelector } from '../../../../store/selectors';
+import { gameMatchingSelector } from '../../../../store/selectors';
+import { gameMakeMoveAC } from '../../../../store/gameReducer/gameReducerACs';
 import './Card.scss';
 
 const createCardClassName = (isFlipped, isSolved, isError) => {
@@ -34,11 +34,11 @@ const Card = ({
   cardIndex,
 }) => {
   const dispatch = useDispatch();
-  const isMoving = useSelector(gameMovementSelector);
+  const isMatching = useSelector(gameMatchingSelector);
 
   const handleClick = () => {
-    if (!isSolved && !isFlipped && !isMoving) {
-      dispatch(gameFlipCardAC({ levelIndex, cardIndex }));
+    if (!isSolved && !isFlipped && !isMatching) {
+      dispatch(gameMakeMoveAC({ levelIndex, cardIndex }));
     }
   };
 
