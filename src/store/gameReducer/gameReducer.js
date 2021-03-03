@@ -11,6 +11,7 @@ import createLevel from './createLevel';
 
 const initialState = {
   isGameOn: false,
+  isGameComplete: false,
   isMatching: false,
   timeCount: 0,
   moves: 0,

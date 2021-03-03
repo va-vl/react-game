@@ -17,6 +17,7 @@ import {
 import IsAuthReady from '../_common/IsAuthReady';
 import GameBoard from './GameBoard/GameBoard';
 import Controls from './Controls/Controls';
+import VictoryModal from './VictoryModal/VictoryModal';
 import { getResources } from '../../utils/resources';
 import './Game.scss';
 
@@ -33,6 +34,16 @@ const Game = () => {
   const backSrc = cardBacks[cardsBackIndex];
   const records = useSelector(userRecordsSelector);
   const [isComplete, setIsComplete] = useState(false);
+  const [modal, setModal] = useState(null);
+
+  const gameStarter = () => {
+    dispatch(gameInitAC(cardsAmount));
+    setIsComplete(false);
+  };
+
+  if (!isGameOn) {
+    gameStarter();
+  }
 
   useEffect(() => {
     if (matches === cardsAmount / 2) {
@@ -42,6 +53,8 @@ const Game = () => {
 
   useEffect(() => {
     if (isComplete && records) {
+      setModal(<VictoryModal onClick={gameStarter} />);
+
       firebase.updateProfile({
         records: [
           ...records,
@@ -71,23 +84,16 @@ const Game = () => {
     };
   }, [isComplete]);
 
-  const gameStarter = () => {
-    dispatch(gameInitAC(cardsAmount));
-    setIsComplete(false);
-  };
-
-  if (!isGameOn) {
-    gameStarter();
-  }
-
   return (
     <IsAuthReady>
       <div className="game">
+        {modal}
         <div className="game__content">
           <Controls gameStarter={gameStarter} />
           <GameBoard backSrc={backSrc} />
         </div>
       </div>
+      {}
     </IsAuthReady>
   );
 };

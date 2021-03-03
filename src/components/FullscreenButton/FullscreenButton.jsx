@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { AiOutlineFullscreenExit, AiOutlineFullscreen } from 'react-icons/ai';
 import './FullscreenButton.scss';
 
@@ -24,5 +23,10 @@ const FullscreenButton = ({ status, handleFullscreenOn }) =>
       <AiOutlineFullscreen />
     </button>
   );
+
+FullscreenButton.propTypes = {
+  handleFullscreenOn: PropTypes.func.isRequired,
+  status: PropTypes.bool.isRequired,
+};
 
 export default FullscreenButton;
