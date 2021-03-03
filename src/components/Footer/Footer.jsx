@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from '../../assets/rs_school_logo.svg';
-import youtubeIcon from '../../assets/youtube_icon.svg';
 import './Footer.scss';
 
 const Footer = () => (
@@ -17,20 +16,6 @@ const Footer = () => (
       </a>
       <span> in 2021</span>
     </p>
-    <a
-      className="footer__logo-link"
-      href="https://youtube.com/"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <img
-        className="footer__youtube"
-        alt="logo"
-        src={youtubeIcon}
-        width="80"
-        height="auto"
-      />
-    </a>
     <a
       className="footer__logo-link"
       href="https://rs.school/react/"
