@@ -5,6 +5,7 @@ import {
   GAME_TOGGLE_AUTOPLAY,
   GAME_CLEAR_SOUND,
   GAME_CARD_FLIP_START,
+  GAME_CARD_FLIP_END,
   GAME_CARD_MATCH_START,
   GAME_CARD_MATCH_END,
 } from './gameReducerActionTypes';
@@ -14,6 +15,7 @@ const initialState = {
   isGameOn: false,
   isAutoplayOn: false,
   isGameComplete: false,
+  isMoving: false,
   isMatching: false,
   timeCount: 0,
   moves: 0,
@@ -30,7 +32,7 @@ const gameReducer = (state = initialState, { type, payload }) => {
     }
 
     case GAME_INIT: {
-      const isAutoplayOn = { state };
+      const { isAutoplayOn } = state;
 
       return {
         ...initialState,
@@ -76,6 +78,7 @@ const gameReducer = (state = initialState, { type, payload }) => {
 
       return {
         ...state,
+        isMoving: true,
         moves: moves + 1,
         sound: 'move',
         currentlyFlipped: [...currentlyFlipped, payload],
@@ -88,6 +91,13 @@ const gameReducer = (state = initialState, { type, payload }) => {
           }
           return card;
         }),
+      };
+    }
+
+    case GAME_CARD_FLIP_END: {
+      return {
+        ...state,
+        isMoving: false,
       };
     }
 
@@ -156,6 +166,7 @@ const gameReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isMatching: false,
+        isMoving: false,
         currentlyFlipped: [],
         level: level.map((obj, index) => {
           if (index === levelIndex1 || index === levelIndex2) {

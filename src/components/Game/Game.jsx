@@ -4,6 +4,7 @@ import { useFirebase } from 'react-redux-firebase';
 import {
   gameInitAC,
   gameUpdateTimeAC,
+  gameAutoPlayAC,
 } from '../../store/gameReducer/gameReducerACs';
 import {
   gameOnSelector,
@@ -11,6 +12,10 @@ import {
   gameTimeCountSelector,
   gameCompleteSelector,
   gameLevelSelector,
+  gameAutoPlaySelector,
+  gameIsMovingSelector,
+  gameMatchingSelector,
+  gameCurrentlyFlippedSelector,
   userRecordsSelector,
   cardsBackIndexSelector,
   cardsAmountSelector,
@@ -27,9 +32,13 @@ const Game = () => {
   const firebase = useFirebase();
   const isGameOn = useSelector(gameOnSelector);
   const isGameComplete = useSelector(gameCompleteSelector);
+  const isAutoplayOn = useSelector(gameAutoPlaySelector);
   const gameTimeCount = useSelector(gameTimeCountSelector);
+  const gameIsMoving = useSelector(gameIsMovingSelector);
+  const gameIsMatching = useSelector(gameMatchingSelector);
   const level = useSelector(gameLevelSelector);
   const moves = useSelector(gameMovesSelector);
+  const currentlyFlipped = useSelector(gameCurrentlyFlippedSelector);
   const cardsAmount = useSelector(cardsAmountSelector);
   const cardsBackIndex = useSelector(cardsBackIndexSelector);
   const records = useSelector(userRecordsSelector);
@@ -46,6 +55,18 @@ const Game = () => {
       gameStarter();
     }
   }, [isGameOn, isGameComplete]);
+
+  useEffect(() => {
+    if (
+      isAutoplayOn &&
+      isGameOn &&
+      !gameIsMoving &&
+      !gameIsMatching &&
+      currentlyFlipped.length < 2
+    ) {
+      dispatch(gameAutoPlayAC(level));
+    }
+  }, [isAutoplayOn, isGameOn, gameIsMoving, gameIsMatching, currentlyFlipped]);
 
   useEffect(() => {
     let interval;
@@ -69,7 +90,7 @@ const Game = () => {
         records: [
           ...records,
           {
-            humanPlayer: true,
+            humanPlayer: !isAutoplayOn,
             timestamp: Date.now(),
             cardsAmount,
             gameTimeCount,
@@ -98,6 +119,7 @@ const Game = () => {
             backSrc={backSrc}
             cardsAmount={cardsAmount}
             level={level}
+            autoPlay={isAutoplayOn}
           />
         </div>
       </div>

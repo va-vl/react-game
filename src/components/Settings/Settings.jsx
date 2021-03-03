@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AutoplayToggler from './AutoplayToggler/AutoplayToggler';
 import MusicVolumeSlider from './MusicVolumeSlider/MusicVolumeSlider';
 import SoundVolumeSlider from './SoundVolumeSlider/SoundVolumeSlider';
 import CardsAmountSet from './CardsAmountSet/CardsAmountSet';
@@ -15,9 +14,6 @@ const Settings = () => (
       <form className="settings__form">
         <div className="settings__input">
           <CardsAmountSet />
-        </div>
-        <div className="settings__input settings__input--autoplay">
-          <AutoplayToggler />
         </div>
         <div className="settings__input">
           <MusicVolumeSlider />

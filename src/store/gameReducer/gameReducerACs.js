@@ -4,6 +4,7 @@ import {
   GAME_RESET,
   GAME_TOGGLE_AUTOPLAY,
   GAME_CARD_FLIP_START,
+  GAME_CARD_FLIP_END,
   GAME_CARD_MATCH_START,
   GAME_CARD_MATCH_END,
   GAME_CLEAR_SOUND,
@@ -12,7 +13,9 @@ import {
   SOUND_DELAY,
   FLIP_ANIMATION_DELAY,
   MATCH_ANIMATION_DELAY,
+  AUTOPLAY_DELAY,
 } from '../../constants/constants';
+import getRandomCard from './getRandomCard';
 
 const gameInitAC = (payload) => ({
   type: GAME_INIT,
@@ -32,6 +35,10 @@ const gameCardFlipStartAC = (obj) => ({
   payload: obj,
 });
 
+const gameCardFlipEndAC = () => ({
+  type: GAME_CARD_FLIP_END,
+});
+
 const gameCardMatchStartAC = () => ({
   type: GAME_CARD_MATCH_START,
 });
@@ -40,7 +47,7 @@ const gameCardMatchEndAC = () => ({
   type: GAME_CARD_MATCH_END,
 });
 
-const gameMakeMoveAC = ({ levelIndex, cardIndex }) => (dispatch, getState) => {
+const gameMakeMoveAC = ({ levelIndex, cardIndex }) => (dispatch, getState) =>
   new Promise((resolve) => {
     dispatch(gameCardFlipStartAC({ levelIndex, cardIndex }));
 
@@ -74,11 +81,55 @@ const gameMakeMoveAC = ({ levelIndex, cardIndex }) => (dispatch, getState) => {
 
     return null;
   });
+
+const gameAutoPlayAC = () => (dispatch, getState) => {
+  const {
+    gameReducer: { level },
+  } = getState();
+
+  const randomCard = getRandomCard(level);
+
+  return new Promise((resolve) => {
+    dispatch(gameCardFlipStartAC(randomCard));
+
+    setTimeout(() => {
+      dispatch(gameClearSoundAC());
+    }, SOUND_DELAY);
+
+    setTimeout(() => {
+      dispatch(gameCardFlipEndAC());
+
+      resolve();
+    }, AUTOPLAY_DELAY);
+  }).then(() => {
+    const {
+      gameReducer: { currentlyFlipped },
+    } = getState();
+
+    if (currentlyFlipped.length === 2) {
+      dispatch(gameCardMatchStartAC());
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          dispatch(gameClearSoundAC());
+          resolve();
+        }, SOUND_DELAY);
+      }).then(() => {
+        setTimeout(() => {
+          dispatch(gameCardMatchEndAC());
+        }, AUTOPLAY_DELAY);
+      });
+    }
+
+    return null;
+  });
 };
+
 export {
   gameInitAC,
   gameUpdateTimeAC,
   gameResetAC,
   gameToggleAutoplayAC,
   gameMakeMoveAC,
+  gameAutoPlayAC,
 };

@@ -13,14 +13,10 @@ const AutoplayToggler = () => {
 
   return (
     <>
-      <button
-        type="button"
-        className="settings__button"
-        onClick={toggleAutoplay}
-      >
+      <button type="button" className="main__button" onClick={toggleAutoplay}>
         Toggle autoplay
       </button>
-      <p className="settings__info">
+      <p className="main__info">
         {`Autoplay is ${isAutoplayOn ? 'on' : 'off'}`}
       </p>
     </>

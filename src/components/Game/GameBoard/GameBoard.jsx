@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Card from './Card/Card';
 import './GameBoard.scss';
 
-const GameBoard = ({ backSrc, cardsAmount, level }) => (
+const GameBoard = ({ backSrc, cardsAmount, level, autoPlay }) => (
   <ul className={`game-board game-board--${cardsAmount}`}>
     {level.map(
       ({ cardPath, cardIndex, isFlipped, isSolved, isError }, index) => {
@@ -19,6 +19,7 @@ const GameBoard = ({ backSrc, cardsAmount, level }) => (
             isFlipped={isFlipped}
             isSolved={isSolved}
             isError={isError}
+            autoPlay={autoPlay}
           />
         );
       },
@@ -30,6 +31,7 @@ GameBoard.propTypes = {
   backSrc: PropTypes.string.isRequired,
   cardsAmount: PropTypes.number.isRequired,
   level: PropTypes.instanceOf(Array).isRequired,
+  autoPlay: PropTypes.bool.isRequired,
 };
 
 export default React.memo(GameBoard);

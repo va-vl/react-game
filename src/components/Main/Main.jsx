@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
 import { userNameSelector, gameOnSelector } from '../../store/selectors';
+import AutoplayToggler from './AutoplayToggler/AutoplayToggler';
 import './Main.scss';
 
 const Main = () => {
@@ -24,6 +25,9 @@ const Main = () => {
           {!userName ? 'Profile loading...' : `Hello, ${userName}!`}
         </h3>
         <ul className="main__list">
+          <li className="main__link--autoplay">
+            <AutoplayToggler />
+          </li>
           <li className="main__link">
             <Link className="main__button" to="/game">
               {isGameOn ? 'Continue' : 'New game'}

@@ -14,6 +14,10 @@ export const gameMatchingSelector = (state) => state.gameReducer.isMatching;
 export const gameMatchesSelector = (state) => state.gameReducer.matches;
 export const gameTimeCountSelector = (state) => state.gameReducer.timeCount;
 export const gameMovesSelector = (state) => state.gameReducer.moves;
+export const gameAutoPlaySelector = (state) => state.gameReducer.isAutoplayOn;
+export const gameIsMovingSelector = (state) => state.gameReducer.isMoving;
+export const gameCurrentlyFlippedSelector = (state) =>
+  state.gameReducer.currentlyFlipped;
 
 export const authSelector = (state) => state.firebaseReducer.auth;
 export const userNameSelector = (state) =>

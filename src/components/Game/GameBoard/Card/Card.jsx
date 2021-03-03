@@ -32,12 +32,13 @@ const Card = ({
   isError,
   levelIndex,
   cardIndex,
+  autoPlay,
 }) => {
   const dispatch = useDispatch();
   const isMatching = useSelector(gameMatchingSelector);
 
   const handleClick = () => {
-    if (!isSolved && !isFlipped && !isMatching) {
+    if (!isSolved && !isFlipped && !isMatching && !autoPlay) {
       dispatch(gameMakeMoveAC({ levelIndex, cardIndex }));
     }
   };
@@ -71,6 +72,7 @@ Card.propTypes = {
   isFlipped: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
   isSolved: PropTypes.bool.isRequired,
+  autoPlay: PropTypes.bool.isRequired,
 };
 
 export default React.memo(Card);
