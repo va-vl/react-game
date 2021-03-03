@@ -20,6 +20,24 @@
     @include link;
   }
 
+  &__youtube {
+    width: 4rem;
+
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+
+
+    @media (max-width: 800px) {
+      width: 2rem;
+    }
+  }
+
   &__logo {
     width: 7rem;
 
