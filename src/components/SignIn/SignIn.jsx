@@ -39,6 +39,10 @@ const SignIn = () => {
     <main className="signin">
       <div className="signin__content">
         <h3 className="signin__heading">Sign In</h3>
+        <p className="signin__note">
+          Use test@test.com / test1234 if you don&apos;t want to create an
+          account
+        </p>
         <form
           className="signin__form"
           name="signInForm"
