@@ -25,9 +25,9 @@ const resources = {
 
 const resolveResources = () => {
   localStorage.removeItem('resources');
-  localStorage.setItem('resources', JSON.stringify(resources));
+  localStorage.setItem('vaz-resources', JSON.stringify(resources));
 };
 
-const getResources = () => JSON.parse(localStorage.getItem('resources'));
+const getResources = () => JSON.parse(localStorage.getItem('vaz-resources'));
 
 export { resolveResources, getResources };

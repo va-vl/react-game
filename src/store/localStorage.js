@@ -3,7 +3,7 @@
 const saveState = (reducerName) => (state) => {
   try {
     const serializedState = JSON.stringify(state[reducerName]);
-    localStorage.setItem(reducerName, serializedState);
+    localStorage.setItem(`vaz-${reducerName}`, serializedState);
   } catch (err) {
     console.log(err);
   }
@@ -19,8 +19,8 @@ const saveGameState = (state) => {
 
 const loadSettingsState = () => {
   try {
-    const serializedSettings = localStorage.getItem('settingsReducer');
-    const serializedGame = localStorage.getItem('gameReducer');
+    const serializedSettings = localStorage.getItem('vaz-settingsReducer');
+    const serializedGame = localStorage.getItem('vaz-gameReducer');
     const result = {};
 
     if (serializedSettings !== null) {
