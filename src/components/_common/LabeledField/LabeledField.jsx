@@ -1,5 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
+//
 import './LabeledField.scss';
 
 const LabeledField = ({ type, label, name, id }) => (
@@ -23,4 +24,4 @@ LabeledField.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-export default LabeledField;
+export { LabeledField };

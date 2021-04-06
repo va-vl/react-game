@@ -1,8 +1,11 @@
-import React from 'react';
+import * as React from 'react';
+//
 import { useSelector, useDispatch } from 'react-redux';
-import RadiosSet from '../../_common/RadiosSet/RadiosSet';
 import { updateCardsBackAC } from '../../../store/settingsReducer/settingsReducerACs';
 import { cardsBackIndexSelector } from '../../../store/selectors';
+//
+import { RadiosSet } from '../../_common';
+//
 import { getResources } from '../../../utils/resources';
 
 const CardsBackSet = () => {
@@ -25,4 +28,4 @@ const CardsBackSet = () => {
   );
 };
 
-export default CardsBackSet;
+export { CardsBackSet };

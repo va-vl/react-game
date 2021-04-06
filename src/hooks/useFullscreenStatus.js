@@ -1,9 +1,9 @@
-import React, { useLayoutEffect } from 'react';
-
 /**
  * Based on the algorithm described in the following tutorial:
  * https://dev.to/darthknoppix/using-the-fullscreen-api-with-react-1lgf
  */
+
+import * as React from 'react';
 
 const FULLSCREEN_ELEMENTS = [
   'fullscreenElement',
@@ -40,7 +40,7 @@ const useFullscreenStatus = (elementRef) => {
       });
   };
 
-  useLayoutEffect(() => {
+  React.useLayoutEffect(() => {
     document.onfullscreenchange = () => {
       setIsFullscreen(getFullscreenStatus(fullscreenProp));
     };

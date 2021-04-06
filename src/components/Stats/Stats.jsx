@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
+//
+import { useSelector } from 'react-redux';
 import { userRecordsSelector } from '../../store/selectors';
-import formatTime from '../../utils/formatTime';
+//
+import { StatsTable } from './StatsTable';
+//
 import './Stats.scss';
 
 const Stats = () => {
   const userRecordsSource = useSelector(userRecordsSelector);
-  const [arr, setArr] = useState([]);
+  const [arr, setArr] = React.useState([]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (userRecordsSource !== undefined) {
       setArr(userRecordsSource);
     }
@@ -20,42 +23,7 @@ const Stats = () => {
       <div className="stats__content">
         <h3 className="stats__heading">Stats</h3>
         <div className="stats__table-wrapper">
-          <table className="stats__table">
-            <thead>
-              <tr>
-                <th>Moves used</th>
-                <th>Board size</th>
-                <th>Time spent</th>
-                <th>Level completed</th>
-                <th>Completed by</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[...arr]
-                .reverse()
-                .map(
-                  ({
-                    humanPlayer,
-                    moves,
-                    gameTimeCount,
-                    cardsAmount,
-                    timestamp,
-                  }) => (
-                    <tr key={timestamp} className="stats__body-row">
-                      <td>{moves}</td>
-                      <td>{cardsAmount}</td>
-                      <td>{formatTime(gameTimeCount)}</td>
-                      <td>
-                        {`${new Date(timestamp).toLocaleTimeString(
-                          'ru',
-                        )} ${new Date(timestamp).toLocaleDateString('ru')}`}
-                      </td>
-                      <td>{humanPlayer ? 'human' : 'autoplay'}</td>
-                    </tr>
-                  ),
-                )}
-            </tbody>
-          </table>
+          <StatsTable data={arr} />
         </div>
         <p className="stats__button-wrapper">
           <Link className="stats__button" to="/">
@@ -67,4 +35,4 @@ const Stats = () => {
   );
 };
 
-export default Stats;
+export { Stats };

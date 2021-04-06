@@ -1,0 +1,1 @@
+export { SoundVolumeSlider } from './SoundVolumeSlider';

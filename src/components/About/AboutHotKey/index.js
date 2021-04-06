@@ -1,0 +1,1 @@
+export { AboutHotKey } from './AboutHotKey';

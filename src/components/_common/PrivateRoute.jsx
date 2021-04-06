@@ -1,8 +1,9 @@
-import React from 'react';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
+//
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import { authSelector } from '../../store/selectors';
 
 const PrivateRoute = ({ children, ...remainingProps }) => {
@@ -38,4 +39,4 @@ PrivateRoute.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node),
 };
 
-export default PrivateRoute;
+export { PrivateRoute };

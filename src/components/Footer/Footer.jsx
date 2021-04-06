@@ -1,27 +1,19 @@
-import React from 'react';
+import * as React from 'react';
+//
+import { OutsideLink } from '../_common';
+//
 import logo from '../../assets/rs_school_logo.svg';
+//
 import './Footer.scss';
 
 const Footer = () => (
   <footer className="footer">
     <p className="footer__text">
       <span>Made by </span>
-      <a
-        className="footer__link"
-        href="https://github.com/va-z"
-        target="_blank"
-        rel="noreferrer"
-      >
-        va-z
-      </a>
+      <OutsideLink href="https://github.com/va-z">va-z</OutsideLink>
       <span> in 2021</span>
     </p>
-    <a
-      className="footer__logo-link"
-      href="https://rs.school/react/"
-      target="_blank"
-      rel="noreferrer"
-    >
+    <OutsideLink href="https://rs.school/react/">
       <img
         className="footer__logo"
         alt="logo"
@@ -29,8 +21,8 @@ const Footer = () => (
         width="80"
         height="auto"
       />
-    </a>
+    </OutsideLink>
   </footer>
 );
 
-export default Footer;
+export { Footer };

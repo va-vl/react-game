@@ -1,5 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
+//
 import './RangeSlider.scss';
 
 const RangeSlider = ({ label, id, name, value, changeHandler }) => (
@@ -29,4 +30,4 @@ RangeSlider.propTypes = {
   changeHandler: PropTypes.func.isRequired,
 };
 
-export default RangeSlider;
+export { RangeSlider };

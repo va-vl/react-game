@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import * as React from 'react';
 import PropTypes from 'prop-types';
+//
+import { useDispatch, useSelector } from 'react-redux';
 import { gameMatchingSelector } from '../../../../store/selectors';
 import { gameMakeMoveAC } from '../../../../store/gameReducer/gameReducerACs';
+//
 import './Card.scss';
 
 const createCardClassName = (isFlipped, isSolved, isError) => {
@@ -24,45 +26,47 @@ const createCardClassName = (isFlipped, isSolved, isError) => {
   return result;
 };
 
-const Card = ({
-  frontSrc,
-  backSrc,
-  isFlipped,
-  isSolved,
-  isError,
-  levelIndex,
-  cardIndex,
-  autoPlay,
-}) => {
-  const dispatch = useDispatch();
-  const isMatching = useSelector(gameMatchingSelector);
+const Card = React.memo(
+  ({
+    frontSrc,
+    backSrc,
+    isFlipped,
+    isSolved,
+    isError,
+    levelIndex,
+    cardIndex,
+    autoPlay,
+  }) => {
+    const dispatch = useDispatch();
+    const isMatching = useSelector(gameMatchingSelector);
 
-  const handleClick = () => {
-    if (!isSolved && !isFlipped && !isMatching && !autoPlay) {
-      dispatch(gameMakeMoveAC({ levelIndex, cardIndex }));
-    }
-  };
+    const handleClick = () => {
+      if (!isSolved && !isFlipped && !isMatching && !autoPlay) {
+        dispatch(gameMakeMoveAC({ levelIndex, cardIndex }));
+      }
+    };
 
-  return (
-    <div
-      className={createCardClassName(isFlipped, isSolved, isError)}
-      onClick={handleClick}
-    >
-      <img
-        className="card__image card__image--back"
-        src={backSrc}
-        alt="card back"
-        draggable="false"
-      />
-      <img
-        className="card__image card__image--front"
-        src={frontSrc}
-        alt="card front"
-        draggable="false"
-      />
-    </div>
-  );
-};
+    return (
+      <div
+        className={createCardClassName(isFlipped, isSolved, isError)}
+        onClick={handleClick}
+      >
+        <img
+          className="card__image card__image--back"
+          src={backSrc}
+          alt="card back"
+          draggable="false"
+        />
+        <img
+          className="card__image card__image--front"
+          src={frontSrc}
+          alt="card front"
+          draggable="false"
+        />
+      </div>
+    );
+  },
+);
 
 Card.propTypes = {
   frontSrc: PropTypes.string.isRequired,
@@ -75,4 +79,4 @@ Card.propTypes = {
   autoPlay: PropTypes.bool.isRequired,
 };
 
-export default React.memo(Card);
+export { Card };

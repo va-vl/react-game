@@ -1,6 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
+//
 import { AiOutlineFullscreenExit, AiOutlineFullscreen } from 'react-icons/ai';
+//
 import './FullscreenButton.scss';
 
 const handleFullscreenOff = () => document.exitFullscreen();
@@ -8,16 +10,16 @@ const handleFullscreenOff = () => document.exitFullscreen();
 const FullscreenButton = ({ status, handleFullscreenOn }) =>
   status ? (
     <button
-      className="fullscreen-button"
       type="button"
+      className="fullscreen-button"
       onClick={handleFullscreenOff}
     >
       <AiOutlineFullscreenExit />
     </button>
   ) : (
     <button
-      className="fullscreen-button"
       type="button"
+      className="fullscreen-button"
       onClick={handleFullscreenOn}
     >
       <AiOutlineFullscreen />
@@ -29,4 +31,4 @@ FullscreenButton.propTypes = {
   status: PropTypes.bool.isRequired,
 };
 
-export default FullscreenButton;
+export { FullscreenButton };

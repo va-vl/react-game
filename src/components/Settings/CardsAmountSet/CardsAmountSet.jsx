@@ -1,9 +1,12 @@
-import React from 'react';
+import * as React from 'react';
+//
 import { useSelector, useDispatch } from 'react-redux';
-import RadiosSet from '../../_common/RadiosSet/RadiosSet';
 import { updateCardsAmountAC } from '../../../store/settingsReducer/settingsReducerACs';
 import { gameResetAC } from '../../../store/gameReducer/gameReducerACs';
 import { cardsAmountSelector } from '../../../store/selectors';
+//
+import { RadiosSet } from '../../_common';
+//
 import { GAME_SIZES } from '../../../constants/constants';
 
 const CardsAmountSet = () => {
@@ -26,4 +29,4 @@ const CardsAmountSet = () => {
   );
 };
 
-export default CardsAmountSet;
+export { CardsAmountSet };

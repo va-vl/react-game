@@ -1,8 +1,10 @@
-import React from 'react';
+import * as React from 'react';
+//
 import { useSelector, useDispatch } from 'react-redux';
 import { updateMusicVolumeAC } from '../../../store/settingsReducer/settingsReducerACs';
 import { musicVolumeSelector } from '../../../store/selectors';
-import RangeSlider from '../../_common/RangeSlider/RangeSlider';
+//
+import { RangeSlider } from '../../_common';
 
 const MusicVolumeSlider = () => {
   const dispatch = useDispatch();
@@ -23,4 +25,4 @@ const MusicVolumeSlider = () => {
   );
 };
 
-export default MusicVolumeSlider;
+export { MusicVolumeSlider };

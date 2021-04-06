@@ -1,10 +1,13 @@
-import React from 'react';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+//
 import { useSelector } from 'react-redux';
 import { isLoaded } from 'react-redux-firebase';
 import { authSelector } from '../../../store/selectors';
+//
 import './AuthReady.scss';
 
-function AuthReady({ children }) {
+const AuthReady = ({ children }) => {
   const auth = useSelector(authSelector);
 
   if (!isLoaded(auth)) {
@@ -16,6 +19,14 @@ function AuthReady({ children }) {
   }
 
   return children;
-}
+};
 
-export default AuthReady;
+AuthReady.defaultProps = {
+  children: undefined,
+};
+
+AuthReady.propTypes = {
+  children: PropTypes.node,
+};
+
+export { AuthReady };

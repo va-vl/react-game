@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+//
 import './VictoryModal.scss';
 
 const VictoryModal = ({ onClick }) => (
@@ -10,9 +11,9 @@ const VictoryModal = ({ onClick }) => (
       <p className="victory-modal__text">Check stats to see your results</p>
       <div className="victory-modal__buttons">
         <button
-          className="victory-modal__button"
           type="button"
           onClick={onClick}
+          className="victory-modal__button"
         >
           Start new game
         </button>
@@ -31,4 +32,4 @@ VictoryModal.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default VictoryModal;
+export { VictoryModal };

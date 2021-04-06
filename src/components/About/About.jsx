@@ -1,50 +1,52 @@
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
+//
+import { AboutHotKey } from './AboutHotKey';
+//
+import { OutsideLink } from '../_common';
+//
 import { HOT_KEYS } from '../../constants/constants';
+//
 import './About.scss';
 
 const About = () => (
   <div className="about">
     <div className="about__content">
-      <h3 className="about__heading">Hot keys:</h3>
-      {Object.entries(HOT_KEYS).map(([item, value]) => (
-        <div className="about__subparagraph" key={value}>
-          <span className="about__key">{`ALT + ${item.toUpperCase()}`}</span>
-          <span>{` - ${value}`}</span>
-        </div>
-      ))}
-      <h3 className="about__heading">About</h3>
-      <p className="about__paragraph">Made with React and Redux.</p>
-      <p className="about__paragraph">
-        {'SVG images '}
-        <a
-          className="about__link"
-          href="https://www.flaticon.com"
-          target="_blank"
-          rel="noreferrer"
-        >
-          designed by Flaticon
-        </a>
-        .
-      </p>
-      <p className="about__paragraph">
-        <span className="about__subparagraph">
+      <div className="about__section">
+        <h3 className="about__heading">Hot keys</h3>
+        {Object.entries(HOT_KEYS).map(([name, description]) => (
+          <AboutHotKey
+            outerClassName="about__paragraph"
+            key={name}
+            name={name}
+            description={description}
+          />
+        ))}
+      </div>
+      <div className="about__section">
+        <h3 className="about__heading">About</h3>
+        <p className="about__paragraph">
+          <span>Made with React and Redux. SVG images </span>
+          <OutsideLink href="https://www.flaticon.com">
+            designed by Flaticon
+          </OutsideLink>
+          <span>.</span>
+        </p>
+      </div>
+      <div className="about__section">
+        <p className="about__paragraph">
           &quot;Kalimba Relaxation Music&quot; Kevin MacLeod (incompetech.com)
-        </span>
-        <span className="about__subparagraph">
+        </p>
+        <p className="about__paragraph">
           Licensed under Creative Commons: By Attribution 4.0 License
-        </span>
-        <span className="about__subparagraph">
-          <a
-            className="about__link"
-            href="http://creativecommons.org/licenses/by/4.0/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            http://creativecommons.org/licenses/by/4.0/
-          </a>
-        </span>
-      </p>
+        </p>
+        <OutsideLink
+          href="http://creativecommons.org/licenses/by/4.0/"
+          outerClassName="about__paragraph"
+        >
+          http://creativecommons.org/licenses/by/4.0/
+        </OutsideLink>
+      </div>
       <Link className="about__button" to="/">
         To main menu
       </Link>
@@ -52,4 +54,4 @@ const About = () => (
   </div>
 );
 
-export default About;
+export { About };

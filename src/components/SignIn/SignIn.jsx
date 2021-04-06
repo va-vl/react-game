@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { Link, useHistory } from 'react-router-dom';
+//
 import { useFirebase } from 'react-redux-firebase';
-import LabeledField from '../_common/LabeledField/LabeledField';
+//
+import { LabeledField } from '../_common';
+//
 import './SignIn.scss';
 
 const SignIn = () => {
   const history = useHistory();
   const firebase = useFirebase();
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = React.useState(null);
 
   const handleChange = () => {
     if (errorMessage) {
@@ -81,4 +84,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export { SignIn };

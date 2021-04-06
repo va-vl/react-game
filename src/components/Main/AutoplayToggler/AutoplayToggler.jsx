@@ -1,7 +1,10 @@
-import React from 'react';
+import * as React from 'react';
+//
 import { useDispatch, useSelector } from 'react-redux';
 import { gameToggleAutoplayAC } from '../../../store/gameReducer/gameReducerACs';
 import { autoplaySelector } from '../../../store/selectors';
+//
+import './AutoplayToggler.scss';
 
 const AutoplayToggler = () => {
   const dispatch = useDispatch();
@@ -12,15 +15,17 @@ const AutoplayToggler = () => {
   };
 
   return (
-    <>
-      <button type="button" className="main__button" onClick={toggleAutoplay}>
+    <div className="autoplay-toggler">
+      <button
+        type="button"
+        className="autoplay-toggler__button"
+        onClick={toggleAutoplay}
+      >
         Toggle autoplay
       </button>
-      <p className="main__info">
-        {`Autoplay is ${isAutoplayOn ? 'on' : 'off'}`}
-      </p>
-    </>
+      <p>{`Autoplay is ${isAutoplayOn ? 'on' : 'off'}`}</p>
+    </div>
   );
 };
 
-export default AutoplayToggler;
+export { AutoplayToggler };

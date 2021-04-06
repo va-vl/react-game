@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MusicVolumeSlider from './MusicVolumeSlider/MusicVolumeSlider';
-import SoundVolumeSlider from './SoundVolumeSlider/SoundVolumeSlider';
-import CardsAmountSet from './CardsAmountSet/CardsAmountSet';
-import CardsBackSet from './CardsBackSet/CardsBackSet';
-import AppThemeSet from './AppThemeSet/AppThemeSet';
+//
+import { MusicVolumeSlider } from './MusicVolumeSlider';
+import { SoundVolumeSlider } from './SoundVolumeSlider';
+import { CardsAmountSet } from './CardsAmountSet';
+import { CardsBackSet } from './CardsBackSet';
+import { AppThemeSet } from './AppThemeSet';
+//
 import './Settings.scss';
 
 const Settings = () => (
@@ -35,4 +37,4 @@ const Settings = () => (
   </main>
 );
 
-export default Settings;
+export { Settings };

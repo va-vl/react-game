@@ -1,5 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
+//
 import './RadiosSet.scss';
 
 const RadiosSet = ({
@@ -64,4 +65,4 @@ RadiosSet.propTypes = {
   sourceArr: PropTypes.instanceOf(Array).isRequired,
 };
 
-export default React.memo(RadiosSet);
+export { RadiosSet };

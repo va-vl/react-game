@@ -1,27 +1,32 @@
-import React, { useRef } from 'react';
+import * as React from 'react';
 import { useSelector } from 'react-redux';
+//
 import { Redirect, Route, Switch } from 'react-router-dom';
-import PrivateRoute from './components/_common/PrivateRoute';
 import { appThemeSelector } from './store/selectors';
-import FullscreenButton from './components/FullscreenButton/FullscreenButton';
-import SignIn from './components/SignIn/SignIn';
-import SignUp from './components/SignUp/SignUp';
-import Main from './components/Main/Main';
-import Game from './components/Game/Game';
-import Settings from './components/Settings/Settings';
-import Footer from './components/Footer/Footer';
-import Stats from './components/Stats/Stats';
-import About from './components/About/About';
-import MusicPlayer from './components/MusicPlayer';
-import SoundPlayer from './components/SoundPlayer';
-import HotKeysHandler from './components/_common/HotKeysHandler';
+//
+import {
+  About,
+  Footer,
+  Game,
+  Main,
+  Settings,
+  SignIn,
+  SignUp,
+  Stats,
+  FullscreenButton,
+  MusicPlayer,
+  SoundPlayer,
+} from './components';
+//
+import { HotKeysHandler, AuthReady, PrivateRoute } from './components/_common';
+//
 import useFullscreenStatus from './hooks/useFullscreenStatus';
-import AuthReady from './components/_common/AuthReady/AuthReady';
+//
 import './App.scss';
 
 const App = () => {
   const theme = useSelector(appThemeSelector);
-  const maximizableElement = useRef(null);
+  const maximizableElement = React.useRef(null);
   const [fullscreenStatus, setFullscreenStatus] = useFullscreenStatus(
     maximizableElement,
   );

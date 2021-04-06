@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+//
 import { useSelector, useDispatch } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
 import {
@@ -20,11 +21,15 @@ import {
   cardsBackIndexSelector,
   cardsAmountSelector,
 } from '../../store/selectors';
-import IsAuthReady from '../_common/AuthReady/AuthReady';
-import GameBoard from './GameBoard/GameBoard';
-import Controls from './Controls/Controls';
-import VictoryModal from './VictoryModal/VictoryModal';
+//
+import { Controls } from './Controls';
+import { GameBoard } from './GameBoard';
+import { VictoryModal } from './VictoryModal';
+//
+import { AuthReady } from '../_common';
+//
 import { getResources } from '../../utils/resources';
+//
 import './Game.scss';
 
 const Game = () => {
@@ -44,19 +49,19 @@ const Game = () => {
   const records = useSelector(userRecordsSelector);
   const { cardBacks } = getResources();
   const backSrc = cardBacks[cardsBackIndex];
-  const [modal, setModal] = useState(null);
+  const [modal, setModal] = React.useState(null);
 
   const gameStarter = () => {
     dispatch(gameInitAC(cardsAmount));
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isGameOn && !isGameComplete) {
       gameStarter();
     }
   }, [isGameOn, isGameComplete]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (
       isAutoplayOn &&
       isGameOn &&
@@ -68,7 +73,7 @@ const Game = () => {
     }
   }, [isAutoplayOn, isGameOn, gameIsMoving, gameIsMatching, currentlyFlipped]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     let interval;
 
     if (isGameOn && !isGameComplete) {
@@ -82,7 +87,7 @@ const Game = () => {
     };
   }, [isGameComplete, isGameOn]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isGameComplete && !isGameOn && records) {
       setModal(<VictoryModal onClick={gameStarter} />);
 
@@ -106,7 +111,7 @@ const Game = () => {
   }, [isGameComplete, isGameOn]);
 
   return (
-    <IsAuthReady>
+    <AuthReady>
       <div className="game">
         {modal}
         <div className="game__content">
@@ -123,9 +128,8 @@ const Game = () => {
           />
         </div>
       </div>
-      {}
-    </IsAuthReady>
+    </AuthReady>
   );
 };
 
-export default Game;
+export { Game };

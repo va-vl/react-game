@@ -1,9 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import Card from './Card/Card';
+//
+import { Card } from './Card';
+//
 import './GameBoard.scss';
 
-const GameBoard = ({ backSrc, cardsAmount, level, autoPlay }) => (
+const GameBoard = React.memo(({ backSrc, cardsAmount, level, autoPlay }) => (
   <ul className={`game-board game-board--${cardsAmount}`}>
     {level.map(
       ({ cardPath, cardIndex, isFlipped, isSolved, isError }, index) => {
@@ -25,7 +27,7 @@ const GameBoard = ({ backSrc, cardsAmount, level, autoPlay }) => (
       },
     )}
   </ul>
-);
+));
 
 GameBoard.propTypes = {
   backSrc: PropTypes.string.isRequired,
@@ -34,4 +36,4 @@ GameBoard.propTypes = {
   autoPlay: PropTypes.bool.isRequired,
 };
 
-export default React.memo(GameBoard);
+export { GameBoard };

@@ -17,21 +17,6 @@
     @media (max-width: 800px) {
       margin: 0.5rem 0;
     }
-
-    &--autoplay {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      margin: 0;
-
-      .settings__button {
-        margin: 0;
-      }
-
-      .settings__info {
-        margin: 0;
-      }
-    }
   }
 
   &__button {

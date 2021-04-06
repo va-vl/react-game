@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import * as React from 'react';
 import useSound from 'use-sound';
+//
 import { useSelector } from 'react-redux';
-import bgm from '../assets/bgm/01-kalimba-relaxation-music.mp3';
 import { musicVolumeSelector } from '../store/selectors';
+//
+import bgm from '../assets/bgm/01-kalimba-relaxation-music.mp3';
 
 const MusicPlayer = () => {
   const musicVolume = useSelector(musicVolumeSelector);
@@ -12,7 +14,7 @@ const MusicPlayer = () => {
     interrupt: false,
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const startMusic = () => {
       play();
       document.body.removeEventListener('click', startMusic);
@@ -21,7 +23,7 @@ const MusicPlayer = () => {
     document.body.addEventListener('click', startMusic);
   }, [play]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isPlaying) {
       play();
     }
@@ -30,4 +32,4 @@ const MusicPlayer = () => {
   return null;
 };
 
-export default MusicPlayer;
+export { MusicPlayer };

@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+import * as React from 'react';
 import useSound from 'use-sound';
+//
 import { useSelector } from 'react-redux';
 import { gameSoundSelector, soundVolumeSelector } from '../store/selectors';
+//
 import { getResources } from '../utils/resources';
 
 const SoundPlayer = () => {
@@ -24,7 +26,7 @@ const SoundPlayer = () => {
     volume: soundVolume / 1000,
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     switch (sound) {
       case 'error':
         playErrorSound();
@@ -46,4 +48,4 @@ const SoundPlayer = () => {
   return null;
 };
 
-export default SoundPlayer;
+export { SoundPlayer };

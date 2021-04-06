@@ -1,8 +1,11 @@
-import React from 'react';
+import * as React from 'react';
+//
 import { useSelector, useDispatch } from 'react-redux';
-import RadiosSet from '../../_common/RadiosSet/RadiosSet';
 import { updateAppThemeAC } from '../../../store/settingsReducer/settingsReducerACs';
 import { appThemeSelector } from '../../../store/selectors';
+//
+import { RadiosSet } from '../../_common';
+//
 import { APP_THEMES } from '../../../constants/constants';
 
 const AppThemeSet = () => {
@@ -24,4 +27,4 @@ const AppThemeSet = () => {
   );
 };
 
-export default AppThemeSet;
+export { AppThemeSet };

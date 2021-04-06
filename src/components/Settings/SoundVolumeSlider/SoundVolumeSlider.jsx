@@ -1,8 +1,10 @@
 import React from 'react';
+//
 import { useSelector, useDispatch } from 'react-redux';
 import { updateSoundVolumeAC } from '../../../store/settingsReducer/settingsReducerACs';
 import { soundVolumeSelector } from '../../../store/selectors';
-import RangeSlider from '../../_common/RangeSlider/RangeSlider';
+//
+import { RangeSlider } from '../../_common';
 
 const SoundVolumeSlider = () => {
   const dispatch = useDispatch();
@@ -22,4 +24,4 @@ const SoundVolumeSlider = () => {
   );
 };
 
-export default SoundVolumeSlider;
+export { SoundVolumeSlider };

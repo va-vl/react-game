@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import * as React from 'react';
 import { useHistory } from 'react-router-dom';
+//
+import { useSelector, useDispatch } from 'react-redux';
 import {
   cardsAmountSelector,
   musicVolumeSelector,
@@ -19,7 +20,7 @@ const HotKeysHandler = () => {
   const soundVolume = useSelector(soundVolumeSelector);
   const cardsAmount = useSelector(cardsAmountSelector);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleMute = ({ key, code, altKey, metaKey }) => {
       const keyCondition = key.toLowerCase() === 'm' || code === 'KeyM';
       const metaCondition = altKey || metaKey;
@@ -35,7 +36,7 @@ const HotKeysHandler = () => {
     return () => document.removeEventListener('keydown', handleMute);
   }, [musicVolume]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleMute = ({ key, code, altKey, metaKey }) => {
       const keyCondition = key.toLowerCase() === 'v' || code === 'KeyV';
       const metaCondition = altKey || metaKey;
@@ -51,7 +52,7 @@ const HotKeysHandler = () => {
     return () => document.removeEventListener('keydown', handleMute);
   }, [soundVolume]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleToStats = ({ key, code, altKey, metaKey }) => {
       const keyCondition = key.toLowerCase() === 't' || code === 'KeyT';
       const metaCondition = altKey || metaKey;
@@ -66,7 +67,7 @@ const HotKeysHandler = () => {
     return () => document.removeEventListener('keydown', handleToStats);
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleToStats = ({ key, code, altKey, metaKey }) => {
       const keyCondition = key.toLowerCase() === 's' || code === 'KeyS';
       const metaCondition = altKey || metaKey;
@@ -81,7 +82,7 @@ const HotKeysHandler = () => {
     return () => document.removeEventListener('keydown', handleToStats);
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleToStats = ({ key, code, altKey, metaKey }) => {
       const keyCondition = key.toLowerCase() === 'r' || code === 'KeyR';
       const metaCondition = altKey || metaKey;
@@ -100,4 +101,4 @@ const HotKeysHandler = () => {
   return null;
 };
 
-export default HotKeysHandler;
+export { HotKeysHandler };

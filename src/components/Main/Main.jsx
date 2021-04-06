@@ -1,9 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import { Link, useHistory } from 'react-router-dom';
+//
 import { useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
 import { userNameSelector, gameOnSelector } from '../../store/selectors';
-import AutoplayToggler from './AutoplayToggler/AutoplayToggler';
+//
+import { AutoplayToggler } from './AutoplayToggler/AutoplayToggler';
+//
 import './Main.scss';
 
 const Main = () => {
@@ -63,4 +66,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export { Main };
