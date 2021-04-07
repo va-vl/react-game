@@ -1,30 +1,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 //
 import { useDispatch, useSelector } from 'react-redux';
 import { gameMatchingSelector } from '../../../../store/selectors';
 import { gameMakeMoveAC } from '../../../../store/gameReducer/gameReducerACs';
 //
 import './Card.scss';
-
-const createCardClassName = (isFlipped, isSolved, isError) => {
-  let result = 'card';
-
-  if (isFlipped) {
-    result += ' card--flipped';
-  }
-
-  if (isSolved) {
-    result += ' card--solved';
-  }
-
-  if (isError) {
-    result += ' card--error';
-  }
-
-  return result;
-};
 
 const Card = React.memo(
   ({
@@ -48,17 +31,21 @@ const Card = React.memo(
 
     return (
       <div
-        className={createCardClassName(isFlipped, isSolved, isError)}
+        className={clsx('card', {
+          'card--flipped': isFlipped,
+          'card--solved': isSolved,
+          'card--error': isError,
+        })}
         onClick={handleClick}
       >
         <img
-          className="card__image card__image--back"
+          className={clsx('card__image', 'card__image--back')}
           src={backSrc}
           alt="card back"
           draggable="false"
         />
         <img
-          className="card__image card__image--front"
+          className={clsx('card__image', 'card__image--front')}
           src={frontSrc}
           alt="card front"
           draggable="false"

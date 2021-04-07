@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 //
 import './RadiosSet.scss';
 
@@ -20,21 +21,22 @@ const RadiosSet = ({
           <label
             key={id}
             htmlFor={id}
-            className={
+            className={clsx(
               name === 'cardsBack'
                 ? 'radios-set__wrapper--cardsBack'
-                : 'radios-set__wrapper'
-            }
+                : 'radios-set__wrapper',
+            )}
           >
             {React.createElement('input', {
               id,
               type: 'radio',
               value: name === 'cardsBack' ? index : item,
               name: `${name}`,
-              className:
+              className: clsx(
                 name === 'cardsBack'
                   ? 'radios-set__radio--cardsBack'
                   : 'radios-set__radio',
+              ),
               defaultChecked:
                 name === 'cardsBack'
                   ? index === defaultValue

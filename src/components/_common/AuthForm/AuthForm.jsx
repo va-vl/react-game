@@ -41,6 +41,7 @@ AuthForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   fields: PropTypes.instanceOf(Array).isRequired,
+  register: PropTypes.func.isRequired,
 };
 
 export { AuthForm };

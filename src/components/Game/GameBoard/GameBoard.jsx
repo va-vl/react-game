@@ -1,12 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 //
 import { Card } from './Card';
 //
 import './GameBoard.scss';
 
 const GameBoard = React.memo(({ backSrc, cardsAmount, level, autoPlay }) => (
-  <ul className={`game-board game-board--${cardsAmount}`}>
+  <ul className={clsx('game-board', `game-board--${cardsAmount}`)}>
     {level.map(
       ({ cardPath, cardIndex, isFlipped, isSolved, isError }, index) => {
         const keyProp = `card-${cardIndex}-${index}`;

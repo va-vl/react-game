@@ -68,7 +68,6 @@ const SignIn = () => {
           onSubmit={handleSubmit}
           onChange={handleChange}
           fields={fields}
-          firebaseErrorMessage={errorMessage}
         />
       </div>
     </main>
