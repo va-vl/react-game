@@ -1,11 +1,32 @@
 import * as React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 //
 import { useFirebase } from 'react-redux-firebase';
 //
-import { LabeledField } from '../_common';
+import { AuthForm } from '../_common';
 //
 import './SignUp.scss';
+
+const fields = [
+  {
+    id: 'userNameSignUpInput',
+    label: 'Your name',
+    type: 'text',
+    name: 'userName',
+  },
+  {
+    id: 'userEmailSignUpInput',
+    label: 'Your email',
+    type: 'email',
+    name: 'userEmail',
+  },
+  {
+    id: 'userPasswordSignUpInput',
+    label: 'Password',
+    type: 'password',
+    name: 'userPassword',
+  },
+];
 
 const SignUp = () => {
   const history = useHistory();
@@ -49,46 +70,14 @@ const SignUp = () => {
           Please use VPN or the default profile if Google services are limited
           in your location
         </p>
-        <form
-          className="signup__form"
+        {errorMessage && <p className="signup__error">{errorMessage}</p>}
+        <AuthForm
           name="signUpForm"
+          id="signUpForm"
           onSubmit={handleSubmit}
           onChange={handleChange}
-        >
-          <div className="signup__input">
-            <LabeledField
-              id="userNameSignUpInput"
-              label="Your name"
-              type="text"
-              name="userName"
-            />
-          </div>
-          <div className="signup__input">
-            <LabeledField
-              id="userEmailSignUpInput"
-              label="Your email"
-              type="email"
-              name="userEmail"
-            />
-          </div>
-          <div className="signup__input">
-            <LabeledField
-              id="userPasswordSignUpInput"
-              label="Password"
-              type="password"
-              name="userPassword"
-            />
-          </div>
-          <p className="signup__error">{errorMessage}</p>
-          <div>
-            <button className="signin__button" type="submit">
-              Register
-            </button>
-            <Link className="signin__button" to="/signin">
-              Sign in
-            </Link>
-          </div>
-        </form>
+          fields={fields}
+        />
       </div>
     </main>
   );

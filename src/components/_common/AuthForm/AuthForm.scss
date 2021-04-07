@@ -1,0 +1,13 @@
+.auth-form {
+  &__input {
+    @include formInput;
+  }
+
+  &__button {
+    @include contentButton;
+
+    &:first-child {
+      margin-right: 0.5rem;
+    }
+  }
+}

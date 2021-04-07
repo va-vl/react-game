@@ -39,7 +39,7 @@ const StatsTable = ({ data }) => (
 );
 
 StatsTable.propTypes = {
-  data: PropTypes.istanceOf(Array).isRequired,
+  data: PropTypes.instanceOf(Array).isRequired,
 };
 
 export { StatsTable };

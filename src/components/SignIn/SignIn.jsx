@@ -1,11 +1,26 @@
 import * as React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 //
 import { useFirebase } from 'react-redux-firebase';
 //
-import { LabeledField } from '../_common';
+import { AuthForm } from '../_common';
 //
 import './SignIn.scss';
+
+const fields = [
+  {
+    type: 'text',
+    label: 'Email',
+    name: 'userEmail',
+    id: 'userEmailSignInInput',
+  },
+  {
+    type: 'password',
+    label: 'Password',
+    name: 'userPassword',
+    id: 'userPasswordSignInInput',
+  },
+];
 
 const SignIn = () => {
   const history = useHistory();
@@ -46,39 +61,15 @@ const SignIn = () => {
           Use test@test.com / test1234 if you don&apos;t want to create an
           account
         </p>
-        <form
-          className="signin__form"
+        {errorMessage && <p className="signin__error">{errorMessage}</p>}
+        <AuthForm
           name="signInForm"
           id="signInForm"
           onSubmit={handleSubmit}
           onChange={handleChange}
-        >
-          <div className="signin__input">
-            <LabeledField
-              type="text"
-              label="Email"
-              name="userEmail"
-              id="userEmailSignInInput"
-            />
-          </div>
-          <div className="signin__input">
-            <LabeledField
-              type="password"
-              label="Password"
-              name="userPassword"
-              id="userPasswordSignInInput"
-            />
-          </div>
-          <p className="signin__error">{errorMessage}</p>
-          <div>
-            <button className="signin__button" type="submit">
-              Login
-            </button>
-            <Link className="signin__button" to="/signup">
-              Sign up
-            </Link>
-          </div>
-        </form>
+          fields={fields}
+          firebaseErrorMessage={errorMessage}
+        />
       </div>
     </main>
   );

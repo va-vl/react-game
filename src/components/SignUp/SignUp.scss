@@ -9,25 +9,13 @@
     @include contentHeading;
   }
 
-  &__input {
-    @include formInput;
-  }
-
-  &__error {
-    @include errorMessageBlock;
-  }
-
   &__note {
     font-style: italic;
     text-align: center;
     opacity: 0.7;
   }
 
-  &__button {
-    @include contentButton;
-
-    &:first-child {
-      margin-right: 0.5rem;
-    }
+  &__error {
+    @include errorMessageBlock;
   }
 }
