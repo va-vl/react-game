@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 //
 import { useFirebase } from 'react-redux-firebase';
 //
-import { LabeledField, AuthFormButtons } from '../_common';
+import { LabeledField, AuthForm } from '../_common';
 //
 import './SignUp.scss';
 
@@ -14,6 +14,7 @@ const SignUp = () => {
   const [displayName, setDisplayName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const handleFormChange = () => {
     if (errorMessage) {
@@ -36,12 +37,15 @@ const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    setIsLoading(true);
+
     firebase
       .createUser({ email, password }, { displayName })
       .then(() => {
         history.push('/');
       })
       .catch((err) => {
+        setIsLoading(false);
         setErrorMessage(err.message);
       });
   };
@@ -49,17 +53,19 @@ const SignUp = () => {
   return (
     <main className="signup">
       <div className="signup__content">
-        <h3 className="signup__heading">Sign Up</h3>
-        <p className="signup__note">
-          Please use VPN or the default profile if Google services are limited
-          in your location
-        </p>
-        {errorMessage && <p className="signup__error">{errorMessage}</p>}
-        <form
+        <AuthForm
+          heading="Sign Up"
+          note="Please use VPN or the default profile if Google services are limited
+          in your location"
+          error={errorMessage}
           name="signUpForm"
           id="signUpForm"
-          onSubmit={handleSubmit}
-          onChange={handleFormChange}
+          isLoading={isLoading}
+          onFormSubmit={handleSubmit}
+          onFormChange={handleFormChange}
+          submitButtonLabel="Sign Up"
+          linkButtonLabel="To Sign In"
+          linkButtonPath="/signin"
         >
           <div className="signup__input">
             <LabeledField
@@ -91,12 +97,7 @@ const SignUp = () => {
               onChange={handlePasswordChange}
             />
           </div>
-          <AuthFormButtons
-            submitLabel="Sign Up"
-            linkLabel="To Sign In"
-            linkPath="/signin"
-          />
-        </form>
+        </AuthForm>
       </div>
     </main>
   );

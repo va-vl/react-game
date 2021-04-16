@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 //
 import { useFirebase } from 'react-redux-firebase';
 //
-import { LabeledField, AuthFormButtons } from '../_common';
+import { AuthForm, LabeledField } from '../_common';
 //
 import './SignIn.scss';
 
@@ -13,6 +13,7 @@ const SignIn = () => {
   const [errorMessage, setErrorMessage] = React.useState(null);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const handleFormChange = () => {
     if (errorMessage) {
@@ -31,6 +32,8 @@ const SignIn = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    setIsLoading(true);
+
     firebase
       .login({ email, password })
       .then(() => {
@@ -39,6 +42,7 @@ const SignIn = () => {
         });
       })
       .catch((err) => {
+        setIsLoading(false);
         setErrorMessage(err.message);
       });
   };
@@ -46,44 +50,42 @@ const SignIn = () => {
   return (
     <main className="signin">
       <div className="signin__content">
-        <h3 className="signin__heading">Sign In</h3>
-        <p className="signin__note">
-          Use test@test.com / test1234 if you don&apos;t want to create an
-          account
-        </p>
-        {errorMessage && <p className="signin__error">{errorMessage}</p>}
-        <form
+        <AuthForm
+          heading="Sign In"
+          note="Use test@test.com / test1234 if you don't want to create an account"
+          error={errorMessage}
           name="signInForm"
           id="signInForm"
-          onSubmit={handleSubmit}
-          onChange={handleFormChange}
+          isLoading={isLoading}
+          onFormSubmit={handleSubmit}
+          onFormChange={handleFormChange}
+          submitButtonLabel="Sign In"
+          linkButtonLabel="To Sign Up"
+          linkButtonPath="/signup"
         >
           <div className="signin__input">
             <LabeledField
               type="email"
-              label="Email"
-              name="userEmail"
               id="userEmailSignInInput"
+              name="userEmail"
               value={email}
               onChange={handleEmailChange}
+              label="Email"
+              autocomplete="email"
             />
           </div>
           <div className="signin__input">
             <LabeledField
               type="password"
-              label="Password"
-              name="userPassword"
               id="userPasswordSignInInput"
+              name="userPassword"
               value={password}
               onChange={handlePasswordChange}
+              label="Password"
+              autocomplete="email"
             />
           </div>
-          <AuthFormButtons
-            submitLabel="Sign In"
-            linkLabel="To Sign Up"
-            linkPath="/signup"
-          />
-        </form>
+        </AuthForm>
       </div>
     </main>
   );

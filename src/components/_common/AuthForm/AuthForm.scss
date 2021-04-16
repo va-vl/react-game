@@ -1,0 +1,19 @@
+.auth-form {
+  &__heading {
+    @include contentHeading;
+  }
+
+  &__note {
+    font-style: italic;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  &__error {
+    @include errorMessageBlock;
+  }
+
+  &__buttons {
+    margin: 1rem 0 0;
+  }
+}

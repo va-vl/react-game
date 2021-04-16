@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 //
 import './LabeledField.scss';
 
-const LabeledField = ({ type, label, name, id, value, onChange }) => (
+const LabeledField = ({
+  type,
+  label,
+  name,
+  id,
+  value,
+  onChange,
+  autocomplete,
+}) => (
   <label className="labeled-field" htmlFor={id}>
     <span>{`${label}: `}</span>
     <input
@@ -14,9 +22,14 @@ const LabeledField = ({ type, label, name, id, value, onChange }) => (
       type={type}
       name={name}
       id={id}
+      autoComplete={autocomplete}
     />
   </label>
 );
+
+LabeledField.defaultProps = {
+  autocomplete: 'off',
+};
 
 LabeledField.propTypes = {
   type: PropTypes.string.isRequired,
@@ -25,6 +38,8 @@ LabeledField.propTypes = {
   id: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+
+  autocomplete: PropTypes.string,
 };
 
 export { LabeledField };
