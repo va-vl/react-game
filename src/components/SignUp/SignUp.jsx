@@ -67,36 +67,30 @@ const SignUp = () => {
           linkButtonLabel="To Sign In"
           linkButtonPath="/signin"
         >
-          <div className="signup__input">
-            <LabeledField
-              type="text"
-              label="Your name"
-              name="displayName"
-              id="userNameSignUpInput"
-              value={displayName}
-              onChange={handleDisplayNameChange}
-            />
-          </div>
-          <div className="signup__input">
-            <LabeledField
-              type="email"
-              label="Email"
-              name="userEmail"
-              id="userEmailSignUpInput"
-              value={email}
-              onChange={handleEmailChange}
-            />
-          </div>
-          <div className="signup__input">
-            <LabeledField
-              type="password"
-              label="Password"
-              name="userPassword"
-              id="userPasswordSignUpInput"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-          </div>
+          <LabeledField
+            type="text"
+            label="Your name"
+            name="displayName"
+            id="userNameSignUpInput"
+            value={displayName}
+            onChange={handleDisplayNameChange}
+          />
+          <LabeledField
+            type="email"
+            label="Email"
+            name="userEmail"
+            id="userEmailSignUpInput"
+            value={email}
+            onChange={handleEmailChange}
+          />
+          <LabeledField
+            type="password"
+            label="Password"
+            name="userPassword"
+            id="userPasswordSignUpInput"
+            value={password}
+            onChange={handlePasswordChange}
+          />
         </AuthForm>
       </div>
     </main>

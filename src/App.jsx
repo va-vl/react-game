@@ -16,9 +16,10 @@ import {
   FullscreenButton,
   MusicPlayer,
   SoundPlayer,
+  HotKeysHandler,
 } from './components';
 //
-import { HotKeysHandler, AuthReady, PrivateRoute } from './components/_common';
+import { AuthReady, PrivateRoute } from './components/_common';
 //
 import useFullscreenStatus from './hooks/useFullscreenStatus';
 //
@@ -44,23 +45,18 @@ const App = () => {
           </Route>
           <PrivateRoute exact path="/">
             <Main />
-            <HotKeysHandler />
           </PrivateRoute>
           <PrivateRoute exact path="/game">
             <Game />
-            <HotKeysHandler />
           </PrivateRoute>
           <PrivateRoute exact path="/settings">
             <Settings />
-            <HotKeysHandler />
           </PrivateRoute>
           <PrivateRoute exact path="/stats">
             <Stats />
-            <HotKeysHandler />
           </PrivateRoute>
           <PrivateRoute exact path="/info">
             <About />
-            <HotKeysHandler />
           </PrivateRoute>
           <Redirect from="*" to="/" />
         </Switch>
@@ -68,6 +64,7 @@ const App = () => {
           status={fullscreenStatus}
           handleFullscreenOn={setFullscreenStatus}
         />
+        <HotKeysHandler />
         <Footer />
         <SoundPlayer />
         <MusicPlayer />

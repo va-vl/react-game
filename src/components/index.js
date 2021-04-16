@@ -10,3 +10,4 @@ export { Stats } from './Stats';
 //
 export { MusicPlayer } from './MusicPlayer';
 export { SoundPlayer } from './SoundPlayer';
+export { HotKeysHandler } from './HotKeysHandler';

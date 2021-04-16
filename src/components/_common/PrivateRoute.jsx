@@ -32,12 +32,8 @@ const PrivateRoute = ({ children, ...remainingProps }) => {
   ) : null;
 };
 
-PrivateRoute.defaultProps = {
-  children: null,
-};
-
 PrivateRoute.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node),
+  children: PropTypes.node.isRequired,
 };
 
 export { PrivateRoute };

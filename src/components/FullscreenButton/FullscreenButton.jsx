@@ -7,24 +7,15 @@ import './FullscreenButton.scss';
 
 const handleFullscreenOff = () => document.exitFullscreen();
 
-const FullscreenButton = ({ status, handleFullscreenOn }) =>
-  status ? (
-    <button
-      type="button"
-      className="fullscreen-button"
-      onClick={handleFullscreenOff}
-    >
-      <AiOutlineFullscreenExit />
-    </button>
-  ) : (
-    <button
-      type="button"
-      className="fullscreen-button"
-      onClick={handleFullscreenOn}
-    >
-      <AiOutlineFullscreen />
-    </button>
-  );
+const FullscreenButton = ({ status, handleFullscreenOn }) => (
+  <button
+    type="button"
+    className="fullscreen-button"
+    onClick={status ? handleFullscreenOff : handleFullscreenOn}
+  >
+    {status ? <AiOutlineFullscreenExit /> : <AiOutlineFullscreen />}
+  </button>
+);
 
 FullscreenButton.propTypes = {
   handleFullscreenOn: PropTypes.func.isRequired,

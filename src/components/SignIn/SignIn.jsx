@@ -63,28 +63,24 @@ const SignIn = () => {
           linkButtonLabel="To Sign Up"
           linkButtonPath="/signup"
         >
-          <div className="signin__input">
-            <LabeledField
-              type="email"
-              id="userEmailSignInInput"
-              name="userEmail"
-              value={email}
-              onChange={handleEmailChange}
-              label="Email"
-              autocomplete="email"
-            />
-          </div>
-          <div className="signin__input">
-            <LabeledField
-              type="password"
-              id="userPasswordSignInInput"
-              name="userPassword"
-              value={password}
-              onChange={handlePasswordChange}
-              label="Password"
-              autocomplete="email"
-            />
-          </div>
+          <LabeledField
+            type="email"
+            id="userEmailSignInInput"
+            name="userEmail"
+            value={email}
+            onChange={handleEmailChange}
+            label="Email"
+            autocomplete="email"
+          />
+          <LabeledField
+            type="password"
+            id="userPasswordSignInInput"
+            name="userPassword"
+            value={password}
+            onChange={handlePasswordChange}
+            label="Password"
+            autocomplete="email"
+          />
         </AuthForm>
       </div>
     </main>
