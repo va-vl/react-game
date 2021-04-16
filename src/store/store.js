@@ -14,7 +14,12 @@ const customizedMiddleware = getDefaultMiddleware({
 });
 
 const store = configureStore({
-  reducer: { firebaseReducer, firestoreReducer, gameReducer, settingsReducer },
+  reducer: {
+    firebaseReducer,
+    firestoreReducer,
+    gameReducer,
+    settingsReducer,
+  },
   middleware: customizedMiddleware,
   preloadedState: loadSettingsState(),
 });

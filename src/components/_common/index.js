@@ -1,4 +1,4 @@
-export { AuthForm } from './AuthForm';
+export { AuthFormButtons } from './AuthFormButtons';
 export { AuthReady } from './AuthReady';
 export { LabeledField } from './LabeledField';
 export { RadiosSet } from './RadiosSet';

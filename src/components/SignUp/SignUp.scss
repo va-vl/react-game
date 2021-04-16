@@ -18,4 +18,8 @@
   &__error {
     @include errorMessageBlock;
   }
+
+  &__input {
+    @include formInput;
+  }
 }

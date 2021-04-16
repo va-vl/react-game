@@ -27,6 +27,7 @@ import './App.scss';
 const App = () => {
   const theme = useSelector(appThemeSelector);
   const maximizableElement = React.useRef(null);
+
   const [fullscreenStatus, setFullscreenStatus] = useFullscreenStatus(
     maximizableElement,
   );

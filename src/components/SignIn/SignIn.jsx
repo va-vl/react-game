@@ -3,43 +3,33 @@ import { useHistory } from 'react-router-dom';
 //
 import { useFirebase } from 'react-redux-firebase';
 //
-import { AuthForm } from '../_common';
+import { LabeledField, AuthFormButtons } from '../_common';
 //
 import './SignIn.scss';
-
-const fields = [
-  {
-    type: 'text',
-    label: 'Email',
-    name: 'userEmail',
-    id: 'userEmailSignInInput',
-  },
-  {
-    type: 'password',
-    label: 'Password',
-    name: 'userPassword',
-    id: 'userPasswordSignInInput',
-  },
-];
 
 const SignIn = () => {
   const history = useHistory();
   const firebase = useFirebase();
   const [errorMessage, setErrorMessage] = React.useState(null);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
-  const handleChange = () => {
+  const handleFormChange = () => {
     if (errorMessage) {
       setErrorMessage(null);
     }
   };
 
+  const handleEmailChange = ({ target: { value } }) => {
+    setEmail(value);
+  };
+
+  const handlePasswordChange = ({ target: { value } }) => {
+    setPassword(value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const {
-      userEmailSignInInput: { value: email },
-      userPasswordSignInInput: { value: password },
-    } = document.forms.signInForm.elements;
 
     firebase
       .login({ email, password })
@@ -62,13 +52,38 @@ const SignIn = () => {
           account
         </p>
         {errorMessage && <p className="signin__error">{errorMessage}</p>}
-        <AuthForm
+        <form
           name="signInForm"
           id="signInForm"
           onSubmit={handleSubmit}
-          onChange={handleChange}
-          fields={fields}
-        />
+          onChange={handleFormChange}
+        >
+          <div className="signin__input">
+            <LabeledField
+              type="email"
+              label="Email"
+              name="userEmail"
+              id="userEmailSignInInput"
+              value={email}
+              onChange={handleEmailChange}
+            />
+          </div>
+          <div className="signin__input">
+            <LabeledField
+              type="password"
+              label="Password"
+              name="userPassword"
+              id="userPasswordSignInInput"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+          </div>
+          <AuthFormButtons
+            submitLabel="Sign In"
+            linkLabel="To Sign Up"
+            linkPath="/signup"
+          />
+        </form>
       </div>
     </main>
   );

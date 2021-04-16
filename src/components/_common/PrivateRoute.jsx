@@ -14,6 +14,7 @@ const PrivateRoute = ({ children, ...remainingProps }) => {
       {...remainingProps}
       render={({ location }) => {
         const isAuthReady = isLoaded(auth) && !isEmpty(auth);
+
         return isAuthReady ? (
           children
         ) : (

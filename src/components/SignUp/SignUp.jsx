@@ -3,54 +3,38 @@ import { useHistory } from 'react-router-dom';
 //
 import { useFirebase } from 'react-redux-firebase';
 //
-import { AuthForm } from '../_common';
+import { LabeledField, AuthFormButtons } from '../_common';
 //
 import './SignUp.scss';
-
-const fields = [
-  {
-    id: 'userNameSignUpInput',
-    label: 'Your name',
-    type: 'text',
-    name: 'userName',
-  },
-  {
-    id: 'userEmailSignUpInput',
-    label: 'Your email',
-    type: 'email',
-    name: 'userEmail',
-  },
-  {
-    id: 'userPasswordSignUpInput',
-    label: 'Password',
-    type: 'password',
-    name: 'userPassword',
-  },
-];
 
 const SignUp = () => {
   const history = useHistory();
   const firebase = useFirebase();
   const [errorMessage, setErrorMessage] = React.useState(null);
+  const [displayName, setDisplayName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
-  const handleChange = () => {
+  const handleFormChange = () => {
     if (errorMessage) {
       setErrorMessage(null);
     }
   };
 
+  const handleDisplayNameChange = ({ target: { value } }) => {
+    setDisplayName(value);
+  };
+
+  const handleEmailChange = ({ target: { value } }) => {
+    setEmail(value);
+  };
+
+  const handlePasswordChange = ({ target: { value } }) => {
+    setPassword(value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const {
-      userNameSignUpInput,
-      userEmailSignUpInput,
-      userPasswordSignUpInput,
-    } = document.forms.signUpForm.elements;
-
-    const displayName = userNameSignUpInput.value.trim();
-    const email = userEmailSignUpInput.value.trim();
-    const password = userPasswordSignUpInput.value.trim();
 
     firebase
       .createUser({ email, password }, { displayName })
@@ -71,13 +55,48 @@ const SignUp = () => {
           in your location
         </p>
         {errorMessage && <p className="signup__error">{errorMessage}</p>}
-        <AuthForm
+        <form
           name="signUpForm"
           id="signUpForm"
           onSubmit={handleSubmit}
-          onChange={handleChange}
-          fields={fields}
-        />
+          onChange={handleFormChange}
+        >
+          <div className="signup__input">
+            <LabeledField
+              type="text"
+              label="Your name"
+              name="displayName"
+              id="userNameSignUpInput"
+              value={displayName}
+              onChange={handleDisplayNameChange}
+            />
+          </div>
+          <div className="signup__input">
+            <LabeledField
+              type="email"
+              label="Email"
+              name="userEmail"
+              id="userEmailSignUpInput"
+              value={email}
+              onChange={handleEmailChange}
+            />
+          </div>
+          <div className="signup__input">
+            <LabeledField
+              type="password"
+              label="Password"
+              name="userPassword"
+              id="userPasswordSignUpInput"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+          </div>
+          <AuthFormButtons
+            submitLabel="Sign Up"
+            linkLabel="To Sign In"
+            linkPath="/signin"
+          />
+        </form>
       </div>
     </main>
   );
