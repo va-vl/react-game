@@ -10,6 +10,17 @@
   font-family: 'Roboto';
   background-color: var(--color-main);
 
+  &__controls {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
   --color-white: #ffffff;
   --color-black: #252525;
   --color-success: #17be17;

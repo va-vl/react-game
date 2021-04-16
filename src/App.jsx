@@ -60,14 +60,16 @@ const App = () => {
           </PrivateRoute>
           <Redirect from="*" to="/" />
         </Switch>
-        <FullscreenButton
-          status={fullscreenStatus}
-          handleFullscreenOn={setFullscreenStatus}
-        />
+        <div className="app__controls">
+          <FullscreenButton
+            status={fullscreenStatus}
+            handleFullscreenOn={setFullscreenStatus}
+          />
+          <MusicPlayer />
+        </div>
         <HotKeysHandler />
         <Footer />
         <SoundPlayer />
-        <MusicPlayer />
       </AuthReady>
     </main>
   );

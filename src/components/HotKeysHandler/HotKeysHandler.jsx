@@ -6,12 +6,12 @@ import {
   cardsAmountSelector,
   musicVolumeSelector,
   soundVolumeSelector,
-} from '../store/selectors';
+} from '../../store/selectors';
 import {
   updateMusicVolumeAC,
   updateSoundVolumeAC,
-} from '../store/settingsReducer/settingsReducerACs';
-import { gameInitAC } from '../store/gameReducer/gameReducerACs';
+} from '../../store/settingsReducer/settingsReducerACs';
+import { gameInitAC } from '../../store/gameReducer/gameReducerACs';
 
 const isHotKeyPressed = ({ key, code, altKey, metaKey }, hotKey) => {
   if (!key) {
