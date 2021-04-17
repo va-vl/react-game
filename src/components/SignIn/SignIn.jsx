@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
-//
 import { useFirebase } from 'react-redux-firebase';
+import { useTranslation } from 'react-i18next';
 //
 import { AuthForm, LabeledField } from '../_common';
 //
@@ -10,6 +10,7 @@ import './SignIn.scss';
 const SignIn = () => {
   const history = useHistory();
   const firebase = useFirebase();
+  const { t } = useTranslation();
   const [errorMessage, setErrorMessage] = React.useState(null);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -51,16 +52,16 @@ const SignIn = () => {
     <main className="signin">
       <div className="signin__content">
         <AuthForm
-          heading="Sign In"
-          note="Use test@test.com / test1234 if you don't want to create an account"
+          heading={t('SignIn.Heading')}
+          note={t('SignIn.Note')}
           error={errorMessage}
           name="signInForm"
           id="signInForm"
           isLoading={isLoading}
           onFormSubmit={handleSubmit}
           onFormChange={handleFormChange}
-          submitButtonLabel="Sign In"
-          linkButtonLabel="To Sign Up"
+          submitButtonLabel={t('SignIn.SubmitButtonLabel')}
+          linkButtonLabel={t('SignIn.LinkButtonLabel')}
           linkButtonPath="/signup"
         >
           <LabeledField
@@ -69,7 +70,7 @@ const SignIn = () => {
             name="userEmail"
             value={email}
             onChange={handleEmailChange}
-            label="Email"
+            label={t('SignIn.EmailLabel')}
             autocomplete="email"
           />
           <LabeledField
@@ -78,7 +79,7 @@ const SignIn = () => {
             name="userPassword"
             value={password}
             onChange={handlePasswordChange}
-            label="Password"
+            label={t('SignIn.PasswordLabel')}
             autocomplete="email"
           />
         </AuthForm>

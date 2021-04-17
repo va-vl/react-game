@@ -1,6 +1,7 @@
 import * as React from 'react';
-//
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+//
 import { gameToggleAutoplayAC } from '../../../store/gameReducer/gameReducerACs';
 import { autoplaySelector } from '../../../store/selectors';
 //
@@ -9,6 +10,7 @@ import './AutoplayToggler.scss';
 const AutoplayToggler = () => {
   const dispatch = useDispatch();
   const isAutoplayOn = useSelector(autoplaySelector);
+  const { t } = useTranslation();
 
   const toggleAutoplay = () => {
     dispatch(gameToggleAutoplayAC());
@@ -21,9 +23,9 @@ const AutoplayToggler = () => {
         className="autoplay-toggler__button"
         onClick={toggleAutoplay}
       >
-        Toggle autoplay
+        {t('Main.AutoplayToggler.AutoplayButton')}
       </button>
-      <p>{`Autoplay is ${isAutoplayOn ? 'on' : 'off'}`}</p>
+      <p>{t(`Main.AutoplayToggler.${isAutoplayOn ? 'TextOn' : 'TextOff'}`)}</p>
     </div>
   );
 };

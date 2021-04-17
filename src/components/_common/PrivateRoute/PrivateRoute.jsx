@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 //
 import { useSelector } from 'react-redux';
-import { authSelector } from '../../store/selectors';
+import { authSelector } from '../../../store/selectors';
 
 const PrivateRoute = ({ children, ...remainingProps }) => {
   const auth = useSelector(authSelector);

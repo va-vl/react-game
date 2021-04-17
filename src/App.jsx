@@ -68,8 +68,8 @@ const App = () => {
           <MusicPlayer />
         </div>
         <HotKeysHandler />
-        <Footer />
         <SoundPlayer />
+        <Footer />
       </AuthReady>
     </main>
   );

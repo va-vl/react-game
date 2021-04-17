@@ -1,0 +1,108 @@
+{
+  "AuthReady": {
+    "Loading": "Loading"
+  },
+  "About": {
+    "HotKey": {
+      "Heading": "Hot keys",
+      "Descriptions": {
+        "start new game": "start new game",
+        "to settings": "to settings",
+        "to stats": "to stats",
+        "mute music": "mute music",
+        "mute sound": "mute sound"
+      }
+    },
+    "Heading": "About",
+    "Stack": "Made with React and Redux.",
+    "ImageSource": "SVG images designed by Flaticon."
+  },
+  "Footer": "Made by <1>{{name}}</1> in 2021.",
+  "Game": {
+    "Controls": {
+      "ToMainMenuButton": "To main menu",
+      "NewGameButton": "Start new game",
+      "GameTime": "Game time",
+      "Moves": "Moves made"
+    },
+    "VictoryModal": {
+      "Heading": "Congratulations!",
+      "Text": "Check stats to see your results.",
+      "NewGameButton": "Start new game",
+      "StatsButton": "To stats",
+      "MenuButton": "To menu"
+    }
+  },
+  "Main": {
+    "AutoplayToggler": {
+      "AutoplayButton": "Toggle autoplay",
+      "TextOn": "On",
+      "TextOff": "Off"
+    },
+    "UserGreeting": {
+      "Preload": "Profile loading...",
+      "Text": "Hello"
+    },
+    "GameButton": {
+      "New": "New game",
+      "Continue": "Continue"
+    },
+    "SettingsButton": "Settings",
+    "StatsButton": "Stats",
+    "InfoButton": "Info",
+    "LogoutButton": "Logout"
+  },
+  "Settings": {
+    "Heading": "Settings",
+    "MainMenuButton": "To main menu",
+    "CardsAmountSet": {
+      "Legend": "Cards amount"
+    },
+    "MusicVolumeSlider": {
+      "Legend": "Music volume"
+    },
+    "SoundVolumeSlider": {
+      "Legend": "Sound volume"
+    },
+    "CardsBackSet": {
+      "Legend": "Cards back"
+    },
+    "AppThemeSet": {
+      "Legend": "Select app theme"
+    }
+  },
+  "SignIn": {
+    "Heading": "Sign In",
+    "Note": "Use test@test.com / test1234 if you don't want to create an account",
+    "SubmitButtonLabel": "Sign In",
+    "LinkButtonLabel": "To Sign Up",
+    "EmailLabel": "E-mail",
+    "PasswordLabel": "Password"
+  },
+  "SignUp": {
+    "Heading": "Sign Up",
+    "Note": "Please use VPN or the default profile if Google services are limited",
+    "SubmitButtonLabel": "Sign Up",
+    "LinkButtonLabel": "To Sign In",
+    "DisplayNameLabel": "Your name",
+    "EmailLabel": "E-mail",
+    "PasswordLabel": "Password"
+  },
+  "Stats": {
+    "Heading": "Stats",
+    "MenuButton": "Menu",
+    "StatsTable": {
+      "Headings": {
+        "Moves": "Moves used",
+        "BoardSize": "Board size",
+        "Time": "Game time",
+        "Date": "Completed at",
+        "Player": "Player"
+      },
+      "Player": {
+        "Human": "Human",
+        "AI": "AI"
+      }
+    }
+  }
+}

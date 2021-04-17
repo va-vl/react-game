@@ -8,10 +8,10 @@ import { rrfProps } from './firebase/firebase';
 import App from './App';
 //
 import store from './store/store';
-//
 import { MusicProvider } from './contexts/MusicContext';
 //
 import { resolveResources } from './utils/resources';
+import './i18n';
 //
 import './style.scss';
 

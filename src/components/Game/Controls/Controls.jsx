@@ -1,32 +1,29 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 //
 import formatTime from '../../../utils/formatTime';
 //
 import './Controls.scss';
 
 const Controls = React.memo(({ gameStarter, moves, timeCount }) => {
-  const history = useHistory();
-
-  const handleBackClick = () => {
-    history.push('/');
-  };
+  const { t } = useTranslation();
 
   return (
     <div className="controls">
-      <button
-        className="controls__button"
-        type="button"
-        onClick={handleBackClick}
-      >
-        To main menu
-      </button>
+      <Link to="/">
+        <button className="controls__button" type="button">
+          {t('Game.Controls.ToMainMenuButton')}
+        </button>
+      </Link>
       <button className="controls__button" type="button" onClick={gameStarter}>
-        Start new game
+        {t('Game.Controls.NewGameButton')}
       </button>
-      <p className="controls__info">{`Game time: ${formatTime(timeCount)}`}</p>
-      <p className="controls__info">{`Moves made: ${moves}`}</p>
+      <p className="controls__info">
+        {`${t('Game.Controls.GameTime')}: ${formatTime(timeCount)}`}
+      </p>
+      <p className="controls__info">{`${t('Game.Control.Moves')}: ${moves}`}</p>
     </div>
   );
 });

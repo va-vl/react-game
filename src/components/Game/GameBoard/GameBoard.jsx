@@ -9,23 +9,19 @@ import './GameBoard.scss';
 const GameBoard = React.memo(({ backSrc, cardsAmount, level, autoPlay }) => (
   <ul className={clsx('game-board', `game-board--${cardsAmount}`)}>
     {level.map(
-      ({ cardPath, cardIndex, isFlipped, isSolved, isError }, index) => {
-        const keyProp = `card-${cardIndex}-${index}`;
-
-        return (
-          <Card
-            key={keyProp}
-            levelIndex={index}
-            cardIndex={cardIndex}
-            frontSrc={cardPath}
-            backSrc={backSrc}
-            isFlipped={isFlipped}
-            isSolved={isSolved}
-            isError={isError}
-            autoPlay={autoPlay}
-          />
-        );
-      },
+      ({ cardPath, cardIndex, isFlipped, isSolved, isError }, index) => (
+        <Card
+          key={cardPath}
+          levelIndex={index}
+          cardIndex={cardIndex}
+          frontSrc={cardPath}
+          backSrc={backSrc}
+          isFlipped={isFlipped}
+          isSolved={isSolved}
+          isError={isError}
+          autoPlay={autoPlay}
+        />
+      ),
     )}
   </ul>
 ));

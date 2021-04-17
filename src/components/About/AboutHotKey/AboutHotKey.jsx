@@ -6,7 +6,7 @@ import './AboutHotKey.scss';
 const AboutHotKey = ({ outerClassName, name, description }) => (
   <div className={outerClassName}>
     <span className="hotkey">{`ALT + ${name.toUpperCase()}`}</span>
-    <span>{` - ${description}`}</span>
+    <span className="hotkey--description">{description}</span>
   </div>
 );
 

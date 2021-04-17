@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 //
 import { MusicVolumeSlider } from './MusicVolumeSlider';
 import { SoundVolumeSlider } from './SoundVolumeSlider';
@@ -9,32 +10,36 @@ import { AppThemeSet } from './AppThemeSet';
 //
 import './Settings.scss';
 
-const Settings = () => (
-  <main className="settings">
-    <div className="settings__content">
-      <h3 className="settings__heading">Settings</h3>
-      <form className="settings__form">
-        <div className="settings__input">
-          <CardsAmountSet />
-        </div>
-        <div className="settings__input">
-          <MusicVolumeSlider />
-        </div>
-        <div className="settings__input">
-          <SoundVolumeSlider />
-        </div>
-        <div className="settings__input">
-          <CardsBackSet />
-        </div>
-        <div className="settings__input">
-          <AppThemeSet />
-        </div>
-      </form>
-      <Link className="settings__button" to="/">
-        To main menu
-      </Link>
-    </div>
-  </main>
-);
+const Settings = () => {
+  const { t } = useTranslation();
+
+  return (
+    <main className="settings">
+      <div className="settings__content">
+        <h3 className="settings__heading">{t('Settings.Heading')}</h3>
+        <form className="settings__form">
+          <div className="settings__input">
+            <CardsAmountSet />
+          </div>
+          <div className="settings__input">
+            <MusicVolumeSlider />
+          </div>
+          <div className="settings__input">
+            <SoundVolumeSlider />
+          </div>
+          <div className="settings__input">
+            <CardsBackSet />
+          </div>
+          <div className="settings__input">
+            <AppThemeSet />
+          </div>
+        </form>
+        <Link className="settings__button" to="/">
+          {t('Settings.MainMenuButton')}
+        </Link>
+      </div>
+    </main>
+  );
+};
 
 export { Settings };

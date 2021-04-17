@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Trans } from 'react-i18next';
 //
 import { OutsideLink } from '../_common';
 //
@@ -9,9 +10,11 @@ import './Footer.scss';
 const Footer = () => (
   <footer className="footer">
     <p className="footer__text">
-      <span>Made by </span>
-      <OutsideLink href="https://github.com/va-z">va-z</OutsideLink>
-      <span> in 2021</span>
+      <Trans
+        i18nKey="Footer"
+        values={{ name: 'va-z' }}
+        components={{ 1: <OutsideLink href="https://github.com/va-z" /> }}
+      />
     </p>
     <OutsideLink href="https://rs.school/react/">
       <img
