@@ -69,6 +69,9 @@
     },
     "AppThemeSet": {
       "Legend": "Темы оформления"
+    },
+    "LanguagesSet": {
+      "Legend": "Язык приложения"
     }
   },
   "SignIn": {

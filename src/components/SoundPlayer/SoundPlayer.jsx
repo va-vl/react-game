@@ -6,13 +6,13 @@ import { gameSoundSelector, soundVolumeSelector } from '../../store/selectors';
 //
 import { getResources } from '../../utils/resources';
 
-const {
-  sfx: { error, match, move, win },
-} = getResources();
-
 const SoundPlayer = () => {
   const sound = useSelector(gameSoundSelector);
   const soundVolume = useSelector(soundVolumeSelector);
+
+  const {
+    sfx: { error, match, move, win },
+  } = getResources();
 
   const [playErrorSound] = useSound(error, {
     volume: soundVolume / 1500,

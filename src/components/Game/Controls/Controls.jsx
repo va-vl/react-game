@@ -23,7 +23,9 @@ const Controls = React.memo(({ gameStarter, moves, timeCount }) => {
       <p className="controls__info">
         {`${t('Game.Controls.GameTime')}: ${formatTime(timeCount)}`}
       </p>
-      <p className="controls__info">{`${t('Game.Control.Moves')}: ${moves}`}</p>
+      <p className="controls__info">
+        {`${t('Game.Controls.Moves')}: ${moves}`}
+      </p>
     </div>
   );
 });

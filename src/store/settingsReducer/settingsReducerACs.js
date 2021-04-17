@@ -10,6 +10,7 @@ import {
   UPDATE_CARDS_BACK,
   UPDATE_CARDS_AMOUNT,
   UPDATE_APP_THEME,
+  UPDATE_LANGUAGE,
 } from './settingsReducerActionTypes';
 
 // Music volume async action
@@ -27,35 +28,32 @@ import {
 //   updateMusicVolumeDebouncedAC(dispatch, ...args);
 // End of music volume async action
 
-const updateMusicVolumeAC = (payload) => ({
+export const updateMusicVolumeAC = (payload) => ({
   type: UPDATE_MUSIC_VOLUME,
   payload,
 });
 
-const updateSoundVolumeAC = (payload) => ({
+export const updateSoundVolumeAC = (payload) => ({
   type: UPDATE_SOUND_VOLUME,
   payload,
 });
 
-const updateCardsAmountAC = (payload) => ({
+export const updateCardsAmountAC = (payload) => ({
   type: UPDATE_CARDS_AMOUNT,
   payload,
 });
 
-const updateCardsBackAC = (payload) => ({
+export const updateCardsBackAC = (payload) => ({
   type: UPDATE_CARDS_BACK,
   payload,
 });
 
-const updateAppThemeAC = (payload) => ({
+export const updateAppThemeAC = (payload) => ({
   type: UPDATE_APP_THEME,
   payload,
 });
 
-export {
-  updateMusicVolumeAC,
-  updateSoundVolumeAC,
-  updateCardsAmountAC,
-  updateCardsBackAC,
-  updateAppThemeAC,
-};
+export const updateLanguageAC = (payload) => ({
+  type: UPDATE_LANGUAGE,
+  payload,
+});

@@ -17,12 +17,13 @@ const OutsideLink = ({ href, outerClassName, children }) => (
 
 OutsideLink.defaultProps = {
   outerClassName: null,
+  children: undefined,
 };
 
 OutsideLink.propTypes = {
   href: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
   outerClassName: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export { OutsideLink };

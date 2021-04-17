@@ -4,8 +4,9 @@ export const cardsBackIndexSelector = (state) =>
   state.settingsReducer.cardsBackIndex;
 export const cardsAmountSelector = (state) => state.settingsReducer.cardsAmount;
 export const appThemeSelector = (state) => state.settingsReducer.appTheme;
-export const autoplaySelector = (state) => state.gameReducer.isAutoplayOn;
+export const languageSelector = (state) => state.settingsReducer.language;
 
+export const autoplaySelector = (state) => state.gameReducer.isAutoplayOn;
 export const gameOnSelector = (state) => state.gameReducer.isGameOn;
 export const gameCompleteSelector = (state) => state.gameReducer.isGameComplete;
 export const gameLevelSelector = (state) => state.gameReducer.level;

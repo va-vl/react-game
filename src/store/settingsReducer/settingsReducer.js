@@ -4,6 +4,7 @@ import {
   UPDATE_CARDS_AMOUNT,
   UPDATE_CARDS_BACK,
   UPDATE_APP_THEME,
+  UPDATE_LANGUAGE,
 } from './settingsReducerActionTypes';
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   cardsBackIndex: 0,
   cardsAmount: 12,
   appTheme: 'green',
+  language: 'en',
 };
 
 const settingsReducer = (state = initialState, { type, payload }) => {
@@ -44,6 +46,12 @@ const settingsReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         appTheme: payload,
+      };
+    }
+    case UPDATE_LANGUAGE: {
+      return {
+        ...state,
+        language: payload,
       };
     }
     default: {

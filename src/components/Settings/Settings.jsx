@@ -7,6 +7,7 @@ import { SoundVolumeSlider } from './SoundVolumeSlider';
 import { CardsAmountSet } from './CardsAmountSet';
 import { CardsBackSet } from './CardsBackSet';
 import { AppThemeSet } from './AppThemeSet';
+import { LanguagesSet } from './LanguagesSet';
 //
 import './Settings.scss';
 
@@ -32,6 +33,9 @@ const Settings = () => {
           </div>
           <div className="settings__input">
             <AppThemeSet />
+          </div>
+          <div className="settings__input">
+            <LanguagesSet />
           </div>
         </form>
         <Link className="settings__button" to="/">
