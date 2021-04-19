@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 //
-import formatTime from '../../../utils/formatTime';
+import { formatTime } from '../../../utils/format';
 //
 import './Controls.scss';
 

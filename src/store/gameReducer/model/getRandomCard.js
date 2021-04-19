@@ -1,4 +1,4 @@
-const getRandomCard = (arr) => {
+export const getRandomCard = (arr) => {
   const availableCards = arr
     .map((obj, levelIndex) => ({
       ...obj,
@@ -10,5 +10,3 @@ const getRandomCard = (arr) => {
 
   return availableCards[ind];
 };
-
-export default getRandomCard;

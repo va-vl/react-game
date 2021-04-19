@@ -2,8 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 //
-import formatTime from '../../../utils/formatTime';
-import formatDateTime from '../../../utils/formatDateTime';
+import { formatTime, formatDateTime } from '../../../utils/format';
 //
 import './StatsTable.scss';
 

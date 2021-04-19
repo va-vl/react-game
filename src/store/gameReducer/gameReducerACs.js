@@ -9,45 +9,37 @@ import {
   GAME_CARD_MATCH_END,
   GAME_CLEAR_SOUND,
 } from './gameReducerActionTypes';
+//
 import {
   SOUND_DELAY,
   FLIP_ANIMATION_DELAY,
   MATCH_ANIMATION_DELAY,
   AUTOPLAY_DELAY,
 } from '../../constants/constants';
-import getRandomCard from './getRandomCard';
-
-const gameInitAC = (payload) => ({
-  type: GAME_INIT,
-  payload,
-});
-
-const gameUpdateTimeAC = () => ({ type: GAME_UPDATE_TIME });
-
-const gameResetAC = () => ({ type: GAME_RESET });
-
-const gameClearSoundAC = () => ({ type: GAME_CLEAR_SOUND });
-
-const gameToggleAutoplayAC = () => ({ type: GAME_TOGGLE_AUTOPLAY });
+//
+import { getRandomCard } from './model';
 
 const gameCardFlipStartAC = (obj) => ({
   type: GAME_CARD_FLIP_START,
   payload: obj,
 });
+const gameCardFlipEndAC = () => ({ type: GAME_CARD_FLIP_END });
+const gameCardMatchStartAC = () => ({ type: GAME_CARD_MATCH_START });
+const gameCardMatchEndAC = () => ({ type: GAME_CARD_MATCH_END });
+const gameClearSoundAC = () => ({ type: GAME_CLEAR_SOUND });
 
-const gameCardFlipEndAC = () => ({
-  type: GAME_CARD_FLIP_END,
+export const gameInitAC = (payload) => ({
+  type: GAME_INIT,
+  payload,
 });
+export const gameUpdateTimeAC = () => ({ type: GAME_UPDATE_TIME });
+export const gameResetAC = () => ({ type: GAME_RESET });
+export const gameToggleAutoplayAC = () => ({ type: GAME_TOGGLE_AUTOPLAY });
 
-const gameCardMatchStartAC = () => ({
-  type: GAME_CARD_MATCH_START,
-});
-
-const gameCardMatchEndAC = () => ({
-  type: GAME_CARD_MATCH_END,
-});
-
-const gameMakeMoveAC = ({ levelIndex, cardIndex }) => (dispatch, getState) =>
+export const gameMakeMoveAC = ({ levelIndex, cardIndex }) => (
+  dispatch,
+  getState,
+) =>
   new Promise((resolve) => {
     dispatch(gameCardFlipStartAC({ levelIndex, cardIndex }));
 
@@ -82,7 +74,7 @@ const gameMakeMoveAC = ({ levelIndex, cardIndex }) => (dispatch, getState) =>
     return null;
   });
 
-const gameAutoPlayAC = () => (dispatch, getState) => {
+export const gameAutoPlayAC = () => (dispatch, getState) => {
   const {
     gameReducer: { level },
   } = getState();
@@ -123,13 +115,4 @@ const gameAutoPlayAC = () => (dispatch, getState) => {
 
     return null;
   });
-};
-
-export {
-  gameInitAC,
-  gameUpdateTimeAC,
-  gameResetAC,
-  gameToggleAutoplayAC,
-  gameMakeMoveAC,
-  gameAutoPlayAC,
 };

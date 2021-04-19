@@ -9,7 +9,8 @@ import {
   GAME_CARD_MATCH_START,
   GAME_CARD_MATCH_END,
 } from './gameReducerActionTypes';
-import createLevel from './createLevel';
+//
+import { createLevel } from './model';
 
 const initialState = {
   isGameOn: false,
