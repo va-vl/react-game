@@ -1,8 +1,47 @@
-# Getting Started with Create React App
+# React-game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Contents
 
-## Available Scripts
+1. [About](#about)
+2. [Install and Configure](#install)
+3. [Available Scripts](#available-scripts)
+4. [Learn More](#learn-more)
+
+## #About
+
+A matching game made with React, Redux, and Firebase. Features:
+
+- Authorization;
+- Sound;
+- Hot keys;
+- Persistent progress;
+- Three card backs;
+- Three visual themes;
+
+Live demo: https://react-game-prod-3de26.web.app
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using [CRACO](https://github.com/gsoft-inc/craco).
+
+## #Install and Configure
+
+To locally run the app:
+
+1. Download a ZIP archive or call `git clone https://github.com/va-z/react-game.git`;
+2. From the app folder, call `yarn`;
+3. Create `.env.local` and `.env.production.local` files (optional). In those files, enter data for your Firebase project:
+
+`REACT_APP_FIREBASE_API_KEY = <apiKey>`
+`REACT_APP_FIREBASE_AUTH_DOMAIN = <authDomain>`
+`REACT_APP_FIREBASE_PROJECT_ID = <projectId>`
+`REACT_APP_FIREBASE_STORAGE_BUCKET = <storageBucket>`
+`REACT_APP_FIREBASE_MESSAGING_SENDER_ID = <messagingSenderId>`
+`REACT_APP_FIREBASE_APP_ID = <appId>`
+
+You must have a Google Firebase account and create a new project or link your existing Firebase project. [See Firebase docs](https://firebase.google.com/docs) for more.
+
+**NOTE: Your firebase project must have Firestore!**
+
+## #Available Scripts
 
 In the project directory, you can run:
 
@@ -22,12 +61,20 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ### `yarn build`
 
 Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+It correctly bundles React in production mode and optimizes the build for the best performance. Uses `.env.production.local` file.
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn deploy`
+
+Runs `yarn build` and deploys to your Firebase hosting.
+
+### `yarn build:dev` and `yarn deploy:dev`
+
+Same as above, but uses the _dev_ config from the `.env.local` file.
 
 ### `yarn eject`
 
@@ -39,7 +86,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## #Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
