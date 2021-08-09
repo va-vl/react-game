@@ -15,7 +15,6 @@
     "firebase-tools": "^9.5.0",
     "i18next": "^20.2.1",
     "lodash.debounce": "^4.0.8",
-    "node-sass": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -29,11 +28,15 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-firestore": "^0.15.0",
     "redux-thunk": "^2.3.0",
+    "sass": "^1.37.5",
     "use-sound": "^2.0.1"
   },
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "build:dev": "env-cmd -f .env.local npm run build",
+    "deploy": "npm run build && firebase deploy --project prod",
+    "deploy:dev": "npm run build:dev && firebase deploy --project dev",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -57,6 +60,7 @@
   },
   "devDependencies": {
     "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
     "eslint": "^7.20.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^7.2.0",
