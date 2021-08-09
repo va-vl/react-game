@@ -1,5 +1,3 @@
-// source https://stackoverflow.com/a/61943772
-
 import { fixGameOnReload } from './gameReducer/model';
 
 const saveState = (reducerName) => (state) => {
