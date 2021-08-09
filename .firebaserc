@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "dev": "react-game-dev-f1150",
+    "prod": "react-game-prod-3de26"
+  }
+}

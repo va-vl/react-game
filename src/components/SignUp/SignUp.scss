@@ -1,0 +1,7 @@
+.signup {
+  @include mainContainer;
+
+  &__content {
+    @include contentContainer($width: 20rem);
+  }
+}

@@ -1,0 +1,9 @@
+.game {
+  @include mainContainer;
+
+  &__content {
+    @include contentContainer($width: 100%);
+    background-color: transparent;
+    box-sizing: border-box;
+  }
+}

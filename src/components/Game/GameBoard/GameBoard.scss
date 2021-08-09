@@ -1,0 +1,23 @@
+.game-board {
+  display: grid;
+  padding: 0;
+  margin: 0 auto;
+  gap: 2vmin;
+  justify-content: center;
+
+  &--12 {
+    grid: repeat(3, 20vmin) / repeat(4, 20vmin);
+  }
+
+  &--16 {
+    grid: repeat(4, 16vmin) / repeat(4, 16vmin);
+  }
+
+  &--20 {
+    grid: repeat(4, 16vmin) / repeat(5, 16vmin);
+  }
+
+  &--24 {
+    grid: repeat(4, 12vmin) / repeat(6, 12vmin);
+  }
+}

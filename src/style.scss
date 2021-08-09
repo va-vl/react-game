@@ -1,0 +1,11 @@
+@import "~@fontsource/roboto/scss/mixins";
+@include fontFace();
+
+body {
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: 800px) {
+    font-size: 15px;
+  }
+}

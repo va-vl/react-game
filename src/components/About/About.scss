@@ -1,0 +1,25 @@
+.about {
+  @include mainContainer;
+
+  &__content {
+    @include contentContainer($width: 20rem);
+    text-align: center;
+  }
+
+  &__heading {
+    @include contentHeading;
+  }
+
+  &__button {
+    @include contentButton
+  }
+
+  &__section {
+    margin: 0 0 2rem;
+  }
+
+  &__paragraph {
+    margin: 1rem 0;
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "AuthReady": {
+    "Loading": "Загрузка"
+  },
+  "About": {
+    "HotKey": {
+      "Heading": "Горячие клавиши",
+      "Descriptions": {
+        "start new game": "новая игра",
+        "to settings": "настройки",
+        "to stats": "статистика",
+        "mute music": "заглушить музыку",
+        "mute sound": "заглушить звук"
+      }
+    },
+    "Heading": "О проекте",
+    "Stack": "Создано с помощью React и Redux.",
+    "ImageSource": "SVG изображения предоставлены Flaticon."
+  },
+  "Footer": "Создано <1>{{name}}</1> в 2021 году.",
+  "Game": {
+    "Controls": {
+      "ToMainMenuButton": "В главное меню",
+      "NewGameButton": "Новая игра",
+      "GameTime": "Время игры",
+      "Moves": "Ходов"
+    },
+    "VictoryModal": {
+      "Heading": "Победа!",
+      "Text": "Загляните в статистику, чтобы посмотреть результат.",
+      "NewGameButton": "Новая игра",
+      "StatsButton": "В статистику",
+      "MenuButton": "В меню"
+    }
+  },
+  "Main": {
+    "AutoplayToggler": {
+      "AutoplayButton": "Автоплей",
+      "TextOn": "Включён",
+      "TextOff": "Выключен"
+    },
+    "UserGreeting": {
+      "Preload": "Загружаем профиль...",
+      "Text": "Привет"
+    },
+    "GameButton": {
+      "New": "Новая игра",
+      "Continue": "Продолжить"
+    },
+    "SettingsButton": "Настройки",
+    "StatsButton": "Статистика",
+    "InfoButton": "Инфо",
+    "LogoutButton": "Выйти"
+  },
+  "Settings": {
+    "Heading": "Настройки",
+    "MainMenuButton": "В главное меню",
+    "CardsAmountSet": {
+      "Legend": "Карточек на поле"
+    },
+    "MusicVolumeSlider": {
+      "Legend": "Громкость музыки"
+    },
+    "SoundVolumeSlider": {
+      "Legend": "Громкость звука"
+    },
+    "CardsBackSet": {
+      "Legend": "Рубашки"
+    },
+    "AppThemeSet": {
+      "Legend": "Темы оформления"
+    },
+    "LanguagesSet": {
+      "Legend": "Язык приложения"
+    }
+  },
+  "SignIn": {
+    "Heading": "Логин",
+    "Note": "Используйте test@test.com / test1234, если не хотите создавать аккаунт",
+    "SubmitButtonLabel": "Войти",
+    "LinkButtonLabel": "К регистрации",
+    "EmailLabel": "E-mail",
+    "PasswordLabel": "Пароль"
+  },
+  "SignUp": {
+    "Heading": "Регистрация",
+    "Note": "Используйте VPN или профиль по умолчанию если сервисы Google не работают в Вашем регионе",
+    "SubmitButtonLabel": "Зарегистрироваться",
+    "LinkButtonLabel": "К логину",
+    "DisplayNameLabel": "Ваше имя",
+    "EmailLabel": "E-mail",
+    "PasswordLabel": "Пароль"
+  },
+  "Stats": {
+    "Heading": "Статистика",
+    "MenuButton": "В меню",
+    "StatsTable": {
+      "Headings": {
+        "Moves": "Ходов",
+        "BoardSize": "Карточек",
+        "Time": "Длительность партии",
+        "Date": "Уровень завершён",
+        "Player": "Игрок"
+      },
+      "Player": {
+        "Human": "Человек",
+        "AI": "AI"
+      }
+    }
+  }
+}

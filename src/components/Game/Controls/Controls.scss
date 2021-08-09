@@ -1,0 +1,18 @@
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80vmin;
+  margin: 0 auto 2vmin;
+
+  &__button {
+    @include contentButton;
+    margin: 1vmin;
+  }
+
+  &__info {
+    padding: 0;
+    margin: 0 0.5vmin;
+  }
+}

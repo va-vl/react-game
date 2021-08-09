@@ -1,0 +1,66 @@
+@keyframes success {
+  from { box-shadow: none; }
+  to { box-shadow: 0 0 1vmin 0.25vmin var(--color-success);}
+}
+
+@keyframes failure {
+  0% { transform: translateX(-0.5vmin);}
+  25% { transform: translateX(0.5vmin);}
+  50% { transform: translateX(-0.5vmin);}
+  75% { transform: translateX(0.5vmin);}
+  100% { transform: translateX(0vmin);}
+}
+
+.card {
+  position: relative;
+  background-color: var(--color-dark);
+  border-radius: 1vmin;
+  transition: transform 300ms 300ms ease,
+    opacity 300ms 300ms ease;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    box-shadow: 0px 0px 1vmin var(--color-black);
+  }
+
+  &--flipped {
+    .card__image--front {
+      transform: rotateY(0deg);
+    }
+    .card__image--back {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &--solved {
+    transform: scale(0.85);
+    opacity: 0.7;
+    animation: success 400ms linear alternate ;
+
+    &:hover,
+    &:focus {
+      cursor: auto;
+      box-shadow: none;
+    }
+  }
+
+  &--error {
+    animation: failure 400ms 200ms linear alternate;
+  }
+
+  &__image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 1vmin;
+    border-radius: 1vmin;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: transform 300ms ease;
+
+    &--front {
+      transform: rotateY(180deg);
+    }
+  }
+}

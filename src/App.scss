@@ -1,0 +1,54 @@
+.app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  font-family: 'Roboto';
+  background-color: var(--color-main);
+
+  &__controls {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  --color-white: #ffffff;
+  --color-black: #252525;
+  --color-success: #17be17;
+
+
+  --color-main: #96bb7c;
+  --color-light: #d6efc7;
+  --color-dark: #184d47;
+  --color-contrast: #fad586;
+
+  &--green {
+    --color-main: #96bb7c;
+    --color-light: #d6efc7;
+    --color-dark: #184d47;
+    --color-contrast: #fad586;
+  }
+
+  &--blue {
+    --color-main: #40a8c4;
+    --color-light: #a2d5f2;
+    --color-dark: #07689f;
+    --color-contrast: #ffc93c;
+  }
+
+  &--brown {
+    --color-main: #984a59;
+    --color-light: #ff8f56;
+    --color-dark: #60424c;
+    --color-contrast: #ff5959;
+  }
+}

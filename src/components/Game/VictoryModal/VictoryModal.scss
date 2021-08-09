@@ -1,0 +1,41 @@
+.victory-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+
+  &__content {
+    @include contentContainer($width: auto);
+    text-align: center;
+    padding: 2rem;
+
+    @media (max-width: 800px) {
+      padding: 2rem;
+    }
+  }
+
+  &__heading {
+    margin: 0 0 2rem;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__button {
+    @include contentButton;
+    margin: 0.25rem;
+  }
+}

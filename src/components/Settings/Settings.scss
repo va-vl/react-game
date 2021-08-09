@@ -1,0 +1,30 @@
+.settings {
+  @include mainContainer;
+
+  &__content {
+    @include contentContainer($width: 60vmin);
+  }
+
+  &__heading {
+    @include contentHeading;
+  }
+
+  &__input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 1.2rem 0;
+
+    @media (max-width: 800px) {
+      margin: 0.5rem 0;
+    }
+  }
+
+  &__button {
+    @include contentButton;
+    margin-top: 1rem;
+
+    @media (max-width: 800px) {
+      margin-top: 0;
+    }
+  }
+}
