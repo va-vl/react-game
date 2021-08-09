@@ -7,8 +7,10 @@ export const FLIP_ANIMATION_DELAY = 400;
 export const MATCH_ANIMATION_DELAY = 500;
 
 export const GAME_SIZES = [12, 16, 20, 24];
-export const APP_THEMES = ['green', 'blue', 'brown'];
+export const APP_THEMES = ['Green', 'Blue', 'Brown'];
+
 export const LANGUAGES = ['en', 'ru'];
+
 export const HOT_KEYS = {
   r: 'start new game',
   s: 'to settings',
