@@ -16,8 +16,8 @@ const Footer = () => {
         <Trans
           i18nKey="Footer"
           t={t}
-          values={{ name: 'va-z' }}
-          components={{ 1: <OutsideLink href="https://github.com/va-z" /> }}
+          values={{ name: 'va-vl' }}
+          components={{ 1: <OutsideLink href="https://github.com/va-vl" /> }}
         />
       </p>
       <OutsideLink href="https://rs.school/react/">
